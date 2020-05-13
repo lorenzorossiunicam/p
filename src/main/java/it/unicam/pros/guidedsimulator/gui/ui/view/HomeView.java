@@ -19,6 +19,7 @@ import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Uniform;
 import it.unicam.pros.guidedsimulator.gui.ui.util.UIUtils;
 import it.unicam.pros.guidedsimulator.gui.ui.util.css.FlexDirection;
 import it.unicam.pros.guidedsimulator.gui.ui.util.css.FlexWrap;
+import org.springframework.core.io.ClassPathResource;
 
 @Route(value="", layout = MainLayout.class)
 @PageTitle("Home | GuidedSimulator")
@@ -39,6 +40,7 @@ public class HomeView extends ViewFrame {
 
         Div image = new Div();
         Image img = new Image(UIUtils.IMG_PATH + "arch.png", "");
+
         img.setAlt("g_si_arch");
         img.setWidth("100%");
         img.setHeight("auto");

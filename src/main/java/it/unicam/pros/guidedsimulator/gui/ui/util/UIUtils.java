@@ -13,6 +13,7 @@ import com.vaadin.flow.component.textfield.TextFieldVariant;
 import it.unicam.pros.guidedsimulator.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Right;
 import it.unicam.pros.guidedsimulator.gui.ui.util.css.*;
+import org.springframework.core.io.ClassPathResource;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

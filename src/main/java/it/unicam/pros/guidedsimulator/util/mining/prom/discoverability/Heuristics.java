@@ -46,7 +46,7 @@ public class Heuristics {
 
     public static void main(String[] args) throws Exception {
         XLog log = LogIO.parseXES("log.xes");
-        BPMNIO.export(BPMNConverter.toBPMNModelInstance(PetrinetConverter.toBPMNDiagram(heuristic(log))), "questo.bpmn");
+        //BPMNIO.export(BPMNConverter.toBPMNModelInstance(PetrinetConverter.toBPMNDiagram(heuristic(log))), "questo.bpmn");
 
     }
 }

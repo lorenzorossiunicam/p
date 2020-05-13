@@ -1,8 +1,6 @@
 package it.unicam.pros.guidedsimulator.gui.ui.view.whatif;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.board.Row;
@@ -19,7 +17,8 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis.ScenariosParamsExtractor;
+import it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis.util.Scenario;
+import it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis.util.ScenariosParamsExtractor;
 import it.unicam.pros.guidedsimulator.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.guidedsimulator.gui.ui.components.GChart;
 import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Bottom;
@@ -44,10 +43,7 @@ import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 @Route(value="whatif/bpmn", layout = MainLayout.class)
@@ -56,7 +52,7 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
 
     public static final String MAX_WIDTH = "1024px";
     private ByteArrayOutputStream logStream;
-    private JsonObject o;
+    private Map<String, Scenario> o;
     private Map<String, NumberField> activities = new HashMap<String, NumberField>();
     private Map<String, Map<String, NumberField>> choices = new HashMap<String, Map<String, NumberField>>();
     private Map<NumberField, Set<NumberField>> correlateChoices = new HashMap<NumberField, Set<NumberField>>();
@@ -288,37 +284,37 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     }
 
 
-    private Component populateForm(VerticalLayout layout, JsonObject content) {
+    private Component populateForm(VerticalLayout layout, Map<String, Scenario> content) {
         layout.removeAll();
 //        layout.add(new HorizontalLayout(new H3("Currency:"),currency));
         for (String pId : content.keySet()){
-            JsonObject proc = (JsonObject) content.get(pId);
-            layout.add(new HorizontalLayout(new H3("Process:"),new H3(proc.get("name").getAsString())));
-            JsonObject acts = (JsonObject) proc.get("Activities");
+            Scenario proc = content.get(pId);
+            layout.add(new HorizontalLayout(new H3("Process:"),new H3(proc.getProcess())));
+            Map<String,String> acts = proc.getActivities();
             layout.add(new H4("Activities:"));
             for(String tId : acts.keySet()){
                 NumberField tmp = new NumberField();
                 tmp.setMin(0);
                 tmp.setValue(1.0);
                 activities.put(tId, tmp);
-                layout.add(new HorizontalLayout(new H5(acts.get(tId).getAsString()), tmp));
+                layout.add(new HorizontalLayout(new H5(acts.get(tId)), tmp));
             }
-            JsonObject gatws = (JsonObject) proc.get("Choices");
+            Map<String, List<String>> gatws = proc.getChoices();
             layout.add(new H4("Choices:"));
             for(String gId : gatws.keySet()){
                 layout.add(new Text(gId));
-                JsonArray sFlows = gatws.get(gId).getAsJsonArray();
+                List<String> sFlows = gatws.get(gId);
                 choices.put(gId, new HashMap<String, NumberField>());
                 Set<NumberField> tmp = new HashSet<NumberField>();
-                for(JsonElement sFlow : sFlows){
+                for(String sFlow : sFlows){
                     NumberField f = new NumberField();
                     f.setValue(100.0/sFlows.size());
                     tmp.add(f);
                     f.addValueChangeListener(event -> {
                         checkConform(event.getSource());
                     });
-                    choices.get(gId).put(sFlow.getAsString(), f);
-                    layout.add(new HorizontalLayout(new H5(sFlow.getAsString()), f, new H5("%")));
+                    choices.get(gId).put(sFlow, f);
+                    layout.add(new HorizontalLayout(new H5(sFlow), f, new H5("%")));
                 }
                 for(NumberField f : tmp){
                     correlateChoices.put(f, new HashSet<NumberField>());

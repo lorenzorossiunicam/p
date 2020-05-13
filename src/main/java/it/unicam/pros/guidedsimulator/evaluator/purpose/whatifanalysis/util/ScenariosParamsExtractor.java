@@ -1,20 +1,13 @@
-package it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis;
+package it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis.util;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import it.unicam.pros.guidedsimulator.semanticengine.bpmn.utils.ModelUtils;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.xml.Model;
-import org.camunda.bpm.model.xml.instance.DomElement;
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ScenariosParamsExtractor {
 
@@ -70,8 +63,9 @@ public class ScenariosParamsExtractor {
 //        return ret;
 //    }
 
-    public static JsonObject extractParams(BpmnModelInstance mi){
-        JsonObject ret = new JsonObject();
+    public static Map<String,Scenario> extractParams(BpmnModelInstance mi){
+        Map<String,Scenario> ret = new HashMap<String,Scenario>();
+
         for(Process process : mi.getModelElementsByType(Process.class)){
             Participant party = null;
             for(Participant participant : mi.getModelElementsByType(Participant.class)){
@@ -81,7 +75,6 @@ public class ScenariosParamsExtractor {
                 }
             }
 
-            JsonObject proc = new JsonObject();
             String name = "";
             if(party != null && party.getName()!= null){
                 name = party.getName();
@@ -92,28 +85,31 @@ public class ScenariosParamsExtractor {
                     name = process.getId();
                 }
             }
-            proc.add("name", new JsonPrimitive(name));
 
-            JsonObject activities = new JsonObject();
-            for(Task t : mi.getModelElementsByType(Task.class)){
-                activities.add(t.getId(), new JsonPrimitive(t.getName()));
+            Collection<Task> tasks = mi.getModelElementsByType(Task.class);
+            Map<String, String> activities = new HashMap<String, String>(tasks.size());
+            for(Task t : tasks){
+                activities.put(t.getId(), t.getName());
             }
-            proc.add("Activities", activities);
-            JsonObject choices = new JsonObject();
+
             Set<Gateway> gateways = new HashSet<Gateway>();
             gateways.addAll(mi.getModelElementsByType(ExclusiveGateway.class));
             gateways.addAll(mi.getModelElementsByType(InclusiveGateway.class));
-            for(Gateway xor: gateways){
-                if(!ModelUtils.isSplit(xor)) {continue;}
-                JsonArray outgoing = new JsonArray();
-                for(SequenceFlow sf: xor.getOutgoing()){
+            Map<String, List<String>> choices = new HashMap<String, List<String>>(gateways.size());
+
+
+            for(Gateway xor: gateways) {
+                if (!ModelUtils.isSplit(xor)) {
+                    continue;
+                }
+                Collection<SequenceFlow> sFlows = xor.getOutgoing();
+                List<String> outgoing = new ArrayList<String>();
+                for (SequenceFlow sf : sFlows) {
                     outgoing.add(sf.getId());
                 }
-                if (outgoing.size()>0) choices.add(xor.getId(), outgoing);
+                choices.put(xor.getId(), outgoing);
             }
-            if (choices.size()>0) proc.add("Choices", choices);
-
-            if (proc.size()>0) ret.add(process.getId(),proc);
+            ret.put(process.getId(), new Scenario(name, activities, choices));
         }
         System.out.println(ret);
         return ret;

@@ -17,7 +17,6 @@ import it.unicam.pros.guidedsimulator.simulation.SimulatorImpl.LabelledEdge;
 import it.unicam.pros.guidedsimulator.util.eventlogs.trace.Trace;
 import it.unicam.pros.guidedsimulator.util.eventlogs.trace.TraceImpl;
 import it.unicam.pros.guidedsimulator.util.eventlogs.trace.event.Event;
-import org.processmining.plugins.etm.fitness.metrics.SimplicityUselessNodes;
 
 public class LTSUtil {
 

@@ -22,6 +22,7 @@ public class SimLogAppender {
         if(area == null){return;}
         area.setValue(area.getValue()+ l.name()+ " --- " +c.getName()+" : "+msg+"\n");
         area.setAutofocus(true);
+        System.out.println(msg);
     }
 
     public enum Level {

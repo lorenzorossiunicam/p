@@ -10,15 +10,15 @@ import org.processmining.plugins.converters.PetriNetToBPMNConverter;
 
 public class PetrinetConverter {
 
-    public static BPMNDiagram toBPMNDiagram(Pair<Petrinet, Marking> petrinet){
-        PetriNetToBPMNConverter converter = new PetriNetToBPMNConverter(petrinet.getFirst(), petrinet.getSecond().iterator().next());
-        return converter.convert();
-    }
-
-    public  static BpmnModelInstance toBPMNModelInstance(Pair< Petrinet, Marking> petrinet){
-        PetriNetToBPMNConverter converter = new PetriNetToBPMNConverter(petrinet.getFirst(), petrinet.getSecond().iterator().next());
-        return BPMNConverter.toBPMNModelInstance(converter.convert());
-    }
+//    public static BPMNDiagram toBPMNDiagram(Pair<Petrinet, Marking> petrinet){
+//        PetriNetToBPMNConverter converter = new PetriNetToBPMNConverter(petrinet.getFirst(), petrinet.getSecond().iterator().next());
+//        return converter.convert();
+//    }
+//
+//    public  static BpmnModelInstance toBPMNModelInstance(Pair< Petrinet, Marking> petrinet){
+//        PetriNetToBPMNConverter converter = new PetriNetToBPMNConverter(petrinet.getFirst(), petrinet.getSecond().iterator().next());
+//        return BPMNConverter.toBPMNModelInstance(converter.convert());
+//    }
 
 
 }

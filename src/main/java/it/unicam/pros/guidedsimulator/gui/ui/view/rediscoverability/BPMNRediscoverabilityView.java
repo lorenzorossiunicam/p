@@ -65,16 +65,15 @@ public class BPMNRediscoverabilityView extends ViewFrame {
     private Component createContent() {
         Component inputs = createInputs();
         Component actions = createActions();
-        Component console = createConsole();
+       // Component console = createConsole();
 
-        FlexBoxLayout content = new FlexBoxLayout(inputs, actions, console);
+        FlexBoxLayout content = new FlexBoxLayout(inputs, actions);//,console);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
         content.setFlexDirection(FlexDirection.COLUMN);
         return content;
     }
 
     private Component createConsole() {
-        LogManager.getLogManager().reset();
         TextArea console = new TextArea();
         SimLogAppender.setArea(console);
         FlexBoxLayout consoleBox = new FlexBoxLayout(
@@ -165,7 +164,6 @@ public class BPMNRediscoverabilityView extends ViewFrame {
         downloadBtn.setEnabled(false);
         downloadBtn.setWidth("100%");
         FileDownloadWrapper link = new FileDownloadWrapper("log.xes", () -> {
-            System.out.println(logStream.toByteArray());
             return logStream.toByteArray();
         });
         link.wrapComponent(this.downloadBtn);
