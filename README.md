@@ -13,13 +13,13 @@ This tool provides a novel log generation methodology that can be parametric on 
 
 ### Local dependences
 
-`mvn install:install-file -Dfile=lib\rapidprom-4.0.0.jar -DgroupId=org.rapidprom -DartifactId=rapidprom -Dversion=4.0.0 -Dpackaging=jar`
+`mvn install:install-file -Dfile=lib/rapidprom-4.0.0.jar -DgroupId=org.rapidprom -DartifactId=rapidprom -Dversion=4.0.0 -Dpackaging=jar`
 
-`mvn install:install-file -Dfile=lib\camunda-bpmn-model-7.11.0.jar -DgroupId=org.camunda.bpm.model -DartifactId=camunda-bpmn-model -Dversion=7.11.0MIDA -Dpackaging=jar`
+`mvn install:install-file -Dfile=lib/camunda-bpmn-model-7.11.0.jar -DgroupId=org.camunda.bpm.model -DartifactId=camunda-bpmn-model -Dversion=7.11.0MIDA -Dpackaging=jar`
 
-`mvn install:install-file -Dfile=lib\camunda-xml-model-7.11.0.jar -DgroupId=org.camunda.bpm.model -DartifactId=camunda-xml-model -Dversion=7.11.0MIDA -Dpackaging=jar`
+`mvn install:install-file -Dfile=lib/camunda-xml-model-7.11.0.jar -DgroupId=org.camunda.bpm.model -DartifactId=camunda-xml-model -Dversion=7.11.0MIDA -Dpackaging=jar`
 
-`mvn install:install-file -Dfile=lib\ProM-Framework.jar -DgroupId=org.processmining.framework -DartifactId=processmining-framework -Dversion=0.0.1 -Dpackaging=jar`
+`mvn install:install-file -Dfile=lib/ProM-Framework.jar -DgroupId=org.processmining.framework -DartifactId=processmining-framework -Dversion=0.0.1 -Dpackaging=jar`
 
 ### Packaging
 
@@ -27,9 +27,9 @@ This tool provides a novel log generation methodology that can be parametric on 
 
 ### Run
 
-`java -jar /target/guidedsimulator-0.1.jar`
+`java -jar target/guidedsimulator-0.1.jar`
 
-open [http://localhost:8080]()
+open [http://localhost:8080](http://localhost:8080)
 
 ### Logs location 
 
