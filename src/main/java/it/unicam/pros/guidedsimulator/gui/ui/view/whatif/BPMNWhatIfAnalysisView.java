@@ -1,30 +1,38 @@
 package it.unicam.pros.guidedsimulator.gui.ui.view.whatif;
 
 
+import com.awesomecontrols.quickpopup.QuickPopup;
+import com.vaadin.annotations.Push;
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.board.Row;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.H5;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.*;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.shared.communication.PushMode;
 import it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis.util.Scenario;
 import it.unicam.pros.guidedsimulator.evaluator.purpose.whatifanalysis.util.ScenariosParamsExtractor;
 import it.unicam.pros.guidedsimulator.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.guidedsimulator.gui.ui.components.GChart;
-import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Bottom;
-import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Horizontal;
-import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Right;
-import it.unicam.pros.guidedsimulator.gui.ui.layout.size.Top;
+import it.unicam.pros.guidedsimulator.gui.ui.layout.size.*;
 import it.unicam.pros.guidedsimulator.gui.ui.util.IconSize;
 import it.unicam.pros.guidedsimulator.gui.ui.util.LumoStyles;
 import it.unicam.pros.guidedsimulator.gui.ui.util.TextColor;
@@ -32,7 +40,7 @@ import it.unicam.pros.guidedsimulator.gui.ui.util.UIUtils;
 import it.unicam.pros.guidedsimulator.gui.ui.util.css.*;
 import it.unicam.pros.guidedsimulator.gui.ui.view.MainLayout;
 import it.unicam.pros.guidedsimulator.gui.ui.view.ViewFrame;
-import it.unicam.pros.guidedsimulator.gui.util.Uploader;
+import it.unicam.pros.guidedsimulator.gui.ui.components.Uploader;
 import it.unicam.pros.guidedsimulator.guidedsimulator.GuidedSimulator;
 import it.unicam.pros.guidedsimulator.util.eventlogs.EventLog;
 import it.unicam.pros.guidedsimulator.util.eventlogs.trace.Trace;
@@ -44,8 +52,10 @@ import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
 import java.util.*;
+import java.util.concurrent.*;
 
 
+@Push(value = PushMode.MANUAL)
 @Route(value="whatif/bpmn", layout = MainLayout.class)
 @PageTitle("BPMN What If Analysis | GuidedSimulator")
 public class BPMNWhatIfAnalysisView extends ViewFrame {
@@ -61,14 +71,25 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     private Uploader upl;
     private NumberField tauField;
     private IntegerField maxTraces;
-    private Button downloadBtn;
+    private final Button downloadBtn;
     private VerticalLayout form;
     private Select<String> currency;
     private EventLog log;
     private FlexBoxLayout statistics;
     private Row stats;
+    private Button cancelCalcs;
+    private ProgressBar bar;
+    private Future<EventLog> future;
+    private static ExecutorService executor
+            = Executors.newSingleThreadExecutor();
+    private Component proBar;
+    private Set<Binder> binders = new HashSet<Binder>();
+    private UI ui;
+    private FileDownloadWrapper link;
+    private QuickPopup popup;
 
     public BPMNWhatIfAnalysisView(){
+
 
         form = new VerticalLayout();
         genBtn = new Button("Generate Log");
@@ -76,21 +97,48 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         tauField = new NumberField("% of Precision");
         maxTraces = new IntegerField("Max trace number");
         downloadBtn = new Button("Download Log");
+        cancelCalcs = new Button("", new Icon(VaadinIcon.CLOSE_CIRCLE));
+        cancelCalcs.setIconAfterText(true);
+        bar = new ProgressBar();
+
         setViewContent(createContent());
+    }
+
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        ui = attachEvent.getUI();
     }
 
     private Component createContent() {
         Component inputs = createInputs();
         Component actions = createActions();
+        proBar = createProBar();
         Component form = createForm();
         Component stats = createStats();
+        createPopup();
         stats.setVisible(false);
-
-        FlexBoxLayout content = new FlexBoxLayout(inputs, actions,stats, form);
+        proBar.setVisible(false);
+        FlexBoxLayout content = new FlexBoxLayout(inputs, actions, proBar, stats, form);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
         content.setFlexDirection(FlexDirection.COLUMN);
         return content;
     }
+
+    private void createPopup() {
+        VerticalLayout content = new VerticalLayout();
+        popup = new QuickPopup(genBtn.getElement(),content);
+        Button b = new Button("",new Icon(VaadinIcon.CLOSE));
+        b.addClickListener(event1 -> {
+            popup.hide();
+        });
+        b.setWidth("20%");
+        b.getStyle().set("margin-left", "80%");
+        Text t = new Text("Check simulation options.");
+        content.getStyle().set("color", "white");
+        content.getStyle().set("background" , "#233348");
+        content.add(b,t);
+    }
+
 
     private FlexBoxLayout createHeader(VaadinIcon icon, String title) {
         FlexBoxLayout header = new FlexBoxLayout(
@@ -102,24 +150,60 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         return header;
     }
 
+    private void setBoxLayout(FlexBoxLayout l){
+        l.setBoxSizing(BoxSizing.BORDER_BOX);
+        l.setDisplay(Display.BLOCK);
+        l.setMargin(Top.L);
+        l.setMaxWidth(MAX_WIDTH);
+        l.setPadding(Horizontal.RESPONSIVE_L);
+        l.setWidthFull();
+    }
+
+    private Row createRow(){
+        Row r = new Row();
+        UIUtils.setBackgroundColor(LumoStyles.Color.BASE_COLOR, r);
+        UIUtils.setBorderRadius(BorderRadius.S, r);
+        UIUtils.setShadow(Shadow.XS, r);
+        return r;
+    }
+
+    private Component createProBar() {
+        cancelCalcs.setWidth("15%");
+        cancelCalcs.addClickListener(event -> {
+            GuidedSimulator.setInterrupt(true);
+            while (!future.isDone()){
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            logStream = LogIO.getAsStream(log);
+            populateStatistics();
+            statistics.setVisible(true);
+            downloadBtn.setEnabled(true);
+            link.setVisible(true);
+            GuidedSimulator.setInterrupt(false);
+            proBar.setVisible(false);
+        });
+        bar.setIndeterminate(true);
+        FlexBoxLayout proBar = new FlexBoxLayout(
+                new HorizontalLayout(bar, cancelCalcs));
+        setBoxLayout(proBar);
+        return proBar;
+    }
+
+
     private Component createInputs() {
         FlexBoxLayout inputs = new FlexBoxLayout(
                 createHeader(VaadinIcon.INPUT, "Inputs"),
                 createInputsComponents());
-        inputs.setBoxSizing(BoxSizing.BORDER_BOX);
-        inputs.setDisplay(Display.BLOCK);
-        inputs.setMargin(Top.L);
-        inputs.setMaxWidth(MAX_WIDTH);
-        inputs.setPadding(Horizontal.RESPONSIVE_L);
-        inputs.setWidthFull();
+        setBoxLayout(inputs);
         return inputs;
     }
 
     private Component createInputsComponents() {
-        Row inputs = new Row();
-        UIUtils.setBackgroundColor(LumoStyles.Color.BASE_COLOR, inputs);
-        UIUtils.setBorderRadius(BorderRadius.S, inputs);
-        UIUtils.setShadow(Shadow.XS, inputs);
+        Row inputs = createRow();
 
         //Uploader
         upl.getUploadComponent().addSucceededListener(event -> {
@@ -128,6 +212,10 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
             o  = ScenariosParamsExtractor.extractParams(mi);
             populateForm(form, o);
             genBtn.setEnabled(true);
+            proBar.setVisible(false);
+            if(future!=null){
+                cancelCalcs.click();
+            }
         });
 
         //Tau field
@@ -135,56 +223,88 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         tauField.setHasControls(true);
         tauField.setMin(0);
         tauField.setMax(100);
+        Binder<NumberField> bind = new Binder<NumberField>();
+        binders.add(bind);
+        bind.forField(tauField).withValidator(val -> val >= 0 && val <= 100,
+                "Select a value between 0 and 100.").bind(NumberField::getValue, NumberField::setValue);
 
         maxTraces.setValue(10000);
         maxTraces.setMin(1);
+        Binder<IntegerField> bind1 = new Binder<IntegerField>();
+        binders.add(bind1);
+        bind1.forField(maxTraces).withValidator(val -> val > 0,
+                "Select a value greater than 0.").bind(IntegerField::getValue, IntegerField::setValue);
 
         inputs.add(upl.getUploadComponent(), tauField, maxTraces);
         return inputs;
     }
 
+
     private Component createActions() {
         FlexBoxLayout actions = new FlexBoxLayout(
                 createHeader(VaadinIcon.HAND, "Actions"),
                 createActionsComponents());
-        actions.setBoxSizing(BoxSizing.BORDER_BOX);
-        actions.setDisplay(Display.BLOCK);
-        actions.setMargin(Top.L);
-        actions.setMaxWidth(MAX_WIDTH);
-        actions.setPadding(Horizontal.RESPONSIVE_L);
-        actions.setWidthFull();
+        setBoxLayout(actions);
         return actions;
     }
 
     private Component createActionsComponents() {
-        Row actions = new Row();
-        UIUtils.setBackgroundColor(LumoStyles.Color.BASE_COLOR, actions);
-        UIUtils.setBorderRadius(BorderRadius.S, actions);
-        UIUtils.setShadow(Shadow.XS, actions);
+        Row actions = createRow();
 
         //Log generation button
         genBtn.setEnabled(false);
+        genBtn.setWidth("100%");
         genBtn.addClickListener(event -> {
-            log = GuidedSimulator.whatif(mi, getChoicesParams(), getActivityCosts(),tauField.getValue(), maxTraces.getValue());
-            logStream = LogIO.getAsStream(log);
-            populateStatistics();
-            statistics.setVisible(true);
-            downloadBtn.setEnabled(true);
+            if(invalidInputs()){
+                popup.show();
+                return;
+            }
+            downloadBtn.setEnabled(false);
+            link.setVisible(false);
+            proBar.setVisible(true);
+            future = wifThread(ui);
         });
 
         //Download button
         downloadBtn.setEnabled(false);
         downloadBtn.setWidth("100%");
-        FileDownloadWrapper link = new FileDownloadWrapper("log.xes", () -> {
+        link = new FileDownloadWrapper("log.xes", () -> {
             return logStream.toByteArray();
         });
         link.wrapComponent(downloadBtn);
         link.setWidth("100%");
-
-        actions.add(genBtn, link);
+        link.setVisible(false);
+        actions.add(genBtn ,link);
         return actions;
     }
 
+    private boolean invalidInputs() {
+        for(Binder b : binders){
+            if (!b.isValid()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+    private Future<EventLog> wifThread(UI ui){
+        return executor.submit(() -> {
+            log = GuidedSimulator.whatif(mi, getChoicesParams(), getActivityCosts(), tauField.getValue(), maxTraces.getValue());
+            logStream = LogIO.getAsStream(log);
+            GuidedSimulator.setInterrupt(false);
+            ui.access(() -> {
+                populateStatistics();
+                statistics.setVisible(true);
+                downloadBtn.setEnabled(true);
+                link.setVisible(true);
+                proBar.setVisible(false);
+                ui.push();
+            });
+            return log;
+        });
+    }
 
 
     private Map<String, Double> getActivityCosts() {
@@ -196,43 +316,26 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     }
 
     private Component createForm() {
-        FlexBoxLayout actions = new FlexBoxLayout(
+        FlexBoxLayout options = new FlexBoxLayout(
                 createHeader(VaadinIcon.HAND, "Options"),
                 createFormComponents());
-        actions.setBoxSizing(BoxSizing.BORDER_BOX);
-        actions.setDisplay(Display.BLOCK);
-        actions.setMargin(Top.L);
-        actions.setMaxWidth(MAX_WIDTH);
-        actions.setPadding(Horizontal.RESPONSIVE_L);
-        actions.setWidthFull();
-        return actions;
+        setBoxLayout(options);
+        return options;
     }
 
     private Component createFormComponents() {
-        Row params = new Row();
-        UIUtils.setBackgroundColor(LumoStyles.Color.BASE_COLOR, params);
-        UIUtils.setBorderRadius(BorderRadius.S, params);
-        UIUtils.setShadow(Shadow.XS, params);
+        Row params = createRow();
 
         params.add(form);
         return params;
     }
 
     private Component createStats() {
-        stats = new Row();
-        UIUtils.setBackgroundColor(LumoStyles.Color.BASE_COLOR, stats);
-        UIUtils.setBorderRadius(BorderRadius.S, stats);
-        UIUtils.setShadow(Shadow.XS, stats);
-
+        stats = createRow();
         statistics = new FlexBoxLayout(
                 createHeader(VaadinIcon.CHART, "Statistics"),
                 stats);
-        statistics.setBoxSizing(BoxSizing.BORDER_BOX);
-        statistics.setDisplay(Display.BLOCK);
-        statistics.setMargin(Top.L);
-        statistics.setMaxWidth(MAX_WIDTH);
-        statistics.setPadding(Horizontal.RESPONSIVE_L);
-        statistics.setWidthFull();
+        setBoxLayout(statistics);
         return statistics;
     }
 
@@ -296,13 +399,18 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
                 NumberField tmp = new NumberField();
                 tmp.setMin(0);
                 tmp.setValue(1.0);
+                Binder<NumberField> bind = new Binder<NumberField>();
+                binders.add(bind);
+                bind.forField(tmp).withValidator(val -> val > 0,
+                        "Cost must be positive.").bind(NumberField::getValue, NumberField::setValue);
                 activities.put(tId, tmp);
                 layout.add(new HorizontalLayout(new H5(acts.get(tId)), tmp));
             }
             Map<String, List<String>> gatws = proc.getChoices();
             layout.add(new H4("Choices:"));
             for(String gId : gatws.keySet()){
-                layout.add(new Text(gId));
+                Text t = new Text(gId);
+                layout.add(t);
                 List<String> sFlows = gatws.get(gId);
                 choices.put(gId, new HashMap<String, NumberField>());
                 Set<NumberField> tmp = new HashSet<NumberField>();
@@ -316,11 +424,28 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
                     choices.get(gId).put(sFlow, f);
                     layout.add(new HorizontalLayout(new H5(sFlow), f, new H5("%")));
                 }
+                
                 for(NumberField f : tmp){
+
+
                     correlateChoices.put(f, new HashSet<NumberField>());
                     for (NumberField f1 : tmp){
                         if (f.equals(f1)){continue;}
                         correlateChoices.get(f).add(f1);
+                    }
+                }
+
+                for(NumberField f : correlateChoices.keySet()){
+                    Binder<NumberField> bind = new Binder<NumberField>();
+                    binders.add(bind);
+                    XorPercentageValidator xorV = new XorPercentageValidator(f, correlateChoices);
+                    Binder.Binding<NumberField, Double> returningBind =
+                            bind.forField(f).withValidator(xorV).bind(NumberField::getValue, NumberField::setValue);
+                    for(NumberField f1 : correlateChoices.get(f)){
+                        if (f.equals(f1)){continue;}
+                        f1.addValueChangeListener(event -> {
+                            returningBind.validate();
+                        });
                     }
                 }
             }

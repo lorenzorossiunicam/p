@@ -26,22 +26,16 @@ import java.util.Map;
 
 public class GuidedSimulator {
 
-//    private static void generateLogs(Simulator simulator, Evaluator evaluator, Double tau, String outputLogPath){
-//        EventLog log = simulator.simulate(null);
-//        Delta d = evaluator.evaluate(log,tau);
-//        while(!d.isEmpty()){
-//            log = simulator.simulate(d);
-//            d = evaluator.evaluate(log,tau);
-//        }
-//        logger.log(Level.INFO, "Save");
-//
-//        LogIO.saveXES(log, outputLogPath);
-//    }
+    private static boolean interrupt = false;
+    public static void setInterrupt(boolean val){
+        interrupt = val;
+    }
+    public static boolean getInterrupt(){return interrupt;}
 
     private static EventLog generateLogsStream(Simulator simulator, Evaluator evaluator, Double tau){
         EventLog log = simulator.simulate(null);
         Delta d = evaluator.evaluate(log,tau);
-        while(!d.isEmpty()){
+        while(!d.isEmpty() && !interrupt){
             log = simulator.simulate(d);
             d = evaluator.evaluate(log,tau);
         }

@@ -2,6 +2,7 @@ package it.unicam.pros.guidedsimulator.simulation;
 
 import java.util.*;
 
+import it.unicam.pros.guidedsimulator.guidedsimulator.GuidedSimulator;
 import it.unicam.pros.guidedsimulator.semanticengine.SemanticEngine;
 import it.unicam.pros.guidedsimulator.evaluator.Delta;
 import it.unicam.pros.guidedsimulator.util.Couple;
@@ -68,7 +69,7 @@ public class SimulatorImpl implements Simulator {
 
 		lastDelta = (Delta) DeepCopy.copy(delta);
 		for (Trace d : delta.getMissings().getTraces()) {
-
+			if(GuidedSimulator.getInterrupt()) break;
 			Set<Configuration> starts = find(d.get(0));
 			if (starts.isEmpty()) {
 				for (Map<String, Trace> p : randomSim().values()) {

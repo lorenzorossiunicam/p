@@ -49,6 +49,7 @@ import java.util.logging.LogManager;
 //}
 
 
+import com.vaadin.annotations.Push;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.UI;
@@ -57,12 +58,12 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.*;
 import com.vaadin.flow.theme.lumo.Lumo;
+import com.vaadin.shared.communication.PushMode;
 import it.unicam.pros.guidedsimulator.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.guidedsimulator.gui.ui.components.navigation.bar.AppBar;
 import it.unicam.pros.guidedsimulator.gui.ui.components.navigation.bar.TabBar;
@@ -76,6 +77,10 @@ import it.unicam.pros.guidedsimulator.gui.ui.view.rediscoverability.BPMNRediscov
 import it.unicam.pros.guidedsimulator.gui.ui.view.whatif.BPMNWhatIfAnalysisView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+
 
 @CssImport(value = "./styles/components/charts.css", themeFor = "vaadin-chart", include = "vaadin-chart-default-theme")
 @CssImport(value = "./styles/components/floating-action-button.css", themeFor = "vaadin-button")

@@ -1,4 +1,4 @@
-package it.unicam.pros.guidedsimulator.gui.util;
+package it.unicam.pros.guidedsimulator.gui.ui.components;
 
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
