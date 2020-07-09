@@ -53,13 +53,13 @@ public class LogCompleteness {
     public static void main(String[] args){
         XLog log1 = null, log2 = null;
         try {
-            log1 = LogIO.parseXES("lreal5.xes");
+            log1 = LogIO.parseXES("log.xes");
             log2 = LogIO.parseXES("log.xes");
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println(log1.size()+" - "+log2.size());
-        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("real5.bpmn"));
+        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("p4.bpmn"));
         String process = mi.getModelElementsByType(Process.class).iterator().next().getId();
         Map<String, Map<String, AlphaRelations.Relations>> relations = AlphaRelations.getAlphaRelations((Process) mi.getModelElementById(process));
 

@@ -6,9 +6,10 @@ import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.server.AppShellSettings;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.shared.communication.PushMode;
+import it.unicam.pros.pplg.gui.util.Constants;
 
 @Push(value = PushMode.MANUAL)
-@PWA(name = "Guided Simulator", shortName = "G-Sim", iconPath = "images/logo.png", backgroundColor = "#233348", themeColor = "#233348")
+@PWA(name = Constants.toolName, shortName = Constants.shortName, iconPath = Constants.logo, backgroundColor = Constants.bgColor, themeColor = Constants.themeColor)
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class AppShell implements AppShellConfigurator {
 

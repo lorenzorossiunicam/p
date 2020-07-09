@@ -15,40 +15,37 @@ import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
-import com.vaadin.flow.data.binder.*;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.shared.communication.PushMode;
+import it.unicam.pros.pplg.PPLG;
 import it.unicam.pros.pplg.evaluator.purpose.whatifanalysis.util.Scenario;
 import it.unicam.pros.pplg.evaluator.purpose.whatifanalysis.util.ScenariosParamsExtractor;
 import it.unicam.pros.pplg.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.pplg.gui.ui.components.GChart;
-import it.unicam.pros.guidedsimulator.gui.ui.layout.size.*;
+import it.unicam.pros.pplg.gui.ui.components.Uploader;
+import it.unicam.pros.pplg.gui.ui.layout.size.*;
 import it.unicam.pros.pplg.gui.ui.util.IconSize;
 import it.unicam.pros.pplg.gui.ui.util.LumoStyles;
 import it.unicam.pros.pplg.gui.ui.util.TextColor;
 import it.unicam.pros.pplg.gui.ui.util.UIUtils;
-import it.unicam.pros.guidedsimulator.gui.ui.util.css.*;
+import it.unicam.pros.pplg.gui.ui.util.css.*;
 import it.unicam.pros.pplg.gui.ui.view.MainLayout;
 import it.unicam.pros.pplg.gui.ui.view.ViewFrame;
-import it.unicam.pros.pplg.gui.ui.components.Uploader;
 import it.unicam.pros.pplg.gui.ui.view.modeler.BpmnJs;
-import it.unicam.pros.pplg.guidedsimulator.GuidedSimulator;
+import it.unicam.pros.pplg.gui.util.Constants;
 import it.unicam.pros.pplg.util.eventlogs.EventLog;
 import it.unicam.pros.pplg.util.eventlogs.trace.Trace;
 import it.unicam.pros.pplg.util.eventlogs.trace.event.Event;
 import it.unicam.pros.pplg.util.eventlogs.utils.LogIO;
-import it.unicam.pros.pplg.gui.ui.layout.size.Bottom;
-import it.unicam.pros.pplg.gui.ui.layout.size.Horizontal;
-import it.unicam.pros.pplg.gui.ui.layout.size.Right;
-import it.unicam.pros.pplg.gui.ui.layout.size.Top;
-import it.unicam.pros.pplg.gui.ui.util.css.*;
 import org.apache.commons.io.IOUtils;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
@@ -58,12 +55,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 @Push(value = PushMode.MANUAL)
 @Route(value="whatif/bpmn", layout = MainLayout.class)
-@PageTitle("BPMN What If Analysis | GuidedSimulator")
+@PageTitle("BPMN What If Analysis | "+ Constants.shortName)
 public class BPMNWhatIfAnalysisView extends ViewFrame {
 
     public static final String MAX_WIDTH = "1024px";
@@ -85,6 +84,7 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     private FlexBoxLayout statistics;
     private Row stats;
     private Button cancelCalcs;
+    private Button preview;
     private ProgressBar bar;
     private Future<EventLog> future;
     private static ExecutorService executor
@@ -96,11 +96,15 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     private QuickPopup popup;
     private String xml;
     private String lastColEl = null;
+    private BpmnJs bpmnjs;
+    private Row options;
 
     public BPMNWhatIfAnalysisView(){
 
-
+        setId("What-if Analysis - BPMN");
         form = new VerticalLayout();
+        form.setMaxHeight("500px");
+        form.getStyle().set("overflow", "auto");
         genBtn = new Button("Generate Log");
         upl = new Uploader("application/octet-stream",".bpmn");
         tauField = new NumberField("% of Precision");
@@ -110,6 +114,7 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         cancelCalcs.setIconAfterText(true);
         bar = new ProgressBar();
         viewModelBtn = new Button("", new Icon(VaadinIcon.EYE));
+        preview = new Button(new Icon(VaadinIcon.EYE));
         setViewContent(createContent());
     }
 
@@ -129,7 +134,7 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         proBar.setVisible(false);
         FlexBoxLayout content = new FlexBoxLayout(inputs, actions, proBar, stats, form);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
-        content.setFlexDirection(FlexDirection.COLUMN);
+        content.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
         return content;
     }
 
@@ -179,7 +184,7 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     private Component createProBar() {
         cancelCalcs.setWidth("15%");
         cancelCalcs.addClickListener(event -> {
-            GuidedSimulator.setInterrupt(true);
+            PPLG.setInterrupt(true);
             while (!future.isDone()){
                 try {
                     Thread.sleep(300);
@@ -192,7 +197,7 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
             statistics.setVisible(true);
             downloadBtn.setEnabled(true);
             link.setVisible(true);
-            GuidedSimulator.setInterrupt(false);
+            PPLG.setInterrupt(false);
             proBar.setVisible(false);
         });
         bar.setIndeterminate(true);
@@ -311,9 +316,9 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
 
     private Future<EventLog> wifThread(UI ui){
         return executor.submit(() -> {
-            log = GuidedSimulator.whatif(mi, getChoicesParams(), getActivityCosts(), tauField.getValue(), maxTraces.getValue());
+            log = PPLG.whatif(mi, getChoicesParams(), getActivityCosts(), tauField.getValue(), maxTraces.getValue());
             logStream = LogIO.getAsStream(log);
-            GuidedSimulator.setInterrupt(false);
+            PPLG.setInterrupt(false);
             ui.access(() -> {
                 populateStatistics();
                 statistics.setVisible(true);
@@ -336,24 +341,27 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     }
 
     private Component createForm() {
+        bpmnjs = new BpmnJs();
+        options = new Row(createFlexBoxLayout(bpmnjs.getComponent(), "Model preview", VaadinIcon.SPLIT),
+                createFlexBoxLayout(form, "Options", VaadinIcon.HAND));
+        options.addClassName(LumoStyles.Margin.Top.XL);
+        UIUtils.setMaxWidth("2048" , options);
+        options.setWidthFull();
+        upl.getUploadComponent().addSucceededListener(event -> {
 
-        FlexBoxLayout options = new FlexBoxLayout(
-                createHeader(VaadinIcon.HAND, "Options"),
-                createFormComponents());
-        setBoxLayout(options);
+            bpmnjs.loadDiagram(xml, false);
+        });
         return options;
     }
 
-    private Component createFormComponents() {
-        VerticalLayout content = new VerticalLayout();
-        upl.getUploadComponent().addSucceededListener(event -> {
-            BpmnJs.createViewer(xml);});
-        Row params = createRow();
-
-        content.add(BpmnJs.getComponent(),form);
-        params.add(content);
-        return params;
+    private Component createFlexBoxLayout(Component c,  String name, VaadinIcon i){
+        FlexBoxLayout header = createHeader(i, name);
+        FlexBoxLayout reports = new FlexBoxLayout(header, c);
+        reports.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
+        reports.setPadding(Bottom.XL, Left.RESPONSIVE_L);
+        return reports;
     }
+
 
     private Component createStats() {
         stats = createRow();
@@ -420,27 +428,32 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
             layout.add(new HorizontalLayout(new H3("Process:"),new H3(proc.getProcess())));
             Map<String,String> acts = proc.getActivities();
             layout.add(new H4("Activities:"));
+
+
             for(String tId : acts.keySet()){
                 NumberField tmp = new NumberField();
                 tmp.setMin(0);
                 tmp.setValue(1.0);
                 tmp.addFocusListener(event -> {
                     if(lastColEl != null)
-                    BpmnJs.setColor(lastColEl,"", "");
+                    bpmnjs.setColor(lastColEl,"", "");
                     lastColEl = tId;
-                    BpmnJs.setColor(tId,"", "red");
+                    bpmnjs.setColor(tId,"", "red");
                 });
                 Binder<NumberField> bind = new Binder<NumberField>();
                 binders.add(bind);
                 bind.forField(tmp).withValidator(val -> val > 0,
                         "Cost must be positive.").bind(NumberField::getValue, NumberField::setValue);
                 activities.put(tId, tmp);
-                layout.add(new HorizontalLayout(new H5(acts.get(tId)), tmp));
+                H5 id = new H5(acts.get(tId));
+                id.setWidth("300px");
+                layout.add(new HorizontalLayout(id, tmp));
             }
+
             Map<String, List<String>> gatws = proc.getChoices();
             layout.add(new H4("Choices:"));
             for(String gId : gatws.keySet()){
-                Text t = new Text(gId);
+                H4 t = new H4(gId);
                 layout.add(t);
                 List<String> sFlows = gatws.get(gId);
                 choices.put(gId, new HashMap<String, NumberField>());
@@ -449,17 +462,16 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
                     NumberField f = new NumberField();
                     f.setValue(100.0/sFlows.size());
                     tmp.add(f);
-                    f.addValueChangeListener(event -> {
-                        checkConform(event.getSource());
-                    });
                     f.addFocusListener(event -> {
                         if(lastColEl != null)
-                            BpmnJs.setColor(lastColEl,"", "");
-                        lastColEl =  gId+"', '"+sFlow;
-                        BpmnJs.setColor(lastColEl,"", "red");
+                            bpmnjs.setColor(lastColEl,"", "");
+                        lastColEl =  sFlow;
+                        bpmnjs.setColor(lastColEl,"", "red");
                     });
                     choices.get(gId).put(sFlow, f);
-                    layout.add(new HorizontalLayout(new H5(sFlow), f, new H5("%")));
+                    H5 id = new H5(sFlow);
+                    id.setWidth("300px");
+                    layout.add(new HorizontalLayout(id, f, new H5("%")));
                 }
                 
                 for(NumberField f : tmp){
@@ -490,19 +502,4 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         return layout;
     }
 
-    private void checkConform(NumberField source) {
-        Set<NumberField> others = correlateChoices.get(source);
-        double sum = 0;
-        for (NumberField o : others){
-            sum += o.getValue();
-        }
-        if (source.getValue() + sum > 100) {
-            source.setValue(100-sum);
-        } 
-//        if (source.getValue() + sum < 100){
-//            for (NumberField o : others){
-//                o.set
-//            }
-//        }
-    }
 }

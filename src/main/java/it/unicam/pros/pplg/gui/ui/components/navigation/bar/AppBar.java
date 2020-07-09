@@ -3,6 +3,7 @@ package it.unicam.pros.pplg.gui.ui.components.navigation.bar;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasValue;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -21,6 +22,7 @@ import it.unicam.pros.pplg.gui.ui.util.LumoStyles;
 import it.unicam.pros.pplg.gui.ui.util.UIUtils;
 import it.unicam.pros.pplg.gui.ui.view.HomeView;
 import it.unicam.pros.pplg.gui.ui.view.MainLayout;
+import it.unicam.pros.pplg.gui.util.Constants;
 
 import java.util.ArrayList;
 
@@ -112,7 +114,7 @@ public class AppBar extends FlexBoxLayout {
 
 	private void initContainer() {
 		container = new FlexBoxLayout(menuIcon, contextIcon, this.title, search,
-				actionItems);//, avatar);
+				actionItems, new Text("v. "+Constants.version));
 		container.addClassName(CLASS_NAME + "__container");
 		container.setAlignItems(FlexComponent.Alignment.CENTER);
 		container.setFlexGrow(1, search);

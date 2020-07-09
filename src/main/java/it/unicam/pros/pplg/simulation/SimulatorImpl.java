@@ -2,7 +2,7 @@ package it.unicam.pros.pplg.simulation;
 
 import java.util.*;
 
-import it.unicam.pros.pplg.guidedsimulator.GuidedSimulator;
+import it.unicam.pros.pplg.PPLG;
 import it.unicam.pros.pplg.semanticengine.SemanticEngine;
 import it.unicam.pros.pplg.evaluator.Delta;
 import it.unicam.pros.pplg.util.Couple;
@@ -59,7 +59,7 @@ public class SimulatorImpl implements Simulator {
 
 	@Override
 	public EventLog simulate(Delta delta) {
-		if (delta == null || delta.getMissings() == null || delta.getMissings().getTraces().isEmpty() || delta.equals(lastDelta)) {
+		if (delta == null || delta.getMissings() == null || delta.getMissings().getTraces().isEmpty() ){//|| delta.equals(lastDelta)) {
 			for (Map<String, Trace> p : randomSim().values()) {
 				log.addTraces(p.values());
 			}
@@ -68,7 +68,7 @@ public class SimulatorImpl implements Simulator {
 
 		lastDelta = (Delta) DeepCopy.copy(delta);
 		for (Trace d : delta.getMissings().getTraces()) {
-			if(GuidedSimulator.getInterrupt()) break;
+			if(PPLG.isInterrupted()) break;
 			Set<Configuration> starts = find(d.get(0));
 			if (starts.isEmpty()) {
 				for (Map<String, Trace> p : randomSim().values()) {
@@ -77,11 +77,15 @@ public class SimulatorImpl implements Simulator {
 			} else {
 				d.getTrace().remove(0);
 				for (Configuration s : starts) {
-					if(d.getTrace().isEmpty()){continue;}
 					Map<String, Map<String, Trace>> prefix = getPrefix(s);
+					if(d.getTrace().isEmpty()){
+						for (Map<String, Trace> p : finalizeSim(prefix, s).values()) {
+							log.addTraces(p.values());
+						}
+					}else{
 					for (Map<String, Trace> p : guidedSim(prefix, s, d).values()) {
 						log.addTraces(p.values());
-					}
+					}}
 				}
 			}
 		}

@@ -22,59 +22,50 @@ public class ModelProbabilities {
 
     public static void main(String[] args) throws Exception {
 
-        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:\\Users\\lo_re\\Desktop\\wif3.bpmn"));
-
-        HashMap<String, Double> pr = new HashMap<String, Double>();
-        Set<Gateway> gs = new HashSet<>();
-        gs.addAll(mi.getModelElementsByType(InclusiveGateway.class));
-        gs.addAll(mi.getModelElementsByType(ExclusiveGateway.class));
-        for(Gateway g : gs){
-            if (ModelUtils.isSplit(g)){
-                Collection<SequenceFlow> out = g.getOutgoing();
-
-                for(SequenceFlow sg : out){
-                    pr.put(sg.getId(), 100.0/out.size());
-                }
-            }
-        }
-
-
-        Map<String, Double> original = calculateProbabilities(mi, pr);
-        XLog logPPLG = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\wif3lpplg.xes");
-        Map<String, Double> ppgl = calculateProbabilities(logPPLG);
-        XLog logBIMP = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\wif3lbimp.xes");
-        Map<String, Double> bimp = calculateProbabilities(logBIMP);
-        System.out.println(original);
-        System.out.println(ppgl);
-        System.out.println(bimp);
-
-        double  distPPLG = 0, distBIMP = 0, sum= 0.0;
-        for(String s: original.keySet()){
-            double or = original.get(s);
-            sum += or;
-            Double p = ppgl.get(s);
-            if(p == null) p = 0.0;
-            Double b = bimp.get(s);
-            if(b == null) b = 0.0;
-            distPPLG += Math.abs(p - or);
-            distBIMP += Math.abs(b - or);
-        }
-        System.out.println("BIMP "+(100- (100*distBIMP/original.size())));
-        System.out.println("PPLG "+(100- (100*distPPLG/original.size())));
+//        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:\\Users\\lo_re\\Desktop\\p5.bpmn"));
+//
+//        HashMap<String, Double> pr = new HashMap<String, Double>();
+//        Set<Gateway> gs = new HashSet<>();
+//        gs.addAll(mi.getModelElementsByType(InclusiveGateway.class));
+//        gs.addAll(mi.getModelElementsByType(ExclusiveGateway.class));
+//        for(Gateway g : gs){
+//            if (ModelUtils.isSplit(g)){
+//                Collection<SequenceFlow> out = g.getOutgoing();
+//
+//                for(SequenceFlow sg : out){
+//                    pr.put(sg.getId(), 100.0/out.size());
+//                }
+//            }
+//        }
+//
+//
+//        Map<String, Double> original = calculateProbabilities(mi, pr);
+//        XLog logPPLG = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\p5pplg.xes");
+//        Map<String, Double> ppgl = calculateProbabilities(logPPLG);
+//        XLog logBIMP = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\p5bimp.xes");
+//        Map<String, Double> bimp = calculateProbabilities(logBIMP);
+//        System.out.println(original);
+//        System.out.println(ppgl);
+//        System.out.println(bimp);
+//
+//        double  distPPLG = 0, distBIMP = 0, sum= 0.0;
+//        for(String s: original.keySet()){
+//            double or = original.get(s);
+//            sum += or;
+//            Double p = ppgl.get(s);
+//            if(p == null) p = 0.0;
+//            Double b = bimp.get(s);
+//            if(b == null) b = 0.0;
+//            distPPLG += Math.abs(p - or);
+//            distBIMP += Math.abs(b - or);
+//        }
+//        System.out.println("BIMP "+(100- (100*distBIMP/original.size())));
+//        System.out.println("PPLG "+(100- (100*distPPLG/original.size())));
 //        rediscoverability("testXor.bpmn", "ltestXor.xes",Rediscoverability.RediscoverabilityAlgo.ALPHA, 1.0);
 //        System.exit(0);
     }
 
     public static Map<String, Double> calculateProbabilities(BpmnModelInstance mi, Map<String, Double> xorAndOrProbabilities) {
-//        Map<String, Double> tmp = new HashMap<String, Double>();
-//        for(StartEvent sE : mi.getModelElementsByType(StartEvent.class)){
-//            dfCalc(tmp, sE, 1, xorAndOrProbabilities, new HashSet<FlowNode>());
-//        }
-//        Map<String, Double> ret = new HashMap<String, Double>();
-//        for (Task t : mi.getModelElementsByType(Task.class)){
-//            ret.put(t.getName(), tmp.get(t.getId()));
-//        }
-//        return ret;
         Map<String, Double> tp = new HashMap<String, Double>();
         Map<String, Double> sfp = new HashMap<String, Double>();
         for(StartEvent sE : mi.getModelElementsByType(StartEvent.class)){
@@ -118,32 +109,7 @@ public class ModelProbabilities {
         }
     }
 
-//    private static void dfCalc(Map<String, Double> ret, FlowNode node, double prob,
-//                               Map<String, Double> xorAndOrProbabilities, HashSet<FlowNode> done) { //It may not works with not structured models
-//        ret.put(node.getId(), prob);
-//        done.add(node);
-//        for (SequenceFlow out : node.getOutgoing()) {
-//            FlowNode next = out.getTarget();
-//            if(node instanceof  ParallelGatewayImpl || node instanceof StartEventImpl || node instanceof TaskImpl ||
-//                    node instanceof IntermediateCatchEventImpl || node instanceof IntermediateThrowEventImpl){
-//                dfCalc(ret, next, prob, xorAndOrProbabilities, done);
-//            }else if(node instanceof ExclusiveGatewayImpl || node instanceof InclusiveGatewayImpl || node instanceof EventBasedGatewayImpl) {
-//                if (ModelUtils.isSplit(node)) {
-//                    dfCalc(ret, next, prob*xorAndOrProbabilities.get(out.getId())/100, xorAndOrProbabilities, done);
-//                } else {
-//                    List<FlowNode> previous = node.getPreviousNodes().list();
-//                    if(done.containsAll(previous)){
-//                        double newProb = 0;
-//                        for (FlowNode n : previous){
-//                            newProb += ret.get(n.getId());
-//                        }
-//                        dfCalc(ret, next, newProb, xorAndOrProbabilities, done);
-//                    }
-//                }
-//            }
-//
-//        }
-//    }
+
 
     public static EventLog compareProbabilities(Map<String, Double> logProbs, Map<String, Double> requiredProbs, Double tau){
         EventLogImpl ret = new EventLogImpl(null, null);

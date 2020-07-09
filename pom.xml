@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>it.pros.guidedsimulator</groupId>
-    <artifactId>guidedsimulator</artifactId>
-    <name>Guided Simulator</name>
-    <version>0.1</version>
+    <groupId>it.pros.pplg</groupId>
+    <artifactId>pplg</artifactId>
+    <name>Purpose Parametric Log Generator</name>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <vaadin.version>15.0.6</vaadin.version>
+        <vaadin.version>16.0.0</vaadin.version>
 
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
         <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
@@ -140,6 +140,7 @@
             <artifactId>quickpopup-component-for-vaadin-flow</artifactId>
             <version>1.0.2.1</version>
         </dependency>
+
         <!-- CORE dependencies -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -352,7 +353,7 @@
                             </goals>
                             <configuration>
                                 <tasks>
-                                    <copy file="target/${artifactId}-${version}.jar" tofile="../guidedsimulator-builds/${artifactId}-${version}.jar"/>
+                                    <copy file="target/${artifactId}-${version}.jar" tofile="../pplg-builds/${artifactId}-${version}.jar"/>
                                 </tasks>
                             </configuration>
                         </execution>

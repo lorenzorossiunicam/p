@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.theme.lumo.Lumo;
 import it.unicam.pros.pplg.gui.ui.layout.size.Size;
-import it.unicam.pros.guidedsimulator.gui.ui.util.css.*;
 import it.unicam.pros.pplg.gui.ui.util.css.*;
 
 import java.util.ArrayList;
@@ -78,9 +77,9 @@ public class FlexBoxLayout extends FlexLayout {
 		}
 	}
 
-	public void setFlexDirection(FlexDirection direction) {
-		getStyle().set(FLEX_DIRECTION, direction.getValue());
-	}
+//	public void setFlexDirection(FlexDirection direction) {
+//		getStyle().set(FLEX_DIRECTION, direction.getValue());
+//	}
 
 	public void removeFlexDirection() {
 		getStyle().remove(FLEX_DIRECTION);
@@ -92,10 +91,10 @@ public class FlexBoxLayout extends FlexLayout {
 		}
 	}
 
-	public void setFlexWrap(FlexWrap wrap) {
-		getStyle().set(FLEX_WRAP, wrap.getValue());
-	}
-
+//	public void setFlexWrap(FlexWrap wrap) {
+//		getStyle().set(FLEX_WRAP, wrap.getValue());
+//	}
+//
 	public void removeFlexWrap() {
 		getStyle().remove(FLEX_WRAP);
 	}

@@ -9,7 +9,6 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
-import it.unicam.pros.guidedsimulator.gui.ui.util.css.*;
 import it.unicam.pros.pplg.gui.ui.util.css.*;
 
 import java.text.DecimalFormat;

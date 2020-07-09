@@ -1,5 +1,5 @@
 # `PPLG` Purpose Parametric Log Generator
-![gsim](https://bitbucket.org/proslabteam/guidedsimulator/raw/f51fb2a83bd8787bb162b3131def27c2ed044854/src/main/webapp/images/arch.png)
+![gsim](https://bitbucket.org/proslabteam/PPLG/raw/f51fb2a83bd8787bb162b3131def27c2ed044854/src/main/webapp/images/arch.png)
 
 This tool provides a novel log generation methodology that can be parametric on the input process model language and on the mining purpose, to produce artificial event logs. The methodology is meant to ensure the possibility of simulating any kind of process model through the implementation of several modeling language semantics (e.g., BPMN, Petri net, EPC, WF-net), and also the possibility to decide characteristics of the output event log according to the requirements of a mining procedure.
 

@@ -1,5 +1,6 @@
 package it.unicam.pros.pplg.evaluator.purpose.whatifanalysis;
 
+import it.unicam.pros.pplg.PPLG;
 import it.unicam.pros.pplg.evaluator.Delta;
 import it.unicam.pros.pplg.evaluator.Evaluator;
 import it.unicam.pros.pplg.evaluator.purpose.whatifanalysis.metrics.ModelProbabilities;
@@ -24,7 +25,7 @@ public class BPMNWhatIfAnalysis implements Evaluator {
 
     @Override
     public Delta evaluate(EventLog disc, Double tau) {
-        if (disc.size() >= maxTraces) return null;
+        if (disc.size() >= maxTraces) {PPLG.setInterrupt(true);}
         return getDelta(disc, tau);
     }
 

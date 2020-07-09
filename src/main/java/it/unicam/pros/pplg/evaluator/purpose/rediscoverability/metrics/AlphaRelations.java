@@ -5,6 +5,7 @@ import java.util.*;
 import it.unicam.pros.pplg.util.eventlogs.EventLog;
 import it.unicam.pros.pplg.util.eventlogs.trace.Trace;
 import it.unicam.pros.pplg.util.eventlogs.EventLogImpl;
+import it.unicam.pros.pplg.util.eventlogs.trace.event.Event;
 import it.unicam.pros.pplg.util.eventlogs.trace.event.EventImpl;
 import org.camunda.bpm.model.bpmn.impl.instance.GatewayImpl;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
@@ -79,7 +80,6 @@ public final class AlphaRelations {
                 }
             }
         }
-        System.out.println("rel "+refRelations+" tau "+tau/100+" missin "+missing.size());
         if(missing.size()/refRelations >= tau/100) return null;
         return missing;
     }
@@ -130,10 +130,31 @@ public final class AlphaRelations {
             	matrix.get(t.getLabel()).put(next.getLabel(),Relations.SEQUENCE);
 			}
         }
-		//TODO PARALLEL ...
         return matrix;
     }
 
+    public static Map<String, Map<String, Relations>> getAlphaRelations(EventLog log) {
+        matrix = new HashMap<String, Map<String, Relations>>();
+        for (Trace t : log.getTraces()){
+            List<Event> trace = t.getTrace();
+            for (int i = 0; i<trace.size()-1; i++){
+                String init = trace.get(i).getEventName();
+                String fin = trace.get(i+1).getEventName();
+                if (matrix.get(init) == null){
+                    matrix.put(init, new HashMap<String, Relations>());
+                }
+                if (matrix.get(fin) == null){
+                    matrix.put(fin, new HashMap<String, Relations>());
+                }
+                if (matrix.get(fin).get(init) == null){
+                    matrix.get(init).put(fin, Relations.SEQUENCE);
+                }else{
+                    matrix.get(fin).remove(init);
+                }
+            }
+        }
+        return matrix;
+    }
 
     public enum Relations {
         SEQUENCE, PARALLEL, CHOICE, NONE

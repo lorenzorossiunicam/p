@@ -20,13 +20,14 @@ public class TraceImpl implements Trace {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		TraceImpl trace1 = (TraceImpl) o;
-		return Objects.equals(data, trace1.data) &&
+		return Objects.equals(caseID, trace1.caseID) &&
+				Objects.equals(data, trace1.data) &&
 				Objects.equals(trace, trace1.trace);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(data, trace);
+		return Objects.hash(caseID, data, trace);
 	}
 
 	public TraceImpl(Map<String, String> data) {

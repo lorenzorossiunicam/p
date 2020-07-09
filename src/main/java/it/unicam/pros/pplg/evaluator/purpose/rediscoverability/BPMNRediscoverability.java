@@ -56,15 +56,16 @@ public class BPMNRediscoverability extends Rediscoverability {
 
 	@Override
 	public Delta evaluate(EventLog disc, Double tau) {
-		XLog log = LogIO.getXLog(disc);
-		Pair<Petrinet, Marking> pt = null;
-		try {
-			pt = Alphas.alpha(log, algo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Map<String, Map<String, Relations>> matrix2 =	AlphaRelations.getAlphaRelations(pt.getFirst());
-		return getDelta(matrix2, tau);
+//		XLog log = LogIO.getXLog(disc);
+//		Pair<Petrinet, Marking> pt = null;
+//		try {
+//			pt = Alphas.alpha(log, algo);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		Map<String, Map<String, Relations>> matrix2 =	AlphaRelations.getAlphaRelations(pt.getFirst());
+
+		return getDelta(AlphaRelations.getAlphaRelations(disc), tau);
 	}
  
 	private Delta getDelta(Map<String, Map<String, Relations>> disc, double tau) {

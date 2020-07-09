@@ -12,6 +12,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
@@ -32,13 +33,13 @@ import it.unicam.pros.pplg.gui.ui.util.IconSize;
 import it.unicam.pros.pplg.gui.ui.util.LumoStyles;
 import it.unicam.pros.pplg.gui.ui.util.TextColor;
 import it.unicam.pros.pplg.gui.ui.util.UIUtils;
-import it.unicam.pros.guidedsimulator.gui.ui.util.css.*;
+import it.unicam.pros.pplg.gui.ui.util.css.*;
 import it.unicam.pros.pplg.gui.ui.view.MainLayout;
 import it.unicam.pros.pplg.gui.ui.view.ViewFrame;
 import it.unicam.pros.pplg.gui.ui.components.Uploader;
+import it.unicam.pros.pplg.gui.util.Constants;
 import it.unicam.pros.pplg.gui.util.logger.SimLogAppender;
-import it.unicam.pros.pplg.guidedsimulator.GuidedSimulator;
-import it.unicam.pros.pplg.gui.ui.util.css.*;
+import it.unicam.pros.pplg.PPLG;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
@@ -50,8 +51,9 @@ import java.util.concurrent.Future;
 
 @Push(value = PushMode.MANUAL)
 @Route(value="rediscoverability/bpmn", layout = MainLayout.class)
-@PageTitle("BPMN Rediscoverability | GuidedSimulator")
+@PageTitle("BPMN Rediscoverability | "+ Constants.shortName)
 public class BPMNRediscoverabilityView extends ViewFrame {
+
     public static final String MAX_WIDTH = "1024px";
     private final Uploader u;
     private final ProgressBar bar;
@@ -72,7 +74,7 @@ public class BPMNRediscoverabilityView extends ViewFrame {
     private FileDownloadWrapper link;
 
     public BPMNRediscoverabilityView(){
-
+        setId("Rediscoverability - BPMN");
         u = new Uploader("application/octet-stream", ".bpmn");
         algoSelect = new Select<>();
         algoSelect.setLabel("Mining algorithm");
@@ -100,7 +102,7 @@ public class BPMNRediscoverabilityView extends ViewFrame {
 
         FlexBoxLayout content = new FlexBoxLayout(inputs, actions, proBar);//,console);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
-        content.setFlexDirection(FlexDirection.COLUMN);
+        content.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
         return content;
     }
 
@@ -136,7 +138,7 @@ public class BPMNRediscoverabilityView extends ViewFrame {
     private Component createProBar() {
         cancelCalcs.setWidth("15%");
         cancelCalcs.addClickListener(event -> {
-            GuidedSimulator.setInterrupt(true);
+            PPLG.setInterrupt(true);
             while (!future.isDone()){
                 try {
                     Thread.sleep(300);
@@ -146,7 +148,7 @@ public class BPMNRediscoverabilityView extends ViewFrame {
             }
             downloadBtn.setEnabled(true);
             link.setVisible(true);
-            GuidedSimulator.setInterrupt(false);
+            PPLG.setInterrupt(false);
             proBar.setVisible(false);
         });
         bar.setIndeterminate(true);
@@ -271,11 +273,11 @@ public class BPMNRediscoverabilityView extends ViewFrame {
 
     private Future<ByteArrayOutputStream> redThread(UI ui){
         return executor.submit(() -> {
-            logStream = GuidedSimulator.rediscoverability(model,
+            logStream = PPLG.rediscoverability(model,
                     (Rediscoverability.RediscoverabilityAlgo) algoMap.get(algoSelect.getValue()),
                     tauField.getValue());
 
-            GuidedSimulator.setInterrupt(false);
+            PPLG.setInterrupt(false);
             ui.access(() -> {
                 downloadBtn.setEnabled(true);
                 link.setVisible(true);

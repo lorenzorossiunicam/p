@@ -2,6 +2,7 @@ package it.unicam.pros.pplg.gui.ui.components.navigation.drawer;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClientCallable;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -9,10 +10,12 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import elemental.json.JsonObject;
 import it.unicam.pros.pplg.gui.ui.util.UIUtils;
+import it.unicam.pros.pplg.gui.util.Constants;
 
 @CssImport("./styles/components/navi-drawer.css")
 @JsModule("./swipe-away.js")
@@ -76,7 +79,7 @@ public class NaviDrawer extends Div
 	}
 
 	private void initHeader() {
-		mainContent.add(new BrandExpression("Guided Simulator"));
+		mainContent.add(new BrandExpression(Constants.toolName));
 	}
 
 //	private void initSearch() {

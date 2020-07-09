@@ -1,44 +1,56 @@
 
+window.dragElement = function(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        elmnt.onmousedown = dragMouseDown;
+    }
 
-import Viewer from 'bpmn-js/lib/Viewer';
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
 
-window.createViewer = function(xml) {
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
 
-    var exampleXML = xml || "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-        "<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" id=\"Definitions_1dj613m\" targetNamespace=\"http://bpmn.io/schema/bpmn\" exporter=\"Camunda Modeler\" exporterVersion=\"3.0.0-dev\">\n" +
-        "  <bpmn:process id=\"Process_1fuv6j1\" isExecutable=\"true\">\n" +
-        "    <bpmn:startEvent id=\"StartEvent_1\" />\n" +
-        "  </bpmn:process>\n" +
-        "  <bpmndi:BPMNDiagram id=\"BPMNDiagram_1\">\n" +
-        "    <bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1fuv6j1\">\n" +
-        "      <bpmndi:BPMNShape id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEvent_1\">\n" +
-        "        <dc:Bounds x=\"179\" y=\"159\" width=\"36\" height=\"36\" />\n" +
-        "      </bpmndi:BPMNShape>\n" +
-        "    </bpmndi:BPMNPlane>\n" +
-        "  </bpmndi:BPMNDiagram>\n" +
-        "</bpmn:definitions>\n";
+    function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
 
+window.blockDiv = function(divId) {
+    var y = 200;
+    //var p = $("#stop").offset().top;
 
-
-
-    var viewer = new Viewer({
-        container: '#canvas'
-    });
-
-    var elementRegistry = viewer.get('elementRegistry');
-
-    viewer.importXML(exampleXML, function (err) {
-        if (!err) {
-            viewer.get('canvas').zoom('fit-viewport');
+    window.on('scroll', function () {
+        if (y <= window.scrollTop()) {
+            // if so, add the fixed class
+            document.getElementById(divId).addClass('fixed');
         } else {
-            sessionStorage.clear()
-            console.log('something went wrong:', err);
+            // otherwise remove it
+            document.getElementById(divId).removeClass('fixed');
         }
     });
-
-
-
-
-    window.bpmnjs = viewer;
-    window.bpmnjs_elReg = elementRegistry;
 }
