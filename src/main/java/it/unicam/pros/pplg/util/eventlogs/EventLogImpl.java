@@ -54,9 +54,7 @@ public class EventLogImpl implements EventLog{
 	@Override
 	public void addTraces(Collection<Trace> t) {
 		if(traces.containsAll(t))
-			System.out.println("CAZZO");
 		this.traces.addAll(t);
-
 	}
 
 	@Override

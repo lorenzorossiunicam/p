@@ -15,41 +15,42 @@ import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.util.*;
 
-public class ModelProbabilities {
+public class ModelProbabilities_old {
 
     public static void main(String[] args) throws Exception {
 
-        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33.bpmn"));
+        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:\\Users\\lo_re\\Desktop\\real1.bpmn"));
 
         HashMap<String, Double> pr = new HashMap<String, Double>();
         Set<Gateway> gs = new HashSet<>();
         gs.addAll(mi.getModelElementsByType(InclusiveGateway.class));
         gs.addAll(mi.getModelElementsByType(ExclusiveGateway.class));
+        Set<FlowNode> tocheck = new HashSet<FlowNode>();
 
         for(Gateway g : gs){
             if (ModelUtils.isSplit(g)){
                 Collection<SequenceFlow> out = g.getOutgoing();
 int i = 0;
                 for(SequenceFlow sg : out){
-                    System.out.println(sg.getId()+" : ....");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-                    Double prob = Double.valueOf(in.readLine());
-                    pr.put(sg.getId(), prob);
+                    if (i == 0){
+                        System.out.println(sg.getId());
+                        pr.put(sg.getId(), 10.0);
+                    }else
+                        pr.put(sg.getId(), 90.0);
 
+                    tocheck.add(sg.getTarget());
                 }
             }
         }
 
 
         Map<String, Double> original = calculateProbabilities(mi, pr);
-        XLog logPPLG = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33pplg.xes");
+        XLog logPPLG = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\p4pplg.xes");
         Map<String, Double> ppgl = calculateProbabilities(logPPLG);
-        XLog logBIMP = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33bimp.xes");
+        XLog logBIMP = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\p4bimp.xes");
         Map<String, Double> bimp = calculateProbabilities(logBIMP);
         for(String s : bimp.keySet()){
             bimp.put(s, bimp.get(s)/2);
@@ -59,8 +60,29 @@ int i = 0;
         System.out.println(bimp);
 
         double  distPPLG = 0, distBIMP = 0, sum= 0.0;
+        for(String s: original.keySet()){
+            double or = original.get(s);
+            sum += or;
+            Double p = ppgl.get(s);
+            if(p == null) p = 0.0;
+            Double b = bimp.get(s);
+            if(b == null) b = 0.0;
+            distPPLG += Math.abs(p - or)/or;
+            distBIMP += Math.abs(b - or)/or;
+        }
 
-        for(String name : original.keySet()){
+
+
+        System.out.println("BIMP "+(distBIMP));
+        System.out.println("PPLG "+( (distPPLG)));
+        System.out.println("BIMP "+(100- (distBIMP/original.size())));
+        System.out.println("PPLG "+(100- (distPPLG/original.size())));
+
+        distBIMP = 0;
+        distPPLG = 0;
+        for(FlowNode n : tocheck){
+            String name = n.getName();
+            System.out.println(name);
             double or = original.get(name);
             sum += or;
             Double p = ppgl.get(name);
@@ -70,8 +92,8 @@ int i = 0;
             distPPLG += Math.abs(p - or);
             distBIMP += Math.abs(b - or);
         }
-        System.out.println("BIMP "+(distBIMP)/original.keySet().size());
-        System.out.println("PPLG "+( (distPPLG)/original.keySet().size()));
+        System.out.println("BIMP "+(distBIMP)/tocheck.size());
+        System.out.println("PPLG "+( (distPPLG)/tocheck.size()));
 //        rediscoverability("testXor.bpmn", "ltestXor.xes",Rediscoverability.RediscoverabilityAlgo.ALPHA, 1.0);
 //        System.exit(0);
     }
@@ -89,12 +111,7 @@ int i = 0;
                                Map<String, Double> xorAndOrProbabilities, HashSet<FlowNode> done) {
         done.add(currNode);
         if (currNode instanceof TaskImpl)
-            for(SequenceFlow prev : currNode.getIncoming()){
-                if ((prev.getSource()  instanceof ExclusiveGatewayImpl || prev.getSource() instanceof InclusiveGatewayImpl || prev.getSource() instanceof EventBasedGatewayImpl) && ModelUtils.isSplit(prev.getSource())){
-                    taskProb.put(currNode.getName(), prob);
-                }
-            }
-
+            taskProb.put(currNode.getName(), prob);
         for (SequenceFlow out : currNode.getOutgoing()) {
             if((currNode instanceof ExclusiveGatewayImpl || currNode instanceof InclusiveGatewayImpl || currNode instanceof EventBasedGatewayImpl) && ModelUtils.isSplit(currNode) ){
                 double newProb = prob*xorAndOrProbabilities.get(out.getId())/100;

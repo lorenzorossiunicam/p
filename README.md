@@ -33,7 +33,7 @@ Project build are availabe [here](https://bitbucket.org/proslabteam/guidedsimula
 
 ### Run
 
-`java -jar target/guidedsimulator-0.1.jar`
+`java -jar target/pplg-1.0.jar`
 
 open [http://localhost:4300](http://localhost:4300)
 
