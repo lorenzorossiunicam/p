@@ -1,5 +1,5 @@
 .app-bar {
-  background-color: var(--lumo-base-color);
+  background-color: #8c1872 !important;
   box-shadow: var(--lumo-box-shadow-s);
   flex-direction: column;
   position: relative;

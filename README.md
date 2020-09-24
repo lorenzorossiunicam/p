@@ -1,4 +1,4 @@
-# `PPLG` Purpose Parametric Log Generator
+# `PURPLE` Purpose Parametric Log Generator
 ![gsim](https://bitbucket.org/proslabteam/PPLG/raw/f51fb2a83bd8787bb162b3131def27c2ed044854/src/main/webapp/images/arch.png)
 
 This tool provides a novel log generation methodology that can be parametric on the input process model language and on the mining purpose, to produce artificial event logs. The methodology is meant to ensure the possibility of simulating any kind of process model through the implementation of several modeling language semantics (e.g., BPMN, Petri net, EPC, WF-net), and also the possibility to decide characteristics of the output event log according to the requirements of a mining procedure.
@@ -6,7 +6,7 @@ This tool provides a novel log generation methodology that can be parametric on 
 
 ## Builds
 
-Project build are availabe [here](https://bitbucket.org/proslabteam/guidedsimulator-builds).
+Project build are available [here](https://bitbucket.org/proslabteam/guidedsimulator-builds).
 
 ## Building the project
 
@@ -33,7 +33,7 @@ Project build are availabe [here](https://bitbucket.org/proslabteam/guidedsimula
 
 ### Run
 
-`java -jar target/pplg-1.0.jar`
+`java -jar target/purple-1.0.jar`
 
 open [http://localhost:4300](http://localhost:4300)
 

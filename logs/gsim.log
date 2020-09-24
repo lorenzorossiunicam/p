@@ -1,44 +1,44 @@
-2020-07-21 12:54:30.302  INFO 21568 --- [restartedMain] it.unicam.pros.pplg.gui.Application      : Starting Application on Latitude-Di-Lorenzo with PID 21568 (started by lo_re in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG)
-2020-07-21 12:54:30.316  INFO 21568 --- [restartedMain] it.unicam.pros.pplg.gui.Application      : No active profile set, falling back to default profiles: default
-2020-07-21 12:54:30.458  INFO 21568 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\lo_re\.m2\repository\com\vaadin\vaadin-sass-compiler\0.9.13\vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
-2020-07-21 12:54:30.459  INFO 21568 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-07-21 12:54:30.460  INFO 21568 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-07-21 12:54:32.884  INFO 21568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
-2020-07-21 12:54:32.900  INFO 21568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-07-21 12:54:32.900  INFO 21568 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-07-21 12:54:33.276  INFO 21568 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-07-21 12:54:33.288  INFO 21568 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2828 ms
-2020-07-21 12:54:33.422  WARN 21568 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
-2020-07-21 12:54:33.653  INFO 21568 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 250 ms
-2020-07-21 12:54:33.680  INFO 21568 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.pplg.gui.ui.view.AppShell class for configuring `index.html` response
-2020-07-21 12:54:33.988  WARN 21568 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
-2020-07-21 12:54:55.334  INFO 21568 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 21344 ms
-2020-07-21 12:54:55.336  INFO 21568 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG folder.
-2020-07-21 12:54:55.387  INFO 21568 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 116 classes. Took 30 ms.
-2020-07-21 12:54:55.463  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.f.TaskGeneratePackageJson        : writing file C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\flow-frontend\package.json.
-2020-07-21 12:54:55.478  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\index.html'
-2020-07-21 12:54:55.482  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\index.ts'
-2020-07-21 12:54:55.489  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\src\main\java]
-2020-07-21 12:54:55.807  INFO 21568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-21 12:54:56.003  WARN 21568 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
-2020-07-21 12:54:56.054  WARN 21568 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
-2020-07-21 12:54:56.320  INFO 21568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-07-21 12:54:56.782  INFO 21568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4300 (http) with context path ''
-2020-07-21 12:54:56.792  INFO 21568 --- [restartedMain] it.unicam.pros.pplg.gui.Application      : Started Application in 27.39 seconds (JVM running for 29.368)
-2020-07-21 12:54:57.482  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.c.g.OpenApiSpecGenerator         : There are no connect endpoints to genertate.
-2020-07-21 12:54:57.512  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskUpdatePackages      : Skipping `pnpm install`.
-2020-07-21 12:54:57.513  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskCopyFrontendFiles   : Copying frontend resources from jar files ...
-2020-07-21 12:54:57.840  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskCopyFrontendFiles   : Visited 15 resources. Took 325 ms.
-2020-07-21 12:54:58.131  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.server.frontend.TaskUpdateImports  : Updated C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\frontend\generated-flow-imports.js
-2020-07-21 12:54:58.134  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] c.v.f.server.frontend.TaskUpdateImports  : No js modules to update 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\frontend\generated-flow-imports.d.ts' file
-2020-07-21 12:54:58.137  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Starting webpack-dev-server
-2020-07-21 12:55:02.832  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Running webpack to compile frontend resources. This may take a moment, please stand by...
-2020-07-21 12:55:36.736  INFO 21568 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Started webpack-dev-server. Time: 38597ms
-2020-07-21 12:55:42.930  INFO 21568 --- [http-nio-4300-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-07-21 12:55:42.932  INFO 21568 --- [http-nio-4300-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-07-21 12:55:42.945  INFO 21568 --- [http-nio-4300-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
-2020-07-21 12:55:42.997  WARN 21568 --- [http-nio-4300-exec-1] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
-2020-07-21 12:55:43.003  INFO 21568 --- [http-nio-4300-exec-1] c.v.f.s.DefaultDeploymentConfiguration   : 
+2020-09-24 09:43:52.165  INFO 32248 --- [restartedMain] it.unicam.pros.purple.gui.Application      : Starting Application on Latitude-Di-Lorenzo with PID 32248 (started by lo_re in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG)
+2020-09-24 09:43:52.182  INFO 32248 --- [restartedMain] it.unicam.pros.purple.gui.Application      : No active profile set, falling back to default profiles: default
+2020-09-24 09:43:52.310  INFO 32248 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\lo_re\.m2\repository\com\vaadin\vaadin-sass-compiler\0.9.13\vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
+2020-09-24 09:43:52.312  INFO 32248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-09-24 09:43:52.313  INFO 32248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-09-24 09:43:54.195  INFO 32248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2020-09-24 09:43:54.203  INFO 32248 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-09-24 09:43:54.204  INFO 32248 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-09-24 09:43:54.370  INFO 32248 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-09-24 09:43:54.371  INFO 32248 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2057 ms
+2020-09-24 09:43:54.463  WARN 32248 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:43:54.551  INFO 32248 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 101 ms
+2020-09-24 09:43:54.554  INFO 32248 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2020-09-24 09:43:54.717  WARN 32248 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:44:03.410  INFO 32248 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 8693 ms
+2020-09-24 09:44:03.413  INFO 32248 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG folder.
+2020-09-24 09:44:03.450  INFO 32248 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 116 classes. Took 18 ms.
+2020-09-24 09:44:03.472  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.f.TaskGeneratePackageJson        : writing file C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\flow-frontend\package.json.
+2020-09-24 09:44:03.476  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\index.html'
+2020-09-24 09:44:03.479  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\index.ts'
+2020-09-24 09:44:03.484  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\src\main\java]
+2020-09-24 09:44:03.735  INFO 32248 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-24 09:44:03.900  WARN 32248 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2020-09-24 09:44:03.942  WARN 32248 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:44:04.160  INFO 32248 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-09-24 09:44:04.370  INFO 32248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4300 (http) with context path ''
+2020-09-24 09:44:04.376  INFO 32248 --- [restartedMain] it.unicam.pros.purple.gui.Application      : Started Application in 12.838 seconds (JVM running for 14.676)
+2020-09-24 09:44:04.925  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.c.g.OpenApiSpecGenerator         : There are no connect endpoints to genertate.
+2020-09-24 09:44:04.977  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskUpdatePackages      : Skipping `pnpm install`.
+2020-09-24 09:44:04.978  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskCopyFrontendFiles   : Copying frontend resources from jar files ...
+2020-09-24 09:44:05.413  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskCopyFrontendFiles   : Visited 15 resources. Took 442 ms.
+2020-09-24 09:44:05.567  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.server.frontend.TaskUpdateImports  : Updated C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\frontend\generated-flow-imports.js
+2020-09-24 09:44:05.567  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] c.v.f.server.frontend.TaskUpdateImports  : No js modules to update 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\frontend\generated-flow-imports.d.ts' file
+2020-09-24 09:44:05.567  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Starting webpack-dev-server
+2020-09-24 09:44:08.103  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Running webpack to compile frontend resources. This may take a moment, please stand by...
+2020-09-24 09:44:23.350  INFO 32248 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Started webpack-dev-server. Time: 17768ms
+2020-09-24 09:44:31.267  INFO 32248 --- [http-nio-4300-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-24 09:44:31.268  INFO 32248 --- [http-nio-4300-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-09-24 09:44:31.294  INFO 32248 --- [http-nio-4300-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 25 ms
+2020-09-24 09:44:31.333  WARN 32248 --- [http-nio-4300-exec-3] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:44:31.339  INFO 32248 --- [http-nio-4300-exec-3] c.v.f.s.DefaultDeploymentConfiguration   : 
 =================== Vaadin DeploymentConfiguration ====================
 
  Vaadin is running in DEBUG MODE.
@@ -51,4 +51,158 @@
  Generating a default one in 'target/index.ts'.  Move it to the '.\frontend' folder if you want to customize it.
 
 =======================================================================
-2020-07-21 12:55:45.340  INFO 21568 --- [http-nio-4300-exec-2] c.vaadin.flow.spring.SpringInstantiator  : The number of beans implementing 'I18NProvider' is 0. Cannot use Spring beans for I18N, falling back to the default behavior
+2020-09-24 09:44:33.056  INFO 32248 --- [http-nio-4300-exec-1] c.vaadin.flow.spring.SpringInstantiator  : The number of beans implementing 'I18NProvider' is 0. Cannot use Spring beans for I18N, falling back to the default behavior
+2020-09-24 09:52:19.331  INFO 32248 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-09-24 09:52:19.658  INFO 32248 --- [restartedMain] it.unicam.pros.purple.gui.Application      : Starting Application on Latitude-Di-Lorenzo with PID 32248 (started by lo_re in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG)
+2020-09-24 09:52:19.659  INFO 32248 --- [restartedMain] it.unicam.pros.purple.gui.Application      : No active profile set, falling back to default profiles: default
+2020-09-24 09:52:20.043  WARN 32248 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2020-09-24 09:52:20.060  INFO 32248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2020-09-24 09:52:20.061  INFO 32248 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-09-24 09:52:20.061  INFO 32248 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-09-24 09:52:20.096  INFO 32248 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-09-24 09:52:20.096  INFO 32248 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 423 ms
+2020-09-24 09:52:20.106  WARN 32248 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:52:20.172  INFO 32248 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 68 ms
+2020-09-24 09:52:20.172  INFO 32248 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2020-09-24 09:52:20.288  WARN 32248 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:52:28.033  INFO 32248 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 7744 ms
+2020-09-24 09:52:28.033  INFO 32248 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG folder.
+2020-09-24 09:52:28.040  INFO 32248 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 116 classes. Took 6 ms.
+2020-09-24 09:52:28.044  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.f.TaskGeneratePackageJson        : writing file C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\flow-frontend\package.json.
+2020-09-24 09:52:28.047  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\index.html'
+2020-09-24 09:52:28.048  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\index.ts'
+2020-09-24 09:52:28.049  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\src\main\java]
+2020-09-24 09:52:28.079  WARN 32248 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Cannot deserialize session attribute [com.vaadin.flow.server.VaadinSession.springServlet] for session [10BDBB45D003D5E8E16C0BE4BF87251F]
+2020-09-24 09:52:28.086 ERROR 32248 --- [restartedMain] o.a.catalina.session.StandardManager     : Exception loading sessions from persistent storage
+
+java.io.InvalidClassException: [Ljava.lang.StackTraceElement;; no valid constructor
+	at java.base/java.io.ObjectStreamClass$ExceptionInfo.newInvalidClassException(ObjectStreamClass.java:168) ~[na:na]
+	at java.base/java.io.ObjectStreamClass.checkDeserialize(ObjectStreamClass.java:907) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2162) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1685) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:499) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:457) ~[na:na]
+	at org.apache.catalina.session.StandardSession.doReadObject(StandardSession.java:1554) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:1048) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.session.StandardManager.doLoad(StandardManager.java:218) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.session.StandardManager.load(StandardManager.java:162) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.session.StandardManager.startInternal(StandardManager.java:354) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5163) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:459) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544) ~[spring-context-5.2.0.RELEASE.jar:5.2.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) ~[spring-boot-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+	at it.unicam.pros.purple.gui.Application.main(Application.java:15) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.2.0.RELEASE.jar:2.2.0.RELEASE]
+
+2020-09-24 09:52:28.125  INFO 32248 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-24 09:52:28.147  WARN 32248 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2020-09-24 09:52:28.158  WARN 32248 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:52:28.235  INFO 32248 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-09-24 09:52:28.269  INFO 32248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4300 (http) with context path ''
+2020-09-24 09:52:28.270  INFO 32248 --- [restartedMain] it.unicam.pros.purple.gui.Application      : Started Application in 8.677 seconds (JVM running for 518.57)
+2020-09-24 09:52:28.273  INFO 32248 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-09-24 09:52:28.864  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.c.g.OpenApiSpecGenerator         : There are no connect endpoints to genertate.
+2020-09-24 09:52:28.872  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.frontend.TaskUpdatePackages      : Skipping `pnpm install`.
+2020-09-24 09:52:28.872  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.frontend.TaskCopyFrontendFiles   : Copying frontend resources from jar files ...
+2020-09-24 09:52:29.032  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.s.frontend.TaskCopyFrontendFiles   : Visited 15 resources. Took 160 ms.
+2020-09-24 09:52:29.099  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.server.frontend.TaskUpdateImports  : Updated C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\frontend\generated-flow-imports.js
+2020-09-24 09:52:29.101  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] c.v.f.server.frontend.TaskUpdateImports  : No js modules to update 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PPLG\target\frontend\generated-flow-imports.d.ts' file
+2020-09-24 09:52:29.315  INFO 32248 --- [ForkJoinPool.commonPool-worker-5] com.vaadin.flow.server.DevModeHandler    : Reusing webpack-dev-server running at http://localhost:53999
+2020-09-24 09:52:32.210  WARN 32248 --- [http-nio-4300-exec-1] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 09:52:32.810  INFO 32248 --- [http-nio-4300-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-24 09:52:32.810  INFO 32248 --- [http-nio-4300-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-09-24 09:52:32.812  INFO 32248 --- [http-nio-4300-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2020-09-24 09:52:32.817  INFO 32248 --- [http-nio-4300-exec-9] c.vaadin.flow.spring.SpringInstantiator  : The number of beans implementing 'I18NProvider' is 0. Cannot use Spring beans for I18N, falling back to the default behavior
+2020-09-24 10:40:36.613  INFO 36040 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Starting Application on Latitude-Di-Lorenzo with PID 36040 (started by lo_re in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE)
+2020-09-24 10:40:36.622  INFO 36040 --- [restartedMain] it.unicam.pros.purple.gui.Application    : No active profile set, falling back to default profiles: default
+2020-09-24 10:40:36.733  INFO 36040 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\lo_re\.m2\repository\com\vaadin\vaadin-sass-compiler\0.9.13\vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/C:/Users/lo_re/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
+2020-09-24 10:40:36.734  INFO 36040 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-09-24 10:40:36.734  INFO 36040 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-09-24 10:40:39.043  INFO 36040 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2020-09-24 10:40:39.054  INFO 36040 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-09-24 10:40:39.055  INFO 36040 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-09-24 10:40:39.252  INFO 36040 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-09-24 10:40:39.252  INFO 36040 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2518 ms
+2020-09-24 10:40:39.330  WARN 36040 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 10:40:39.441  INFO 36040 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 130 ms
+2020-09-24 10:40:39.441  INFO 36040 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2020-09-24 10:40:39.641  WARN 36040 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 10:40:49.092  INFO 36040 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 9460 ms
+2020-09-24 10:40:49.092  INFO 36040 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE folder.
+2020-09-24 10:40:49.123  INFO 36040 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 116 classes. Took 16 ms.
+2020-09-24 10:40:49.139  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.f.TaskGeneratePackageJson        : writing file C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\target\flow-frontend\package.json.
+2020-09-24 10:40:49.154  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\target\index.html'
+2020-09-24 10:40:49.154  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\target\index.ts'
+2020-09-24 10:40:49.154  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\src\main\java]
+2020-09-24 10:40:49.355  INFO 36040 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-24 10:40:49.493  WARN 36040 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2020-09-24 10:40:49.540  WARN 36040 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 10:40:49.800  INFO 36040 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-09-24 10:40:49.986  INFO 36040 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4300 (http) with context path ''
+2020-09-24 10:40:49.991  INFO 36040 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Started Application in 14.105 seconds (JVM running for 15.735)
+2020-09-24 10:40:50.595  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.c.g.OpenApiSpecGenerator         : There are no connect endpoints to genertate.
+2020-09-24 10:40:50.613  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskUpdatePackages      : Running `pnpm install` to resolve and optionally download frontend dependencies. This may take a moment, please stand by...
+2020-09-24 10:41:05.901  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskUpdatePackages      : Generated pnpmfile hook file: 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\pnpmfile.js'
+2020-09-24 10:41:39.487  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskUpdatePackages      : Frontend dependencies resolved successfully.
+2020-09-24 10:41:39.487  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskCopyFrontendFiles   : Copying frontend resources from jar files ...
+2020-09-24 10:41:39.710  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.s.frontend.TaskCopyFrontendFiles   : Visited 15 resources. Took 212 ms.
+2020-09-24 10:41:39.841  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.server.frontend.TaskUpdateImports  : Updated C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\target\frontend\generated-flow-imports.js
+2020-09-24 10:41:39.841  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] c.v.f.server.frontend.TaskUpdateImports  : No js modules to update 'C:\Users\lo_re\Git\Work\Purpose Parametric Log Generator\PURPLE\target\frontend\generated-flow-imports.d.ts' file
+2020-09-24 10:41:39.857  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Starting webpack-dev-server
+2020-09-24 10:41:42.527  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Running webpack to compile frontend resources. This may take a moment, please stand by...
+2020-09-24 10:41:47.563  INFO 36040 --- [http-nio-4300-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-24 10:41:47.564  INFO 36040 --- [http-nio-4300-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-09-24 10:41:47.579  INFO 36040 --- [http-nio-4300-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2020-09-24 10:41:47.631  WARN 36040 --- [http-nio-4300-exec-2] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2020-09-24 10:41:47.637  INFO 36040 --- [http-nio-4300-exec-2] c.v.f.s.DefaultDeploymentConfiguration   : 
+=================== Vaadin DeploymentConfiguration ====================
+
+ Vaadin is running in DEBUG MODE.
+ When deploying application for production, remember to disable debug features. See more from https://vaadin.com/docs/
+
+ Using Vaadin 15+ bootstrap mode.
+  'index.html' is not found from '.\frontend\index.html'.
+ Generating a default one in 'target/index.html'.  Move it to the '.\frontend' folder if you want to customize it.
+  'index.ts' is not found from '.\frontend\index.ts'.
+ Generating a default one in 'target/index.ts'.  Move it to the '.\frontend' folder if you want to customize it.
+
+=======================================================================
+2020-09-24 10:41:49.612  INFO 36040 --- [http-nio-4300-exec-1] c.vaadin.flow.spring.SpringInstantiator  : The number of beans implementing 'I18NProvider' is 0. Cannot use Spring beans for I18N, falling back to the default behavior
+2020-09-24 10:42:14.702  INFO 36040 --- [ForkJoinPool.commonPool-worker-3] com.vaadin.flow.server.DevModeHandler    : Started webpack-dev-server. Time: 34831ms

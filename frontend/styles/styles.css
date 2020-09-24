@@ -1,4 +1,5 @@
 :root {
+  --lumo-primary-text-color: #54104a;
   --app-bar-height: var(--lumo-size-xl);
 
   --navi-drawer-width: calc(var(--lumo-size-m) * 7);
@@ -17,6 +18,7 @@
   --lumo-space-r-x: var(--lumo-space-l);
   --lumo-space-wide-r-m: var(--lumo-space-wide-m);
   --lumo-space-wide-r-l: var(--lumo-space-wide-l);
+
 }
 
 @media (max-width: 479px) {
