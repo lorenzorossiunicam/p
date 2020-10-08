@@ -22,7 +22,7 @@ window.createModeler = function() {
         container: '#canvas',
         additionalModules: [
             propertiesProviderModule,
-            propertiesPanelModule,
+            propertiesPanelModule
         ],
         propertiesPanel: {
             parent: '#js-properties-panel'

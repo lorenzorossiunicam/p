@@ -53,7 +53,7 @@ public class EventLogImpl implements EventLog{
 
 	@Override
 	public void addTraces(Collection<Trace> t) {
-		if(traces.containsAll(t))
+		//if(traces.containsAll(t))
 		this.traces.addAll(t);
 	}
 

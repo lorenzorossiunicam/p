@@ -90,9 +90,7 @@ public class BpmnJs {
 
     private void disableModeling() {
         ppanel.getStyle().set("display","none");
-        Page page = UI.getCurrent().getPage();
-        page.executeJs("document.getElementsByClassName(\"djs-palette\")[0].style.display = \"none\";");
-        page.executeJs("document.getElementsByClassName(\"djs-context-pad\")[0].style.display = \"none\";");
+
     }
 
     public void setColor(String elId, String fill, String stroke){

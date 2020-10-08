@@ -290,6 +290,7 @@ marker.djs-dragger tspan {
  */
 
 .djs-palette {
+    display: none;
     position: absolute;
     left: 20px;
     top: 20px;
@@ -383,6 +384,7 @@ marker.djs-dragger tspan {
  * context-pad
  */
 .djs-overlay-context-pad {
+    display: none !important;
     width: 72px;
 }
 
@@ -418,7 +420,7 @@ marker.djs-dragger tspan {
 }
 
 .djs-context-pad.open {
-    display: block;
+    display: none;
 }
 
 /**
