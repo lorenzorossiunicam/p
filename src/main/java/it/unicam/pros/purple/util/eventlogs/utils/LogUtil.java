@@ -12,6 +12,8 @@ import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
+import it.unicam.pros.purple.semanticengine.ptnet.configuration.PnmlConfiguration;
 import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
 import it.unicam.pros.purple.util.eventlogs.trace.event.MsgType;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
@@ -22,6 +24,7 @@ import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
+import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
 
 public class LogUtil {
 
@@ -266,5 +269,12 @@ public class LogUtil {
 			e.printStackTrace();
 			return EventImpl.emptyEvent();
 		}
+	}
+
+	public static Event PnmlTransition(Transition t) {
+		return new EventImpl("p", "i", PTNetUtil.getTransitionName(t), new Date(), ActivityState.COMPLETE,
+				null, null, null, null, null,null);
+		//return new EventImpl("p", "i", (String) t.getLabel(), new Date(), ActivityState.COMPLETE,
+		//				null, null, null, null, null,null);
 	}
 }

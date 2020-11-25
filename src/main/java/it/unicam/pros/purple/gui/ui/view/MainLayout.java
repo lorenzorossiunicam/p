@@ -24,6 +24,7 @@ import it.unicam.pros.purple.gui.ui.components.navigation.drawer.NaviMenu;
 import it.unicam.pros.purple.gui.ui.util.UIUtils;
 import it.unicam.pros.purple.gui.ui.util.css.Overflow;
 import it.unicam.pros.purple.gui.ui.view.rediscoverability.BPMNRediscoverabilityView;
+import it.unicam.pros.purple.gui.ui.view.rediscoverability.PnmlRediscoverabilityView;
 import it.unicam.pros.purple.gui.ui.view.whatif.BPMNWhatIfAnalysisView;
         import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,7 +123,7 @@ public class MainLayout extends FlexBoxLayout
         NaviItem rediscoverability = menu.addNaviItem(VaadinIcon.SEARCH, "Rediscoverability",
                 null);
         menu.addNaviItem(rediscoverability, "BPMN", BPMNRediscoverabilityView.class);
-        //menu.addNaviItem(rediscoverability, "Petri net", null);
+        menu.addNaviItem(rediscoverability, "Petri net", PnmlRediscoverabilityView.class);
 
         NaviItem whatif = menu.addNaviItem(VaadinIcon.CHART, "What-If Analysis",
                 null);

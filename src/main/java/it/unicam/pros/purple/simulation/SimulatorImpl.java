@@ -104,7 +104,7 @@ public class SimulatorImpl implements Simulator {
 	private Map<String, Map<String, Trace>> guidedSim(Map<String, Map<String, Trace>> prefix, Configuration conf,
 			Trace guide) {
 		Couple<Event, Configuration> c = dfs(conf, guide.get(0));
-		System.out.println(guide);
+		System.out.println("mmm"+guide);
 		if (c != null) {
 			Event event = c.getE();
 			prefix.get(event.getProcess()).get(event.getInstance()).appendEvent(event);

@@ -46,6 +46,7 @@ public class LTSUtil {
 			curr = pred;
 			predecessors = Graphs.predecessorListOf(lts, curr);
 		}
+
 		for (String proc : initData.getProcesses()) {
 			t.put(proc, new HashMap<String, Trace>());
 			for (String inst : initData.getInstances(proc)) {

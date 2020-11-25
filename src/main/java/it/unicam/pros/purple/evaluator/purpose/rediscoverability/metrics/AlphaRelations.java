@@ -2,6 +2,7 @@ package it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics;
 
 import java.util.*;
 
+import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
@@ -84,6 +85,20 @@ public final class AlphaRelations {
         return missing;
     }
 
+    public static Map<String, Map<String, Relations>> getAlphaRelations(Petrinet petrinet) {
+        Collection<Transition> transitions = petrinet.getTransitions();
+        matrix = new HashMap<String, Map<String, Relations>>(transitions.size());
+        for (Transition t : transitions) {
+            //matrix.put(t.getLabel(), new HashMap<String, Relations>(transitions.size()));
+            matrix.put(PTNetUtil.getTransitionName(t), new HashMap<String, Relations>(transitions.size()));
+            for (Transition next : t.getVisibleSuccessors()){
+                matrix.get(PTNetUtil.getTransitionName(t)).put(PTNetUtil.getTransitionName(next),Relations.SEQUENCE);
+                //matrix.get(t.getLabel()).put(next.getLabel(),Relations.SEQUENCE);
+            }
+        }
+        return matrix;
+    }
+
     /*
      * p must be Mida compliant
      */
@@ -120,18 +135,6 @@ public final class AlphaRelations {
 		}
     	return list;
 	}
-
-    public static Map<String, Map<String, Relations>> getAlphaRelations(Petrinet petrinet) {
-        Collection<Transition> transitions = petrinet.getTransitions();
-        matrix = new HashMap<String, Map<String, Relations>>(transitions.size());
-        for (Transition t : transitions) {
-            matrix.put(t.getLabel(), new HashMap<String, Relations>(transitions.size()));
-            for (Transition next : t.getVisibleSuccessors()){
-            	matrix.get(t.getLabel()).put(next.getLabel(),Relations.SEQUENCE);
-			}
-        }
-        return matrix;
-    }
 
     public static Map<String, Map<String, Relations>> getAlphaRelations(EventLog log) {
         matrix = new HashMap<String, Map<String, Relations>>();

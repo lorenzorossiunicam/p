@@ -23,8 +23,10 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.shared.communication.PushMode;
+import it.unicam.pros.purple.PURPLE;
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.Rediscoverability;
 import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
+import it.unicam.pros.purple.gui.ui.components.Uploader;
 import it.unicam.pros.purple.gui.ui.layout.size.Bottom;
 import it.unicam.pros.purple.gui.ui.layout.size.Horizontal;
 import it.unicam.pros.purple.gui.ui.layout.size.Right;
@@ -33,13 +35,14 @@ import it.unicam.pros.purple.gui.ui.util.IconSize;
 import it.unicam.pros.purple.gui.ui.util.LumoStyles;
 import it.unicam.pros.purple.gui.ui.util.TextColor;
 import it.unicam.pros.purple.gui.ui.util.UIUtils;
-import it.unicam.pros.purple.gui.ui.util.css.*;
+import it.unicam.pros.purple.gui.ui.util.css.BorderRadius;
+import it.unicam.pros.purple.gui.ui.util.css.BoxSizing;
+import it.unicam.pros.purple.gui.ui.util.css.Display;
+import it.unicam.pros.purple.gui.ui.util.css.Shadow;
 import it.unicam.pros.purple.gui.ui.view.MainLayout;
 import it.unicam.pros.purple.gui.ui.view.ViewFrame;
-import it.unicam.pros.purple.gui.ui.components.Uploader;
 import it.unicam.pros.purple.gui.util.Constants;
 import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
-import it.unicam.pros.purple.PURPLE;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
@@ -50,9 +53,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Push(value = PushMode.MANUAL)
-@Route(value="rediscoverability/bpmn", layout = MainLayout.class)
-@PageTitle("BPMN Rediscoverability | "+ Constants.shortName)
-public class BPMNRediscoverabilityView extends ViewFrame {
+@Route(value="rediscoverability/pnml", layout = MainLayout.class)
+@PageTitle("Petrinet Rediscoverability | "+ Constants.shortName)
+public class PnmlRediscoverabilityView extends ViewFrame {
 
     public static final String MAX_WIDTH = "1024px";
     private final Uploader u;
@@ -73,9 +76,9 @@ public class BPMNRediscoverabilityView extends ViewFrame {
     private QuickPopup popup;
     private FileDownloadWrapper link;
 
-    public BPMNRediscoverabilityView(){
-        setId("Rediscoverability - BPMN");
-        u = new Uploader("application/octet-stream", ".bpmn");
+    public PnmlRediscoverabilityView(){
+        setId("Rediscoverability - PNML");
+        u = new Uploader("application/octet-stream", ".pnml");
         algoSelect = new Select<>();
         algoSelect.setLabel("Mining algorithm");
         tauField = new NumberField("% of Completeness");
@@ -237,10 +240,6 @@ public class BPMNRediscoverabilityView extends ViewFrame {
 
         genBtn.setEnabled(false);
         genBtn.addClickListener(event -> {
-//            logStream = GuidedSimulator.rediscoverability(model,
-//                    (Rediscoverability.RediscoverabilityAlgo) algoMap.get(algoSelect.getValue()),
-//                    tauField.getValue());
-//            downloadBtn.setEnabled(true);
             if(invalidInputs()){
                 popup.show();
                 return;
@@ -273,7 +272,7 @@ public class BPMNRediscoverabilityView extends ViewFrame {
 
     private Future<ByteArrayOutputStream> redThread(UI ui){
         return executor.submit(() -> {
-            logStream = PURPLE.bpmnRediscoverability(model,
+            logStream = PURPLE.pnmlRediscoverability(model,
                     (Rediscoverability.RediscoverabilityAlgo) algoMap.get(algoSelect.getValue()),
                     tauField.getValue());
 

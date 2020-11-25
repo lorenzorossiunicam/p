@@ -19,7 +19,6 @@ public class BPMNWhatIfAnalysis implements Evaluator {
         ModelUtils.setCosts(actCosts);
         this.maxTraces = maxTraces;
         this.tasksProbabilities = ModelProbabilities.calculateProbabilities(mi, xorAndOrProbabilities);
-        System.out.println(tasksProbabilities);
 
     }
 
