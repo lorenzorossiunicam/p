@@ -28,12 +28,11 @@ public class HomeView extends ViewFrame {
     }
 
     private Component createContent() {
-        Html intro = new Html("<p>PURPLE provides a novel log generation methodology that can be parametric on " +
-                "the input process model language  and on the mining purpose, to produce artificial event logs. " +
-                "The methodology is meant to ensure the possibility of simulating any kind of process model through " +
-                "the implementation of several modeling language semantics  (e.g., BPMN, Petri net, EPC, WF-net), " +
-                "and also the possibility to decide characteristics of the output event log according to the requirements" +
-                " of a mining procedure. </p>");
+        Html intro = new Html("<p>PURPLE (PURpos Parametric Log gEnerator) is a progressive web app written in" +
+                " Java using the development framework <a href='https://www.vaadin.com' target='_blank'>Vaadin</a>.  " +
+                "This permits to use PURPLE from any operating system via web browser." +
+                "PURPLE generates event log tuned for a specific mining-purpose by simulating a business model." +
+                "For further information please check the links below.</p>");
 
         Div image = new Div();
         Image img = new Image(UIUtils.IMG_PATH + "arch.png", "purple_arch");
