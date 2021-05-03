@@ -122,18 +122,19 @@ public class BPMNNodaSemantics implements Semantics {
 				if (ModelUtils.isMultiInstance(flowNode)) {
 					return miTask((Task) flowNode, conf, process, instance);
 				}
-				if (ModelUtils.isAtomic((Task) flowNode)) {
-					if (flowNode instanceof SendTaskImpl) {// SENDTASKS
-						//System.out.println("SNDTASK");
-						return SendTaskBehaviour.isActive((SendTaskImpl) flowNode, conf, process, instance);
-					} else if (flowNode instanceof ReceiveTaskImpl) {// RECEIVETASKS
-						//System.out.println("RCVTASK");
-						return ReceiveTaskBehaviour.isActive((ReceiveTaskImpl) flowNode, conf, process, instance);
-					} else {
-						//System.out.println("TASK");
-						return TaskBehaviour.isActive((TaskImpl) flowNode, conf, process, instance);
-					}
-				} else {// NON-ATOMIC
+//				if (ModelUtils.isAtomic((Task) flowNode)) {
+//					if (flowNode instanceof SendTaskImpl) {// SENDTASKS
+//						//System.out.println("SNDTASK");
+//						return SendTaskBehaviour.isActive((SendTaskImpl) flowNode, conf, process, instance);
+//					} else if (flowNode instanceof ReceiveTaskImpl) {// RECEIVETASKS
+//						//System.out.println("RCVTASK");
+//						return ReceiveTaskBehaviour.isActive((ReceiveTaskImpl) flowNode, conf, process, instance);
+//					} else {
+//						//System.out.println("TASK");
+//						return TaskBehaviour.isActive((TaskImpl) flowNode, conf, process, instance);
+//					}
+//				}
+				else {// NON-ATOMIC
 					if (flowNode instanceof SendTaskImpl) {// SENDTASKS
 						//System.out.println("NASNDTASK");
 						return NASendTaskBehaviour.isActive((SendTaskImpl) flowNode, conf, process, instance);

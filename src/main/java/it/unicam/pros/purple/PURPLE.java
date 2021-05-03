@@ -160,7 +160,7 @@ public class PURPLE {
 
     public static void main(String[] args) throws IOException {
 
-        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:/Users/maico/Desktop/Prova_parallelo.bpmn"));
+        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("PADiagram_1.bpmn"));
         //System.out.println("Questa è la mi: " +mi);
         //mi.getModelElementsByType(ParallelGateway.class);
         //mi.getModelElementById().get;

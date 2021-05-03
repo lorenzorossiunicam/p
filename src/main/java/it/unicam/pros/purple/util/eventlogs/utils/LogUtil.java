@@ -134,7 +134,7 @@ public class LogUtil {
 	}
 
 	public static Event NActivity(String process, String instance, FlowNode flowNode, NodaProcConfiguration pConf, NodaCollabsConfiguration conf) {
-		ActivityState actState = pConf.getSigmaT().get(flowNode.getName()).getState();
+		ActivityState actState = pConf.getSigmaT().get(flowNode.getId()).getState();
 		return new EventImpl(process, instance, flowNode.getName(), new Date(), actState, null, null, null, null, null, ModelUtils.getCost(flowNode));
 	}
 

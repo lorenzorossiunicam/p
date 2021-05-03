@@ -3,9 +3,10 @@ package it.unicam.pros.purple.semanticengine.bpmn.configuration;
 import com.google.gson.JsonObject;
 import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class TaskState {
+public class TaskState implements Serializable {
 
 	private static final String ACTIVE = "A";
 	private static final String SENDING = "S";

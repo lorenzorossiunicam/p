@@ -5,6 +5,7 @@ import java.util.Collection;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.ProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.TaskState;
 import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 import org.camunda.bpm.model.bpmn.instance.Task;
 
@@ -47,11 +48,13 @@ public final class Auxiliaries {
 		}
 	}
 	public static boolean isInactive(NodaProcConfiguration conf, Task t) {
+		if(!conf.getSigmaT().containsKey(t.getId())) return true;
 		return conf.getSigmaT().get(t.getId()).getActive() == 0 && conf.getSigmaT().get(t.getId()).getReceiving() == 0
 				&& conf.getSigmaT().get(t.getId()).getSending() == 0;
 	}
 
 	public static boolean isActive(NodaProcConfiguration conf, Task t) {
+		if(!conf.getSigmaT().containsKey(t.getId())) return false;
 		return conf.getSigmaT().get(t.getId()).getActive() > 0;
 	}
 
@@ -104,6 +107,9 @@ public final class Auxiliaries {
 	}
 
 	public static void incActive(NodaProcConfiguration conf, String id, int qnt) {
+		if(!conf.getSigmaT().containsKey(id)) {
+			conf.getSigmaT().put(id, new TaskState() );
+		}
 		conf.getSigmaT().get(id).setActive(qnt + conf.getSigmaT().get(id).getActive());
 	}
 

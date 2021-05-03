@@ -10,44 +10,79 @@
 	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
 	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
 	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
-	<string key="concept:name" value="EventLog03_05_21_11_45_32"/>
+	<string key="concept:name" value="EventLog03_05_21_14_24_42"/>
 	<list key="Data Stores"/>
 	<trace>
 		<string key="concept:name" value="case_0"/>
 		<list key="Data Objects"/>
 		<event>
-			<string key="taskState" value="COMPLETE"/>
-			<string key="org:group" value="Process_1i8ycet"/>
+			<string key="taskState" value="START"/>
+			<string key="org:group" value="Process_0g26xgv"/>
 			<string key="concept:name" value="A"/>
-			<date key="time:timestamp" value="2021-05-03T11:45:32.833+02:00"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.751+02:00"/>
 			<string key="fixedCost" value="1.0"/>
 		</event>
 		<event>
 			<string key="taskState" value="COMPLETE"/>
-			<string key="org:group" value="Process_1i8ycet"/>
-			<string key="concept:name" value="C"/>
-			<date key="time:timestamp" value="2021-05-03T11:45:32.872+02:00"/>
+			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="concept:name" value="A"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.797+02:00"/>
 			<string key="fixedCost" value="1.0"/>
 		</event>
 		<event>
-			<string key="taskState" value="COMPLETE"/>
-			<string key="org:group" value="Process_1i8ycet"/>
+			<string key="taskState" value="START"/>
+			<string key="org:group" value="Process_0g26xgv"/>
 			<string key="concept:name" value="B"/>
-			<date key="time:timestamp" value="2021-05-03T11:45:32.884+02:00"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.857+02:00"/>
+			<string key="fixedCost" value="1.0"/>
+		</event>
+		<event>
+			<string key="taskState" value="START"/>
+			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="concept:name" value="C"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.875+02:00"/>
 			<string key="fixedCost" value="1.0"/>
 		</event>
 		<event>
 			<string key="taskState" value="COMPLETE"/>
-			<string key="org:group" value="Process_1i8ycet"/>
+			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="concept:name" value="C"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.890+02:00"/>
+			<string key="fixedCost" value="1.0"/>
+		</event>
+		<event>
+			<string key="taskState" value="COMPLETE"/>
+			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="concept:name" value="B"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.901+02:00"/>
+			<string key="fixedCost" value="1.0"/>
+		</event>
+		<event>
+			<string key="taskState" value="START"/>
+			<string key="org:group" value="Process_0g26xgv"/>
 			<string key="concept:name" value="D"/>
-			<date key="time:timestamp" value="2021-05-03T11:45:32.896+02:00"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.924+02:00"/>
 			<string key="fixedCost" value="1.0"/>
 		</event>
 		<event>
 			<string key="taskState" value="COMPLETE"/>
-			<string key="org:group" value="Process_1i8ycet"/>
+			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="concept:name" value="D"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.938+02:00"/>
+			<string key="fixedCost" value="1.0"/>
+		</event>
+		<event>
+			<string key="taskState" value="START"/>
+			<string key="org:group" value="Process_0g26xgv"/>
 			<string key="concept:name" value="E"/>
-			<date key="time:timestamp" value="2021-05-03T11:45:32.908+02:00"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.966+02:00"/>
+			<string key="fixedCost" value="1.0"/>
+		</event>
+		<event>
+			<string key="taskState" value="COMPLETE"/>
+			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="concept:name" value="E"/>
+			<date key="time:timestamp" value="2021-05-03T14:24:42.984+02:00"/>
 			<string key="fixedCost" value="1.0"/>
 		</event>
 	</trace>
