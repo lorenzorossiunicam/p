@@ -171,29 +171,29 @@
             <groupId>org.camunda.bpm.model</groupId>
             <artifactId>camunda-xml-model</artifactId>
             <version>7.11.0MIDA</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/camunda-xml-model-7.11.0.jar</systemPath>-->
+           <scope>system</scope>
+           <systemPath>${project.basedir}/lib/camunda-xml-model-7.11.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.camunda.bpm.model</groupId>
             <artifactId>camunda-bpmn-model</artifactId>
             <version>7.11.0MIDA</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/camunda-bpmn-model-7.11.0.jar</systemPath>-->
+           <scope>system</scope>
+          <systemPath>${project.basedir}/lib/camunda-bpmn-model-7.11.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.processmining.framework</groupId>
             <artifactId>processmining-framework</artifactId>
             <version>0.0.1</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/ProM-Framework.jar</systemPath>-->
+           <scope>system</scope>
+           <systemPath>${project.basedir}/lib/ProM-Framework.jar</systemPath>
         </dependency>
         <dependency>
         <groupId>org.rapidprom</groupId>
         <artifactId>rapidprom</artifactId>
         <version>4.0.0</version>
-<!--        <scope>system</scope>-->
-<!--        <systemPath>${project.basedir}/lib/rapidprom-4.0.0.jar</systemPath>-->
+      <scope>system</scope>
+        <systemPath>${project.basedir}/lib/rapidprom-4.0.0.jar</systemPath>
         </dependency>
     </dependencies>
     <build>

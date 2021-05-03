@@ -79,6 +79,9 @@ int i = 0;
     public static Map<String, Double> calculateProbabilities(BpmnModelInstance mi, Map<String, Double> xorAndOrProbabilities) {
         Map<String, Double> tp = new HashMap<String, Double>();
         Map<String, Double> sfp = new HashMap<String, Double>();
+        if(xorAndOrProbabilities.isEmpty()){
+            return xorAndOrProbabilities;
+        }
         for(StartEvent sE : mi.getModelElementsByType(StartEvent.class)){
             dfsCalc(tp, sfp, sE, 1, xorAndOrProbabilities, new HashSet<FlowNode>());
         }

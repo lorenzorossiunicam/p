@@ -1,77 +1,50 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics;
 
-import java.util.ArrayList; 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.*;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-import it.unicam.pros.purple.semanticengine.Configuration;
-import org.camunda.bpm.model.bpmn.impl.instance.EndEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.EventBasedGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ExclusiveGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.IntermediateCatchEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.IntermediateThrowEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ParallelGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ReceiveTaskImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.StartEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.TaskImpl;
-import org.camunda.bpm.model.bpmn.instance.EndEvent;
-import org.camunda.bpm.model.bpmn.instance.EventBasedGateway;
-import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.IntermediateCatchEvent;
-import org.camunda.bpm.model.bpmn.instance.IntermediateThrowEvent;
-import org.camunda.bpm.model.bpmn.instance.ParallelGateway;
-import org.camunda.bpm.model.bpmn.instance.StartEvent;
-import org.camunda.bpm.model.bpmn.instance.Task;
+import org.camunda.bpm.model.bpmn.impl.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.*;
 
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.EndEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.EventBasedGatewayBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ExclusiveGatewayJoinBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ExclusiveGatewaySplitBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.IntermediateCatchEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.IntermediateThrowEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIIntReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIIntSendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIIntTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIPTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MISTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MessageEndEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MessageStartEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.NAReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.NASendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.NATaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ParallelGatewayJoinBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ParallelGatewaySplitBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.SendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.StartEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.TaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.TerminateEndEventBehaviour;
+import java.util.*;
 
 public class BPMNMidaSemantics implements Semantics {
  
 	 
 	private Data data = new Data();
- 
+
+	//Variabile usata per il conteggio del tempo presente (tempo attuale di simulazione)
+	public int tempoPresente = 0;
+
+	//creo un array con 10 posizioni utile per salvare il valore del tempo passato (valore di tempo dell'iterazione precedente)
+	int[] arrayTempoPassato = new int[10];
+
+	////array con 10 posizioni utile per salvare il valore del tempo presente (valore di tempo dell'iterazione corrente)
+	int[] arrayTempoPresente = new int[10];
+
+
 
 	@Override
 	public Map<Configuration, Set<Event>> getNexts(Map<Process, List<FlowNode>> pools, Configuration c) throws Exception {
 		MidaCollabsConfiguration conf = (MidaCollabsConfiguration) c;
 		Map<Configuration, Set<Event>> ret = new HashMap<Configuration, Set<Event>>();
+
+		//ret.size()  return the number of key-value mappings in this map.
+		//creo un array con ret.size() posizioni utile per salvare il valore del tempo passato (valore di tempo dell'iterazione precedente)
+		int[] arrayTempoPassato = new int[ret.size()];
+
+		////array con ret.size() posizioni utile per salvare il valore del tempo presente (valore di tempo dell'iterazione corrente)
+		int[] arrayTempoPresente = new int[ret.size()];
+
 
 		List<Process> processes = new ArrayList<Process>(pools.keySet());
 		for (int i = 0; i < processes.size(); i++) {// iterate processes
@@ -83,6 +56,7 @@ public class BPMNMidaSemantics implements Semantics {
 				for (int k = 0; k < nodes.size(); k++) {// iterate elements
 					MidaCollabsConfiguration tmpConf = (MidaCollabsConfiguration) DeepCopy.copy(conf);
 					Map<Configuration, Event> e = execute(nodes.get(k), processes.get(i), activeInstances.get(j), tmpConf);
+
 					if (! e.isEmpty()) {
 						// QUA FAI QUALCOSA
 						//System.out.println(nodes.get(k)+" "+processes.get(i).getName()+" "+activeInstances.get(j));
@@ -91,6 +65,33 @@ public class BPMNMidaSemantics implements Semantics {
 								ret.put(x, new HashSet<Event>());
 							}
 							ret.get(x).add(e.get(x));
+
+							//ciclo che consente di tenere traccia del tempo passato e presente
+							//int size = ret.size();
+							for(int iterazione = 0; iterazione< ret.size(); iterazione++) {
+								System.out.println("ITERAZIONE: " +iterazione);
+								if (iterazione == 0) {
+									arrayTempoPassato[iterazione] = 0;
+									System.out.println("Array Tempo Passato: " +arrayTempoPassato[iterazione]);
+								} else {
+									arrayTempoPassato[iterazione] = arrayTempoPresente[iterazione-1];
+									System.out.println("Array Tempo Passato: " +arrayTempoPassato[iterazione]);
+								}
+
+								if (iterazione == 0) {
+									arrayTempoPresente[iterazione] = tempoPresente;
+									System.out.println("Array Tempo Presente: " +arrayTempoPresente[iterazione]);
+								} else {
+									arrayTempoPresente[iterazione] = tempoPresente ;
+									System.out.println("Array Tempo Presente: " +arrayTempoPresente[iterazione]);
+								}
+
+								tempoPresente++;
+
+								//TO DO: Se parralelGateway == true --> ArrayTempoPassato == valore arrayTempoCorrente più alto
+								// se in un branch ci sono più task --> somma valori tempi correnti
+							}
+
 						} 
 					} 
 				}
@@ -98,6 +99,25 @@ public class BPMNMidaSemantics implements Semantics {
 		}
 		return ret;
 	}
+
+
+
+	//Dato in input un BPMN, scorri tutti i task e incrementa valoreTempoPresente di 1.
+	//Se c'è un parallel gateway, considera solo il valore di tempo più alto
+	/**
+	 *
+	 * @param valoreTempoPresente
+	 * @param valoreTempoPassato
+	 * @param model
+	 * @return
+	 * public int determinaTempo(int valoreTempoPresente, int valoreTempoPassato, InputStream model){
+	 * 		model.getNexts();
+	 * 		return valoreTempoPresente;
+	 * 		BPMNMidaSemantics.getNexts();
+	 *        }
+	 */
+
+
 
 	private Map<Configuration, Event> execute(Object object, Process process, int instance, MidaCollabsConfiguration conf)
 			throws MidaException {
@@ -126,18 +146,19 @@ public class BPMNMidaSemantics implements Semantics {
 				if (ModelUtils.isMultiInstance(flowNode)) {
 					return miTask((Task) flowNode, conf, process, instance);
 				}
-				if (ModelUtils.isAtomic((Task) flowNode)) {
-					if (flowNode instanceof SendTaskImpl) {// SENDTASKS
-						//System.out.println("SNDTASK");
-						return SendTaskBehaviour.isActive((SendTaskImpl) flowNode, conf, process, instance);
-					} else if (flowNode instanceof ReceiveTaskImpl) {// RECEIVETASKS
-						//System.out.println("RCVTASK");
-						return ReceiveTaskBehaviour.isActive((ReceiveTaskImpl) flowNode, conf, process, instance);
-					} else {
-						//System.out.println("TASK");
-						return TaskBehaviour.isActive((TaskImpl) flowNode, conf, process, instance);
-					}
-				} else {// NON-ATOMIC
+//				if (ModelUtils.isAtomic((Task) flowNode)) {
+//					if (flowNode instanceof SendTaskImpl) {// SENDTASKS
+//						//System.out.println("SNDTASK");
+//						return SendTaskBehaviour.isActive((SendTaskImpl) flowNode, conf, process, instance);
+//					} else if (flowNode instanceof ReceiveTaskImpl) {// RECEIVETASKS
+//						//System.out.println("RCVTASK");
+//						return ReceiveTaskBehaviour.isActive((ReceiveTaskImpl) flowNode, conf, process, instance);
+//					} else {
+//						//System.out.println("TASK");
+//						return TaskBehaviour.isActive((TaskImpl) flowNode, conf, process, instance);
+//					}
+//				}
+				else {// NON-ATOMIC
 					if (flowNode instanceof SendTaskImpl) {// SENDTASKS
 						//System.out.println("NASNDTASK");
 						return NASendTaskBehaviour.isActive((SendTaskImpl) flowNode, conf, process, instance);

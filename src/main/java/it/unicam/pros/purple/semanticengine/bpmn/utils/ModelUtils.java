@@ -1,49 +1,23 @@
 package it.unicam.pros.purple.semanticengine.bpmn.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import javax.script.ScriptException;
-
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Field;
-import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.ProcConfiguration;
-import it.unicam.pros.purple.util.Couple;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.*;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Field;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.util.Couple;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.BpmnModelElementInstance;
-import org.camunda.bpm.model.bpmn.instance.CompletionCondition;
-import org.camunda.bpm.model.bpmn.instance.ConditionExpression;
-import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
-import org.camunda.bpm.model.bpmn.instance.ExtensionElements;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.InteractionNode;
-import org.camunda.bpm.model.bpmn.instance.LoopCardinality;
-import org.camunda.bpm.model.bpmn.instance.MessageEventDefinition;
-import org.camunda.bpm.model.bpmn.instance.MessageFlow;
-import org.camunda.bpm.model.bpmn.instance.MultiInstanceLoopCharacteristics;
-import org.camunda.bpm.model.bpmn.instance.Participant;
 import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
-import org.camunda.bpm.model.bpmn.instance.StartEvent;
-import org.camunda.bpm.model.bpmn.instance.SubProcess;
-import org.camunda.bpm.model.bpmn.instance.Task;
-import org.camunda.bpm.model.bpmn.instance.TerminateEventDefinition;
+import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.xml.instance.DomElement;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
+import javax.script.ScriptException;
+import java.util.*;
 
 public final class ModelUtils {
 
@@ -51,7 +25,15 @@ public final class ModelUtils {
 	private static BpmnModelInstance model;
 	private static Map<String, Double> costs = null;
 	private static int instanceID = 0;
-	
+
+
+	public double getPredecessorTime(FlowNode n){
+		//
+		Collection<SequenceFlow> inc = n.getIncoming(); //TUTTI I SEQUENCE FLOW
+		//metodo ricorsivo per trovare task precedente
+
+		return 1.0;
+	}
 
 	public static BpmnModelInstance getModel() {
 		return model;

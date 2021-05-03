@@ -14,17 +14,20 @@ import it.unicam.pros.purple.semanticengine.ptnet.PnmlEngine;
 import it.unicam.pros.purple.simulation.Simulator;
 import it.unicam.pros.purple.simulation.SimulatorImpl;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
-
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -157,9 +160,22 @@ public class PURPLE {
 
     public static void main(String[] args) throws IOException {
 
-        ByteArrayOutputStream b = pnmlRediscoverability(new FileInputStream(new File("C:\\Users\\lo_re\\Desktop\\Rediscoverability\\p1.pnml")), Rediscoverability.RediscoverabilityAlgo.ALPHA, 1.0);
-        System.out.println(b.toString());
+        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:/Users/maico/Desktop/Prova_parallelo.bpmn"));
+        //System.out.println("Questa è la mi: " +mi);
+        //mi.getModelElementsByType(ParallelGateway.class);
+        //mi.getModelElementById().get;
+        //ByteArrayOutputStream b = pnmlRediscoverability(new FileInputStream(new File("C:\\Users\\lo_re\\Desktop\\Rediscoverability\\p1.pnml")), Rediscoverability.RediscoverabilityAlgo.ALPHA, 1.0);
+        //System.out.println(b.toString());
 //        System.exit(0);
+        Map<String, Double> activityCost = new HashMap<>();
+        activityCost.put("Activity_A", 1.0);
+        activityCost.put("Activity_B", 1.0);
+        activityCost.put("Activity_C", 1.0);
+        activityCost.put("Activity_D", 1.0);
+        activityCost.put("Activity_E", 1.0);
+
+        EventLog log = whatif(mi,new HashMap<>(),activityCost, 1,10);
+        LogIO.saveXES(log, "log.xes");
 
     }
 

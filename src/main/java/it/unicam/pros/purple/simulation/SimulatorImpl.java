@@ -33,7 +33,6 @@ import org.jgrapht.graph.DirectedWeightedPseudograph;
 public class SimulatorImpl implements Simulator {
 
 
-
 	private DirectedWeightedPseudograph<Configuration, LabelledEdge> lts;
 	private Configuration root;
 	private EventLog log;
