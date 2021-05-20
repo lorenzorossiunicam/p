@@ -24,9 +24,6 @@ public final class NATaskBehaviour1 {
 	public static Map<Configuration, Event> isActive(TaskImpl n, MidaCollabsConfiguration c, Process process,
 			int instance) throws MidaException {
 
-		///AGGIUNGO IN TABELLA TEMPO INIT
-		//CERCO TEMPO INIT DA MODELLO
-
 		Map<Configuration, Event> ret = new HashMap<Configuration, Event>();
 		MidaCollabsConfiguration cConf = (MidaCollabsConfiguration) DeepCopy.copy(c);
 		MidaProcConfiguration conf = ModelUtils.getProcessConf(process, instance, cConf);

@@ -1,7 +1,7 @@
 package it.unicam.pros.purple.util;
 
 public class Couple<E, V> {
-	
+
 	private E e;
 	private V v;
 	
@@ -25,5 +25,9 @@ public class Couple<E, V> {
 
 	public void setV(V v) {
 		this.v = v;
+	}
+	@Override
+	public String toString(){
+		return "[" +getE() + "," +getV() + "]";
 	}
 }

@@ -16,6 +16,7 @@ import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.xml.instance.DomElement;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 
+
 import javax.script.ScriptException;
 import java.util.*;
 
@@ -24,16 +25,105 @@ public final class ModelUtils {
 	private static int mintid = 0;
 	private static BpmnModelInstance model;
 	private static Map<String, Double> costs = null;
+	private static Map<String, Double> taskDuration = null;
 	private static int instanceID = 0;
 
 
-	public double getPredecessorTime(FlowNode n){
-		//
-		Collection<SequenceFlow> inc = n.getIncoming(); //TUTTI I SEQUENCE FLOW
-		//metodo ricorsivo per trovare task precedente
-
-		return 1.0;
+	public static Map<String, Couple<Double, Double>> getMappaTempi() {
+		return mappaTempi;
 	}
+
+	private static Map<String, Couple<Double, Double>> mappaTempi = new HashMap<>();
+
+
+
+	/**
+	 * Metodo per ricercare il task precedente
+	 * @param n
+	 * @return il tempo presente del task immediatamente precedente
+	 */
+
+	  public static Double getPredecessorTime(FlowNode n){
+
+	  	Set<Task> candidates = new HashSet<>();
+	  	Set<FlowNode> toVisit = new HashSet<>();
+
+	  	toVisit.add(n);
+	  	customDFS(toVisit, candidates);
+	  	return maxTimeOfCandidates(candidates);
+	  }
+
+
+
+	  //Prendi i current time di tutti i (task) candidati e mi ritorna il massimo
+	  // per fare questo devo implmentare il metodo che mi ritorna il current time dei task
+	  public static Double maxTimeOfCandidates(Set<Task> candidates) {
+		if(candidates.isEmpty()){
+			return 0.0;
+		}
+
+	  	double max = -1;
+
+	  	for (Task t : candidates){
+	  		double tmp = mappaTempi.get(t.getId()).getV();
+	  		if (tmp>max) {
+	  			max = tmp;
+			}
+
+		}
+	  	return  max;
+	  }
+
+
+	public static void customDFS(Set<FlowNode> toVisit, Set<Task> candidates) {
+	  	List<FlowNode> predecessor = new ArrayList<>();
+	  	Set<FlowNode> toRemove = new HashSet<>(toVisit);
+	  	for (FlowNode n : toVisit) {
+	  		if(n.getPreviousNodes().count() >= 1) {
+				predecessor.addAll(n.getPreviousNodes().list());
+			}
+		}
+		toVisit.removeAll(toRemove);
+	  	for(FlowNode p : predecessor) {
+	  		if(p instanceof Task && mappaTempi.get(p.getId()) != null) { //implementa metodo getCurrentTime();
+				candidates.add((Task) p);
+			}
+	  		else {
+	  			toVisit.add(p);
+			}
+		}
+	  	if(toVisit.isEmpty()) {
+	  		return;
+		}
+	  	else {
+	  		customDFS(toVisit,candidates);
+		}
+	}
+
+	/******
+	 *
+	 * Fa qui la mappa.
+	 * In input ho un task. Devo creare l'hash map, prendere il tempo corrente dal task e
+	 * inserirlo dentro l'hashmap
+	 * t = task
+	 *
+	 * */
+
+
+//	public double getCurrentTime(FlowNode t) {
+//		//Map<String, Couple<Double, Double>> mappaTempi = new HashMap<>();
+//		//La mappa è stata creata all'inizio della classe.
+//
+//		mappaTempi.put(t.getId(), new Couple(tempoPassato, tempoPresente));
+//		mappaTempi.get(tempoPresente);
+//		//mappaTempi.get(new Couple(null, tempoPresente));
+//		//return mappaTempi.get(tempoPresente);
+//		return tempoPresente;
+//
+//		//gli devo dire di tornare l'elemento che si trova in TempoPresente.
+//	}
+
+
 
 	public static BpmnModelInstance getModel() {
 		return model;
@@ -506,5 +596,13 @@ public final class ModelUtils {
 			return null;
 		}
 		return costs.get(flowNode.getId());
+	}
+
+	public static void setDurations(Map<String, Double> actDur) {
+		taskDuration = actDur;
+	}
+
+	public static double getTaskDuration(String id){
+		return taskDuration.get(id);
 	}
 }

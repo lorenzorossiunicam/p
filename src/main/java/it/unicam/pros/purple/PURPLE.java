@@ -6,9 +6,11 @@ import it.unicam.pros.purple.evaluator.purpose.rediscoverability.BPMNRediscovera
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.PnmlRediscoverability;
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.Rediscoverability;
 import it.unicam.pros.purple.evaluator.purpose.whatifanalysis.BPMNWhatIfAnalysis;
+import it.unicam.pros.purple.evaluator.purpose.whatifanalysis.BPMNWhatIfAnalysisWithTime;
 import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
 import it.unicam.pros.purple.semanticengine.SemanticEngine;
 import it.unicam.pros.purple.semanticengine.bpmn.NodaEngine;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
 import it.unicam.pros.purple.semanticengine.ptnet.PnmlEngine;
 import it.unicam.pros.purple.simulation.Simulator;
@@ -157,6 +159,21 @@ public class PURPLE {
         return generateLogsStream(simulator,evaluator,tau);
     }
 
+    public static EventLog whatifwithtime(BpmnModelInstance mi, Map<String, Double> sfProbability, Map<String, Double> actCosts, Map<String, Double> actDur, double tau, double maxTraces){
+
+        //Create an engine from the given model
+        DateFormat df = new SimpleDateFormat("dd_MM_yy_HH_mm_ss");
+        Date dateobj = new Date();
+        SemanticEngine e = new NodaEngine("EventLog"+df.format(dateobj), mi);
+        SimLogAppender.append(PURPLE.class, SimLogAppender.Level.INFO, "Engine created");
+        //Create the simulator
+        SimulatorImpl simulator = new SimulatorImpl(e);
+        //Create the evaluator
+        Evaluator evaluator = new BPMNWhatIfAnalysisWithTime(mi, sfProbability, actCosts, actDur, maxTraces);
+
+        return generateLogsStream(simulator,evaluator,tau);
+    }
+
 
     public static void main(String[] args) throws IOException {
 
@@ -174,8 +191,17 @@ public class PURPLE {
         activityCost.put("Activity_D", 1.0);
         activityCost.put("Activity_E", 1.0);
 
-        EventLog log = whatif(mi,new HashMap<>(),activityCost, 1,10);
+        Map<String, Double> activityDuration= new HashMap<>();
+        activityDuration.put("Activity_A", 60.0);
+        activityDuration.put("Activity_B", 61.0);
+        activityDuration.put("Activity_C", 17.0);
+        activityDuration.put("Activity_D", 14.0);
+        activityDuration.put("Activity_E", 41.0);
+
+
+        EventLog log = whatifwithtime(mi,new HashMap<>(),activityCost, activityDuration, 1,10);
         LogIO.saveXES(log, "log.xes");
+        System.out.println(ModelUtils.getMappaTempi());
 
     }
 

@@ -1,29 +1,20 @@
 package it.unicam.pros.purple.semanticengine.bpmn;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import it.unicam.pros.purple.semanticengine.Configuration;
 import it.unicam.pros.purple.semanticengine.SemanticEngine;
-import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MICharateristics;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.semanticengine.bpmn.semantics.BPMNNodaSemantics;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.MessageFlow;
-import org.camunda.bpm.model.bpmn.instance.ParticipantMultiplicity;
 import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.bpmn.instance.StartEvent;
+import org.camunda.bpm.model.bpmn.instance.*;
 
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.BPMNNodaSemantics;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import java.util.*;
 
 public class NodaEngine implements SemanticEngine {
 
