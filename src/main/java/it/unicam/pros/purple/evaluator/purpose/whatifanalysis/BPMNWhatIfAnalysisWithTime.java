@@ -15,7 +15,7 @@ public class BPMNWhatIfAnalysisWithTime implements Evaluator {
     private Map<String, Double> tasksProbabilities;
     private double maxTraces;
 
-    public BPMNWhatIfAnalysisWithTime(BpmnModelInstance mi, Map<String, Double> xorAndOrProbabilities, Map<String, Double> actCosts, Map<String, Double> actDur, double maxTraces){
+    public BPMNWhatIfAnalysisWithTime(BpmnModelInstance mi, Map<String, Double> xorAndOrProbabilities, Map<String, Double> actCosts, Map<String, Long> actDur, double maxTraces){
         ModelUtils.setCosts(actCosts);
         ModelUtils.setDurations(actDur);
         this.maxTraces = maxTraces;

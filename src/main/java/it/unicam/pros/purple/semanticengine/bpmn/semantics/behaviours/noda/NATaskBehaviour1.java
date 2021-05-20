@@ -28,13 +28,13 @@ public final class NATaskBehaviour1 {
 
 
 			double initTime = ModelUtils.getPredecessorTime(n);
-			Map<String, Couple<Double, Double>> mappaTempi = ModelUtils.getMappaTempi();
+			Map<String, Couple<Long, Long>> mappaTempi = ModelUtils.getMappaTempi();
 
 			if(!mappaTempi.containsKey(n.getId())){
-				mappaTempi.put(n.getId(),new Couple<Double, Double>(0.0,0.0));
+				mappaTempi.put(n.getId(),new Couple<Long, Long>((long) 0.0,(long) 0.0));
 			}
 
-			mappaTempi.get(n.getId()).setE(initTime);
+			mappaTempi.get(n.getId()).setE((long) initTime);
 			Auxiliaries.incActive(conf, n.getId(), 1);
 			Auxiliaries.dec(conf, sF.getId()); 
 			ret.put(cConf, LogUtil.NActivity(process.getId(), String.valueOf(instance), n, conf, cConf));

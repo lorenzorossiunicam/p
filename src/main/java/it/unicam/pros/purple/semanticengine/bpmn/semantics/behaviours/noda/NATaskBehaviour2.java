@@ -31,12 +31,12 @@ public final class NATaskBehaviour2 {
 		//prendo tempo iniziale che ho nella mappa
 		//calcolo tempo finale e salvo nella mappa.
 
-		Map<String, Couple<Double, Double>>  mappaTempi = ModelUtils.getMappaTempi();
+		Map<String, Couple<Long, Long>>  mappaTempi = ModelUtils.getMappaTempi();
 		if(!mappaTempi.containsKey(n.getId())){
-			mappaTempi.put(n.getId(),new Couple<Double, Double>(0.0,0.0));
+			mappaTempi.put(n.getId(),new Couple<Long, Long>((long) 0.0,(long) 0.0));
 		}
-		Double iniTime = mappaTempi.get(n.getId()).getE();
-		mappaTempi.get(n.getId()).setV(iniTime + ModelUtils.getTaskDuration(n.getId()));
+		Long iniTime = mappaTempi.get(n.getId()).getE();
+		mappaTempi.get(n.getId()).setV((long) (iniTime + ModelUtils.getTaskDuration(n.getId())));
 
 		return ret;
 	}

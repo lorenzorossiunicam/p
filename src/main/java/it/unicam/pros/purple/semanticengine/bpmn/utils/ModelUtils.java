@@ -25,15 +25,15 @@ public final class ModelUtils {
 	private static int mintid = 0;
 	private static BpmnModelInstance model;
 	private static Map<String, Double> costs = null;
-	private static Map<String, Double> taskDuration = null;
+	private static Map<String, Long> taskDuration = null;
 	private static int instanceID = 0;
 
 
-	public static Map<String, Couple<Double, Double>> getMappaTempi() {
+	public static Map<String, Couple<Long, Long>> getMappaTempi() {
 		return mappaTempi;
 	}
 
-	private static Map<String, Couple<Double, Double>> mappaTempi = new HashMap<>();
+	private static Map<String, Couple<Long, Long>> mappaTempi = new HashMap<>();
 
 
 
@@ -43,7 +43,7 @@ public final class ModelUtils {
 	 * @return il tempo presente del task immediatamente precedente
 	 */
 
-	  public static Double getPredecessorTime(FlowNode n){
+	  public static Long getPredecessorTime(FlowNode n){
 
 	  	Set<Task> candidates = new HashSet<>();
 	  	Set<FlowNode> toVisit = new HashSet<>();
@@ -57,9 +57,9 @@ public final class ModelUtils {
 
 	  //Prendi i current time di tutti i (task) candidati e mi ritorna il massimo
 	  // per fare questo devo implmentare il metodo che mi ritorna il current time dei task
-	  public static Double maxTimeOfCandidates(Set<Task> candidates) {
+	  public static Long maxTimeOfCandidates(Set<Task> candidates) {
 		if(candidates.isEmpty()){
-			return 0.0;
+			return (long) 0.0;
 		}
 
 	  	double max = -1;
@@ -71,7 +71,7 @@ public final class ModelUtils {
 			}
 
 		}
-	  	return  max;
+	  	return  (long) max;
 	  }
 
 
@@ -598,7 +598,7 @@ public final class ModelUtils {
 		return costs.get(flowNode.getId());
 	}
 
-	public static void setDurations(Map<String, Double> actDur) {
+	public static void setDurations(Map<String, Long> actDur) {
 		taskDuration = actDur;
 	}
 

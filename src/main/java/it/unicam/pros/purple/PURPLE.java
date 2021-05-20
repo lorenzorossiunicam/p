@@ -159,7 +159,7 @@ public class PURPLE {
         return generateLogsStream(simulator,evaluator,tau);
     }
 
-    public static EventLog whatifwithtime(BpmnModelInstance mi, Map<String, Double> sfProbability, Map<String, Double> actCosts, Map<String, Double> actDur, double tau, double maxTraces){
+    public static EventLog whatifwithtime(BpmnModelInstance mi, Map<String, Double> sfProbability, Map<String, Double> actCosts, Map<String, Long> actDur, double tau, double maxTraces){
 
         //Create an engine from the given model
         DateFormat df = new SimpleDateFormat("dd_MM_yy_HH_mm_ss");
@@ -191,12 +191,12 @@ public class PURPLE {
         activityCost.put("Activity_D", 1.0);
         activityCost.put("Activity_E", 1.0);
 
-        Map<String, Double> activityDuration= new HashMap<>();
-        activityDuration.put("Activity_A", 60.0);
-        activityDuration.put("Activity_B", 61.0);
-        activityDuration.put("Activity_C", 17.0);
-        activityDuration.put("Activity_D", 14.0);
-        activityDuration.put("Activity_E", 41.0);
+        Map<String, Long> activityDuration= new HashMap<>();
+        activityDuration.put("Activity_A", (long) 60000.0);
+        activityDuration.put("Activity_B", (long) 61000.0);
+        activityDuration.put("Activity_C", (long) 17000.0);
+        activityDuration.put("Activity_D", (long) 14000.0);
+        activityDuration.put("Activity_E", (long) 41000.0);
 
 
         EventLog log = whatifwithtime(mi,new HashMap<>(),activityCost, activityDuration, 1,10);

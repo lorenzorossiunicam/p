@@ -1,30 +1,24 @@
 package it.unicam.pros.purple.util.eventlogs.utils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.script.ScriptException;
-
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
-import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
-import it.unicam.pros.purple.semanticengine.ptnet.configuration.PnmlConfiguration;
-import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
-import it.unicam.pros.purple.util.eventlogs.trace.event.MsgType;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntActivity;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
+import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
+import it.unicam.pros.purple.util.eventlogs.trace.event.MsgType;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
 import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
+
+import javax.script.ScriptException;
+import java.util.*;
 
 public class LogUtil {
 
@@ -135,7 +129,14 @@ public class LogUtil {
 
 	public static Event NActivity(String process, String instance, FlowNode flowNode, NodaProcConfiguration pConf, NodaCollabsConfiguration conf) {
 		ActivityState actState = pConf.getSigmaT().get(flowNode.getId()).getState();
-		return new EventImpl(process, instance, flowNode.getName(), new Date(), actState, null, null, null, null, null, ModelUtils.getCost(flowNode));
+		long time = (long) 0.0;
+		if(actState.equals(ActivityState.START)){
+			time = ModelUtils.getMappaTempi().get(flowNode.getId()).getE();
+		} else if (actState.equals(ActivityState.COMPLETE)){
+			time = ModelUtils.getMappaTempi().get(flowNode.getId()).getV();
+		}
+		System.out.println(flowNode.getId()+" ---- "+time+"  ---  "+new Date(time));
+		return new EventImpl(process, instance, flowNode.getName(), new Date(time), actState, null, null, null, null, null, ModelUtils.getCost(flowNode));
 	}
 
 	public static Event MIActivity(String process, String instance, IntActivity intAct, NodaProcConfiguration pConf, NodaCollabsConfiguration conf) {
