@@ -19,6 +19,10 @@ public class TaskState implements Serializable {
 		this.receiving = 0;
 	}
 
+	public boolean isInactive(){
+		return this.active + this.sending + this.receiving == 0;
+	}
+
 	public ActivityState getState() {
 		if(active > 0) return ActivityState.START;
 		if(sending > 0) return ActivityState.SEND;
@@ -70,5 +74,13 @@ public class TaskState implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(active, sending, receiving);
+	}
+
+	public void incActive(int qnt) {
+		this.active += qnt;
+	}
+
+	public void decActive(int qnt){
+		this.active -= qnt;
 	}
 }

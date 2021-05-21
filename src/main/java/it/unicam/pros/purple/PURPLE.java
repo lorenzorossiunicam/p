@@ -1,5 +1,6 @@
 package it.unicam.pros.purple;
 
+import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import it.unicam.pros.purple.evaluator.Delta;
 import it.unicam.pros.purple.evaluator.Evaluator;
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.BPMNRediscoverability;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -159,17 +161,17 @@ public class PURPLE {
         return generateLogsStream(simulator,evaluator,tau);
     }
 
-    public static EventLog whatifwithtime(BpmnModelInstance mi, Map<String, Double> sfProbability, Map<String, Double> actCosts, Map<String, Long> actDur, double tau, double maxTraces){
+    public static EventLog whatifwithtime(BpmnModelInstance mi, Map<String, Double> sfProbability, Map<String, Double> actCosts, Map<String, Long> actDur, long initDate, double tau, double maxTraces){
 
         //Create an engine from the given model
         DateFormat df = new SimpleDateFormat("dd_MM_yy_HH_mm_ss");
-        Date dateobj = new Date();
+        Date dateobj = new Date(initDate);
         SemanticEngine e = new NodaEngine("EventLog"+df.format(dateobj), mi);
         SimLogAppender.append(PURPLE.class, SimLogAppender.Level.INFO, "Engine created");
         //Create the simulator
         SimulatorImpl simulator = new SimulatorImpl(e);
         //Create the evaluator
-        Evaluator evaluator = new BPMNWhatIfAnalysisWithTime(mi, sfProbability, actCosts, actDur, maxTraces);
+        Evaluator evaluator = new BPMNWhatIfAnalysisWithTime(mi, sfProbability, actCosts, actDur, initDate, maxTraces);
 
         return generateLogsStream(simulator,evaluator,tau);
     }
@@ -198,8 +200,9 @@ public class PURPLE {
         activityDuration.put("Activity_D", (long) 14000.0);
         activityDuration.put("Activity_E", (long) 41000.0);
 
+        long init =  (new Date()).getTime();
 
-        EventLog log = whatifwithtime(mi,new HashMap<>(),activityCost, activityDuration, 1,10);
+        EventLog log = whatifwithtime(mi,new HashMap<>(),activityCost, activityDuration, init, 1,10);
         LogIO.saveXES(log, "log.xes");
         System.out.println(ModelUtils.getMappaTempi());
 

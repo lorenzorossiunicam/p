@@ -1,11 +1,6 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
@@ -76,9 +71,10 @@ public class BPMNNodaSemantics implements Semantics {
 				List<Object> nodes = new ArrayList<Object>(pools.get(processes.get(i)));
 				nodes.addAll(
 						ModelUtils.getProcessConf(processes.get(i), activeInstances.get(j), conf).getIntActivities());
+				Collections.shuffle(nodes);
 				for (int k = 0; k < nodes.size(); k++) {// iterate elements
 					NodaCollabsConfiguration tmpConf = (NodaCollabsConfiguration) DeepCopy.copy(conf);
-					Map<Configuration, Event> e = execute(nodes.get(k), processes.get(i), activeInstances.get(j), tmpConf); 
+					Map<Configuration, Event> e = execute(nodes.get(k), processes.get(i), activeInstances.get(j), tmpConf);
 					if (! e.isEmpty()) {
 						// QUA FAI QUALCOSA
 						//System.out.println(nodes.get(k)+" "+processes.get(i).getName()+" "+activeInstances.get(j));
@@ -87,7 +83,8 @@ public class BPMNNodaSemantics implements Semantics {
 								ret.put(x, new HashSet<Event>());
 							}
 							ret.get(x).add(e.get(x));
-						} 
+						}
+						break;
 					}
 				}
 			}

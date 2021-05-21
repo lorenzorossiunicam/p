@@ -27,7 +27,7 @@ public final class ModelUtils {
 	private static Map<String, Double> costs = null;
 	private static Map<String, Long> taskDuration = null;
 	private static int instanceID = 0;
-
+	private static long inintDate = 0;
 
 	public static Map<String, Couple<Long, Long>> getMappaTempi() {
 		return mappaTempi;
@@ -59,7 +59,7 @@ public final class ModelUtils {
 	  // per fare questo devo implmentare il metodo che mi ritorna il current time dei task
 	  public static Long maxTimeOfCandidates(Set<Task> candidates) {
 		if(candidates.isEmpty()){
-			return (long) 0.0;
+			return inintDate;
 		}
 
 	  	double max = -1;
@@ -99,29 +99,6 @@ public final class ModelUtils {
 	  		customDFS(toVisit,candidates);
 		}
 	}
-
-	/******
-	 *
-	 * Fa qui la mappa.
-	 * In input ho un task. Devo creare l'hash map, prendere il tempo corrente dal task e
-	 * inserirlo dentro l'hashmap
-	 * t = task
-	 *
-	 * */
-
-
-//	public double getCurrentTime(FlowNode t) {
-//		//Map<String, Couple<Double, Double>> mappaTempi = new HashMap<>();
-//		//La mappa è stata creata all'inizio della classe.
-//
-//		mappaTempi.put(t.getId(), new Couple(tempoPassato, tempoPresente));
-//		mappaTempi.get(tempoPresente);
-//		//mappaTempi.get(new Couple(null, tempoPresente));
-//		//return mappaTempi.get(tempoPresente);
-//		return tempoPresente;
-//
-//		//gli devo dire di tornare l'elemento che si trova in TempoPresente.
-//	}
 
 
 
@@ -604,5 +581,9 @@ public final class ModelUtils {
 
 	public static double getTaskDuration(String id){
 		return taskDuration.get(id);
+	}
+
+	public static void setInitDate(long init) {
+	  	inintDate = init;
 	}
 }

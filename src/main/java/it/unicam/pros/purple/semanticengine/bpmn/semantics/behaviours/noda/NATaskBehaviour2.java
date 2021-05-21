@@ -24,19 +24,20 @@ public final class NATaskBehaviour2 {
 		NodaProcConfiguration conf = ModelUtils.getProcessConf(process, instance, cConf);
 
 		if(Auxiliaries.isActive(conf, n)) {
+
+			Map<String, Couple<Long, Long>>  mappaTempi = ModelUtils.getMappaTempi();
+			if(!mappaTempi.containsKey(n.getId())){
+				mappaTempi.put(n.getId(),new Couple<Long, Long>((long) 0.0,(long) 0.0));
+			}
+			Long iniTime = mappaTempi.get(n.getId()).getE();
+			mappaTempi.get(n.getId()).setV((long) (iniTime + ModelUtils.getTaskDuration(n.getId())));
+
 			Auxiliaries.inc(conf, n.getOutgoing());
-			Auxiliaries.decActive(conf, n.getId(), 1); 
+			Auxiliaries.decActive(conf, n.getId(), 1);
+			System.out.println(conf.getSigmaT().get(n.getId()).getActive());
 			ret.put(cConf, LogUtil.NActivity(process.getId(), String.valueOf(instance), n, conf, cConf));
 		}
-		//prendo tempo iniziale che ho nella mappa
-		//calcolo tempo finale e salvo nella mappa.
 
-		Map<String, Couple<Long, Long>>  mappaTempi = ModelUtils.getMappaTempi();
-		if(!mappaTempi.containsKey(n.getId())){
-			mappaTempi.put(n.getId(),new Couple<Long, Long>((long) 0.0,(long) 0.0));
-		}
-		Long iniTime = mappaTempi.get(n.getId()).getE();
-		mappaTempi.get(n.getId()).setV((long) (iniTime + ModelUtils.getTaskDuration(n.getId())));
 
 		return ret;
 	}

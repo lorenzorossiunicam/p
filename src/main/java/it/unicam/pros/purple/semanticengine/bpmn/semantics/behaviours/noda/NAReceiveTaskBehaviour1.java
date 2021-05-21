@@ -6,6 +6,7 @@ import java.util.Map;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
+import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
@@ -25,6 +26,13 @@ public class NAReceiveTaskBehaviour1 {
 		NodaProcConfiguration conf = ModelUtils.getProcessConf(process, instance, cConf);
 		SequenceFlow sF = ModelUtils.hasIncoming(conf, n);
 		if (sF != null && Auxiliaries.isInactive(conf, n)) {
+			double initTime = ModelUtils.getPredecessorTime(n);
+			Map<String, Couple<Long, Long>> mappaTempi = ModelUtils.getMappaTempi();
+
+			if(!mappaTempi.containsKey(n.getId())){
+				mappaTempi.put(n.getId(),new Couple<Long, Long>((long) 0.0,(long) 0.0));
+			}
+			mappaTempi.get(n.getId()).setE((long) initTime);
 			Auxiliaries.incActive(conf, n.getId(), 1);
 			Auxiliaries.dec(conf, sF.getId()); 
 			ret.put(cConf, LogUtil.receiveNActivity(process.getId(), String.valueOf(instance), n, conf, cConf));

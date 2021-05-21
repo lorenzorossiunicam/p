@@ -23,6 +23,7 @@ import it.unicam.pros.purple.gui.ui.components.navigation.drawer.NaviItem;
 import it.unicam.pros.purple.gui.ui.components.navigation.drawer.NaviMenu;
 import it.unicam.pros.purple.gui.ui.util.UIUtils;
 import it.unicam.pros.purple.gui.ui.util.css.Overflow;
+import it.unicam.pros.purple.gui.ui.view.collabwhatif.BPMNCollabWhatIfAnalysisView;
 import it.unicam.pros.purple.gui.ui.view.rediscoverability.BPMNRediscoverabilityView;
 import it.unicam.pros.purple.gui.ui.view.rediscoverability.PnmlRediscoverabilityView;
 import it.unicam.pros.purple.gui.ui.view.whatif.BPMNWhatIfAnalysisView;
@@ -127,7 +128,8 @@ public class MainLayout extends FlexBoxLayout
 
         NaviItem whatif = menu.addNaviItem(VaadinIcon.CHART, "What-If Analysis",
                 null);
-        menu.addNaviItem(whatif, "BPMN", BPMNWhatIfAnalysisView.class);
+        menu.addNaviItem(whatif, "BPMN Process", BPMNWhatIfAnalysisView.class);
+        menu.addNaviItem(whatif, "BPMN Collaboration", BPMNCollabWhatIfAnalysisView.class);
 
 
     }

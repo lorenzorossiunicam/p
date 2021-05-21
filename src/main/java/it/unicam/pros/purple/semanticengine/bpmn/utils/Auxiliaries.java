@@ -48,13 +48,16 @@ public final class Auxiliaries {
 		}
 	}
 	public static boolean isInactive(NodaProcConfiguration conf, Task t) {
-		if(!conf.getSigmaT().containsKey(t.getId())) return true;
-		return conf.getSigmaT().get(t.getId()).getActive() == 0 && conf.getSigmaT().get(t.getId()).getReceiving() == 0
-				&& conf.getSigmaT().get(t.getId()).getSending() == 0;
+		if(!conf.getSigmaT().containsKey(t.getId())) {
+			conf.getSigmaT().put(t.getId(), new TaskState());
+		}
+		return conf.getSigmaT().get(t.getId()).isInactive();
 	}
 
 	public static boolean isActive(NodaProcConfiguration conf, Task t) {
-		if(!conf.getSigmaT().containsKey(t.getId())) return false;
+		if(!conf.getSigmaT().containsKey(t.getId())) {
+			conf.getSigmaT().put(t.getId(),new TaskState());
+		}
 		return conf.getSigmaT().get(t.getId()).getActive() > 0;
 	}
 
@@ -107,10 +110,7 @@ public final class Auxiliaries {
 	}
 
 	public static void incActive(NodaProcConfiguration conf, String id, int qnt) {
-		if(!conf.getSigmaT().containsKey(id)) {
-			conf.getSigmaT().put(id, new TaskState() );
-		}
-		conf.getSigmaT().get(id).setActive(qnt + conf.getSigmaT().get(id).getActive());
+		conf.getSigmaT().get(id).incActive(qnt);
 	}
 
 	public static void incSending(NodaProcConfiguration conf, String id, int qnt) {
@@ -122,7 +122,7 @@ public final class Auxiliaries {
 	}
 
 	public static void decActive(NodaProcConfiguration conf, String id, int qnt) {
-		conf.getSigmaT().get(id).setActive(conf.getSigmaT().get(id).getActive() - qnt);
+		conf.getSigmaT().get(id).decActive(qnt);
 	}
 
 	public static void decSending(NodaProcConfiguration conf, String id, int qnt) {

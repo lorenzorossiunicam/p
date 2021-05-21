@@ -24,8 +24,8 @@ public final class NATaskBehaviour1 {
 		NodaCollabsConfiguration cConf = (NodaCollabsConfiguration) DeepCopy.copy(c);
 		NodaProcConfiguration conf = ModelUtils.getProcessConf(process, instance, cConf);
 		SequenceFlow sF = ModelUtils.hasIncoming(conf, n);
-		if (sF != null && Auxiliaries.isInactive(conf, n)) {
 
+		if (sF != null && Auxiliaries.isInactive(conf, n)) {
 
 			double initTime = ModelUtils.getPredecessorTime(n);
 			Map<String, Couple<Long, Long>> mappaTempi = ModelUtils.getMappaTempi();
@@ -33,8 +33,8 @@ public final class NATaskBehaviour1 {
 			if(!mappaTempi.containsKey(n.getId())){
 				mappaTempi.put(n.getId(),new Couple<Long, Long>((long) 0.0,(long) 0.0));
 			}
-
 			mappaTempi.get(n.getId()).setE((long) initTime);
+
 			Auxiliaries.incActive(conf, n.getId(), 1);
 			Auxiliaries.dec(conf, sF.getId()); 
 			ret.put(cConf, LogUtil.NActivity(process.getId(), String.valueOf(instance), n, conf, cConf));
