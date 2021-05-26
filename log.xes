@@ -10,80 +10,688 @@
 	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
 	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
 	<extension name="Identity" prefix="identity" uri="http://www.xes-standard.org/identity.xesext"/>
-	<string key="concept:name" value="EventLog21_05_21_16_57_47"/>
+	<string key="concept:name" value="EventLog26_05_21_17_42_24"/>
 	<list key="Data Stores"/>
+	<trace>
+		<string key="concept:name" value="case_20"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.078+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.083+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.092+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_5"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.611+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.634+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.639+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_12"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.830+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.832+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.835+02:00"/>
+		</event>
+	</trace>
 	<trace>
 		<string key="concept:name" value="case_0"/>
 		<list key="Data Objects"/>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="org:group" value="Process_0xloz71"/>
 			<string key="concept:name" value="A"/>
-			<string key="lifecycle:transition" value="START"/>
-			<date key="time:timestamp" value="2021-05-21T16:57:47.390+02:00"/>
+			<string key="messageType" value="SEND"/>
 			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.486+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="org:group" value="Process_0xloz71"/>
 			<string key="concept:name" value="A"/>
-			<string key="lifecycle:transition" value="COMPLETE"/>
-			<date key="time:timestamp" value="2021-05-21T16:58:47.390+02:00"/>
+			<string key="messageType" value="SEND"/>
 			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.501+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.511+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_4"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.618+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.620+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.624+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_10"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.760+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.777+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.789+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_15"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
 			<string key="concept:name" value="B"/>
-			<string key="lifecycle:transition" value="START"/>
-			<date key="time:timestamp" value="2021-05-21T16:58:47.390+02:00"/>
+			<string key="messageType" value="RECEIVE"/>
 			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.880+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
+			<string key="org:group" value="Process_0p0x6iy"/>
 			<string key="concept:name" value="B"/>
-			<string key="lifecycle:transition" value="COMPLETE"/>
-			<date key="time:timestamp" value="2021-05-21T16:59:48.390+02:00"/>
+			<string key="messageType" value="RECEIVE"/>
 			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.910+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
-			<string key="concept:name" value="C"/>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.916+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_17"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
 			<string key="lifecycle:transition" value="START"/>
-			<date key="time:timestamp" value="2021-05-21T16:58:47.390+02:00"/>
-			<string key="fixedCost" value="1.0"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.963+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
-			<string key="concept:name" value="D"/>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.969+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.974+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_19"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
 			<string key="lifecycle:transition" value="START"/>
-			<date key="time:timestamp" value="2021-05-21T16:59:48.390+02:00"/>
-			<string key="fixedCost" value="1.0"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
-			<string key="concept:name" value="D"/>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.028+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
 			<string key="lifecycle:transition" value="COMPLETE"/>
-			<date key="time:timestamp" value="2021-05-21T17:00:02.390+02:00"/>
-			<string key="fixedCost" value="1.0"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.043+02:00"/>
 		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_3"/>
+		<list key="Data Objects"/>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
-			<string key="concept:name" value="C"/>
-			<string key="lifecycle:transition" value="COMPLETE"/>
-			<date key="time:timestamp" value="2021-05-21T16:59:04.390+02:00"/>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
 			<string key="fixedCost" value="1.0"/>
-		</event>
-		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
-			<string key="concept:name" value="E"/>
+			<string key="messageID" value="M"/>
 			<string key="lifecycle:transition" value="START"/>
-			<date key="time:timestamp" value="2021-05-21T17:00:02.390+02:00"/>
-			<string key="fixedCost" value="1.0"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.587+02:00"/>
 		</event>
 		<event>
-			<string key="org:group" value="Process_0g26xgv"/>
-			<string key="concept:name" value="E"/>
-			<string key="lifecycle:transition" value="COMPLETE"/>
-			<date key="time:timestamp" value="2021-05-21T17:00:43.390+02:00"/>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
 			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.592+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.596+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_7"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.657+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.690+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.695+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_8"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.712+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.718+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.732+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_1"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.465+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.525+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.539+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_18"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.994+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.004+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.012+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_13"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.847+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.853+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.857+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_6"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.664+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.673+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.678+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_21"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.075+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.101+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:25.106+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_2"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.563+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.566+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.571+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_16"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.932+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.937+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.947+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_9"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.728+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.739+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.744+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_14"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.883+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="SEND"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.891+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0xloz71"/>
+			<string key="concept:name" value="A"/>
+			<string key="messageType" value="SEND"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.897+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="case_11"/>
+		<list key="Data Objects"/>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="START"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.785+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="RECEIVE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.794+02:00"/>
+		</event>
+		<event>
+			<string key="org:group" value="Process_0p0x6iy"/>
+			<string key="concept:name" value="B"/>
+			<string key="messageType" value="RECEIVE"/>
+			<string key="fixedCost" value="1.0"/>
+			<string key="messageID" value="M"/>
+			<string key="lifecycle:transition" value="COMPLETE"/>
+			<date key="time:timestamp" value="2021-05-26T17:42:24.808+02:00"/>
 		</event>
 	</trace>
 </log>

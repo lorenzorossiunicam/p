@@ -34,7 +34,6 @@ public final class NATaskBehaviour2 {
 
 			Auxiliaries.inc(conf, n.getOutgoing());
 			Auxiliaries.decActive(conf, n.getId(), 1);
-			System.out.println(conf.getSigmaT().get(n.getId()).getActive());
 			ret.put(cConf, LogUtil.NActivity(process.getId(), String.valueOf(instance), n, conf, cConf));
 		}
 

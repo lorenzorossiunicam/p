@@ -111,7 +111,6 @@ public class ScenariosParamsExtractor {
             }
             ret.put(process.getId(), new Scenario(name, activities, choices));
         }
-        System.out.println(ret);
         return ret;
     }
 

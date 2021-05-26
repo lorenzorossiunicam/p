@@ -36,7 +36,6 @@ public class ModelProbabilities_old {
 int i = 0;
                 for(SequenceFlow sg : out){
                     if (i == 0){
-                        System.out.println(sg.getId());
                         pr.put(sg.getId(), 10.0);
                     }else
                         pr.put(sg.getId(), 90.0);
@@ -147,8 +146,6 @@ int i = 0;
     public static EventLog compareProbabilities(Map<String, Double> logProbs, Map<String, Double> requiredProbs, Double tau){
         EventLogImpl ret = new EventLogImpl(null, null);
 
-        System.out.println("logProbs "+logProbs);
-        System.out.println("reqProbs "+requiredProbs);
 
         for(String e : requiredProbs.keySet()){
             if (logProbs.get(e) == null || logProbs.get(e)  < requiredProbs.get(e) - tau/100.0 ){

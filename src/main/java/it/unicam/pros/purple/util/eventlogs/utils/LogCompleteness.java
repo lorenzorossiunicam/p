@@ -46,7 +46,7 @@ public class LogCompleteness {
         if(rel.equals(AlphaRelations.Relations.SEQUENCE) && seq && !pred) return 1;
         if(rel.equals(AlphaRelations.Relations.PARALLEL) && seq && pred) return 1;
         if((rel.equals(AlphaRelations.Relations.CHOICE)||rel.equals(AlphaRelations.Relations.NONE)) && !seq && !pred) return 1;
-        System.out.println(act1+" - "+act2+" - "+rel);
+
         return 0;
     }
 

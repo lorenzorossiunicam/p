@@ -62,10 +62,16 @@ public final class Auxiliaries {
 	}
 
 	public static boolean isSending(NodaProcConfiguration conf, Task t) {
+		if(!conf.getSigmaT().containsKey(t.getId())) {
+			conf.getSigmaT().put(t.getId(),new TaskState());
+		}
 		return conf.getSigmaT().get(t.getId()).getSending() > 0;
 	}
 
 	public static boolean isReceiving(NodaProcConfiguration conf, Task t) {
+		if(!conf.getSigmaT().containsKey(t.getId())) {
+			conf.getSigmaT().put(t.getId(),new TaskState());
+		}
 		return conf.getSigmaT().get(t.getId()).getReceiving() > 0;
 	}
 

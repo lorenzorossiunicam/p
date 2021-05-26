@@ -36,7 +36,6 @@ public class ModelProbabilities {
                 Collection<SequenceFlow> out = g.getOutgoing();
 int i = 0;
                 for(SequenceFlow sg : out){
-                    System.out.println(sg.getId()+" : ....");
                     BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                     Double prob = Double.valueOf(in.readLine());
                     pr.put(sg.getId(), prob);
@@ -54,9 +53,6 @@ int i = 0;
         for(String s : bimp.keySet()){
             bimp.put(s, bimp.get(s)/2);
         }
-        System.out.println(original);
-        System.out.println(ppgl);
-        System.out.println(bimp);
 
         double  distPPLG = 0, distBIMP = 0, sum= 0.0;
 
@@ -133,8 +129,6 @@ int i = 0;
     public static EventLog compareProbabilities(Map<String, Double> logProbs, Map<String, Double> requiredProbs, Double tau){
         EventLogImpl ret = new EventLogImpl(null, null);
 
-        System.out.println("logProbs "+logProbs);
-        System.out.println("reqProbs "+requiredProbs);
 
         for(String e : requiredProbs.keySet()){
             if (logProbs.get(e) == null || logProbs.get(e)  < requiredProbs.get(e) - tau/100.0 ){

@@ -115,14 +115,14 @@ public class LogUtil {
 	}
 
 	public static Event sendNActivity(String process, String instance, FlowNode flowNode, NodaProcConfiguration pConf, NodaCollabsConfiguration conf) {
-		ActivityState actState = pConf.getSigmaT().get(flowNode.getName()).getState();
+		ActivityState actState = pConf.getSigmaT().get(flowNode.getId()).getState();
 		return new EventImpl(process, instance, flowNode.getName(), new Date(), actState, null, MsgType.SEND,
 				ModelUtils.getIOUTMsgS(flowNode, conf).iterator().next().getName(), null, null, ModelUtils.getCost(flowNode));
 	}
 
 	public static Event receiveNActivity(String process, String instance, FlowNode flowNode, NodaProcConfiguration pConf,
 			NodaCollabsConfiguration conf) {
-		ActivityState actState = pConf.getSigmaT().get(flowNode.getName()).getState();
+		ActivityState actState = pConf.getSigmaT().get(flowNode.getId()).getState();
 		return new EventImpl(process, instance, flowNode.getName(), new Date(), actState, null, MsgType.RECEIVE,
 				ModelUtils.getINMsgS(flowNode, conf).iterator().next().getName(), null, null, ModelUtils.getCost(flowNode));
 	}
@@ -135,7 +135,6 @@ public class LogUtil {
 		} else if (actState.equals(ActivityState.COMPLETE)){
 			time = ModelUtils.getMappaTempi().get(flowNode.getId()).getV();
 		}
-		System.out.println(flowNode.getId()+" ---- "+time+"  ---  "+new Date(time));
 		return new EventImpl(process, instance, flowNode.getName(), new Date(time), actState, null, null, null, null, null, ModelUtils.getCost(flowNode));
 	}
 

@@ -17,6 +17,10 @@ import it.unicam.pros.purple.semanticengine.ptnet.PnmlEngine;
 import it.unicam.pros.purple.simulation.Simulator;
 import it.unicam.pros.purple.simulation.SimulatorImpl;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
+import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
+import it.unicam.pros.purple.util.eventlogs.trace.Trace;
+import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
+import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
@@ -173,13 +177,17 @@ public class PURPLE {
         //Create the evaluator
         Evaluator evaluator = new BPMNWhatIfAnalysisWithTime(mi, sfProbability, actCosts, actDur, initDate, maxTraces);
 
-        return generateLogsStream(simulator,evaluator,tau);
+        EventLog log = simulator.simulate(null);
+        for(int i = 0; i<maxTraces; i++){
+            log = simulator.simulate(null);
+        }
+        return log;
     }
 
 
     public static void main(String[] args) throws IOException {
 
-        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("PADiagram_1.bpmn"));
+        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("TESTCOLL.bpmn"));
         //System.out.println("Questa è la mi: " +mi);
         //mi.getModelElementsByType(ParallelGateway.class);
         //mi.getModelElementById().get;
@@ -187,18 +195,12 @@ public class PURPLE {
         //System.out.println(b.toString());
 //        System.exit(0);
         Map<String, Double> activityCost = new HashMap<>();
-        activityCost.put("Activity_A", 1.0);
-        activityCost.put("Activity_B", 1.0);
-        activityCost.put("Activity_C", 1.0);
-        activityCost.put("Activity_D", 1.0);
-        activityCost.put("Activity_E", 1.0);
+        activityCost.put("Activity_08clh1o", 1.0);
+        activityCost.put("Activity_05hipak", 1.0);
 
         Map<String, Long> activityDuration= new HashMap<>();
-        activityDuration.put("Activity_A", (long) 60000.0);
-        activityDuration.put("Activity_B", (long) 61000.0);
-        activityDuration.put("Activity_C", (long) 17000.0);
-        activityDuration.put("Activity_D", (long) 14000.0);
-        activityDuration.put("Activity_E", (long) 41000.0);
+        activityDuration.put("Activity_08clh1o", (long) 60000.0);
+        activityDuration.put("Activity_05hipak", (long) 30000.0);
 
         long init =  (new Date()).getTime();
 

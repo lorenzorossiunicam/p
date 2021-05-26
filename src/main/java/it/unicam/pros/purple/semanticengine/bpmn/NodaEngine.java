@@ -25,6 +25,7 @@ public class NodaEngine implements SemanticEngine {
  
 	public NodaEngine(String name, BpmnModelInstance mi) { 
 		model = mi;
+		ModelUtils.setModel(model);
 		this.semantics = new BPMNNodaSemantics();
 		this.name = name;
 		for (Process p : mi.getModelElementsByType(Process.class)) {
@@ -85,6 +86,7 @@ public class NodaEngine implements SemanticEngine {
 					starts.add(s.getId());
 				}
 			}
+			if(starts.isEmpty()) continue;
 			Collections.shuffle(starts);
 			for (int i = 0; i < qnt; i++) {
 				conf.createInstance(p, starts.iterator().next());

@@ -436,6 +436,7 @@ public class BPMNCollabWhatIfAnalysisView extends ViewFrame {
             avg += tCost;
         }
         avg = avg / nTraces;
+        avgD = avgD / nTraces;
         H4 results = new H4("Min: "+min+" Max: "+max+" Average: "+avg);
         Map<String, Double> d = new HashMap<String, Double>(3);
         d.put("Min", min);
@@ -446,8 +447,8 @@ public class BPMNCollabWhatIfAnalysisView extends ViewFrame {
         d.put("Min", minD);
         d.put("Max", maxD);
         d.put("Avg", avgD);
-        GChart chart2 = new GChart("", "Cost", d);
-        stats.add(new VerticalLayout(new H3("#Traces"),new H4(String.valueOf(nTraces)),new H3("Costs"),results, chart.getComponent(), chart2.getComponent()));
+        GChart chart2 = new GChart("", "Duration", d);
+        stats.add(new VerticalLayout(new H3("#Traces"),new H4(String.valueOf(nTraces)),new H3("Costs & Durations"),results, new HorizontalLayout(chart.getComponent(), chart2.getComponent())));
 
     }
 
