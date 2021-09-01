@@ -58,7 +58,7 @@ public class SimulatorImpl implements Simulator {
 	}
 
 	@Override
-	public EventLog simulate(Delta delta) {
+	public EventLog simulate(Delta delta) throws Exception {
 		if (delta == null || delta.getMissings() == null || delta.getMissings().getTraces().isEmpty() ){//|| delta.equals(lastDelta)) {
 			for (Map<String, Trace> p : randomSim().values()) {
 				log.addTraces(p.values());
@@ -102,9 +102,8 @@ public class SimulatorImpl implements Simulator {
 	 * @return
 	 */
 	private Map<String, Map<String, Trace>> guidedSim(Map<String, Map<String, Trace>> prefix, Configuration conf,
-			Trace guide) {
+			Trace guide) throws Exception {
 		Couple<Event, Configuration> c = dfs(conf, guide.get(0));
-		System.out.println("mmm"+guide);
 		if (c != null) {
 			Event event = c.getE();
 			prefix.get(event.getProcess()).get(event.getInstance()).appendEvent(event);
@@ -121,16 +120,16 @@ public class SimulatorImpl implements Simulator {
 
 	}
 
-	private Couple<Event, Configuration> dfs(Configuration start, Event toFind) {
+	private Couple<Event, Configuration> dfs(Configuration start, Event toFind) throws Exception {
 		Set<Configuration> successors = new HashSet<Configuration>();
 		Map<Configuration, Set<Event>> nexts = new HashMap<Configuration, Set<Event>>();
 		List<Configuration> tmp = Graphs.successorListOf(lts, start);
 		if (tmp.isEmpty()) {
-			try {
+			//try {
 				nexts = semanticEngine.getNexts(start);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			//} catch (Exception e) {
+			//	e.printStackTrace();
+			//}
 			successors = nexts.keySet();
 			for (Configuration n : successors) {
 				lts.addVertex(n);
@@ -173,18 +172,18 @@ public class SimulatorImpl implements Simulator {
 		return LTSUtil.getPrefix(lts, dataConfigurations, s);
 	}
 
-	private Map<String, Map<String, Trace>> randomSim() {
+	public Map<String, Map<String, Trace>> randomSim() throws Exception {
 		Configuration dataInit = semanticEngine.initData(root);
 		lts.addVertex(dataInit);
 		lts.addEdge(root, dataInit, new LabelledEdge(EventImpl.emptyEvent()));
 		dataConfigurations.add(dataInit);
 		Configuration instancesInit = null;
-		try {
+		//try {
 			instancesInit = semanticEngine.initInstances(dataInit);
-		} catch (Exception e) {
+		//} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		for (Configuration c : lts.vertexSet()){
 			if(c.equals(instancesInit)){
 				instancesInit = c;
@@ -196,13 +195,13 @@ public class SimulatorImpl implements Simulator {
 		return finalizeSim(getPrefix(instancesInit), instancesInit);
 	}
 
-	private Map<String, Map<String, Trace>> finalizeSim(Map<String, Map<String, Trace>> prefix, Configuration conf) {
+	private Map<String, Map<String, Trace>> finalizeSim(Map<String, Map<String, Trace>> prefix, Configuration conf) throws Exception {
 		Map<Configuration, Set<Event>> nexts = null;
-		try {
+		//try {
 			nexts = semanticEngine.getNexts(conf);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		//} catch (Exception e) {
+		//	e.printStackTrace();
+		//}
 		if (nexts.isEmpty()) {
 			return prefix;
 		}
@@ -217,7 +216,9 @@ public class SimulatorImpl implements Simulator {
 		Configuration next = nextConf.iterator().next();
 		Event e = nexts.get(next).iterator().next();
 		if (!e.isEmptyEvent()) {
-			prefix.get(e.getProcess()).get(e.getInstance()).appendEvent(e);
+			Map<String, Trace> a = prefix.get(e.getProcess());
+			Trace b = a.get(e.getInstance());
+					b.appendEvent(e);
 		}
 		return finalizeSim(prefix, next);
 	}

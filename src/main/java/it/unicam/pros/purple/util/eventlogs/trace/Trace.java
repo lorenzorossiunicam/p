@@ -19,4 +19,11 @@ public interface Trace extends Serializable {
 	public void remove(int i);
 
 	Map<String, String> getData();
+
+	@Override
+	public boolean equals(Object o);
+
+	void setCaseId(String id);
+
+    void insert(List<Event> repetitions, int i, double looprep);
 }

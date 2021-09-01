@@ -55,15 +55,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 
 @Push(value = PushMode.MANUAL)
-@Route(value="whatif/bpmn", layout = MainLayout.class)
-@PageTitle("BPMN What If Analysis | "+ Constants.shortName)
-public class BPMNWhatIfAnalysisView extends ViewFrame {
+@Route(value="whatif/branching_probabilities", layout = MainLayout.class)
+@PageTitle("What If Analysis via branching probabilities | "+ Constants.shortName)
+public class BPMNBranchingProbabilitiesView extends ViewFrame {
 
     public static final String MAX_WIDTH = "1024px";
     private final Button viewModelBtn;
@@ -79,12 +80,10 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     private IntegerField maxTraces;
     private final Button downloadBtn;
     private VerticalLayout form;
-    private Select<String> currency;
     private EventLog log;
     private FlexBoxLayout statistics;
     private Row stats;
     private Button cancelCalcs;
-    private Button preview;
     private ProgressBar bar;
     private Future<EventLog> future;
     private static ExecutorService executor
@@ -99,9 +98,9 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
     private BpmnJs bpmnjs;
     private Row options;
 
-    public BPMNWhatIfAnalysisView(){
+    public BPMNBranchingProbabilitiesView(){
 
-        setId("What-if Analysis - BPMN");
+        setId("What If Analysis via branching probabilities");
         form = new VerticalLayout();
         form.setMaxHeight("500px");
         form.getStyle().set("overflow", "auto");
@@ -114,7 +113,6 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
         cancelCalcs.setIconAfterText(true);
         bar = new ProgressBar();
         viewModelBtn = new Button("", new Icon(VaadinIcon.EYE));
-        preview = new Button(new Icon(VaadinIcon.EYE));
         setViewContent(createContent());
     }
 
@@ -227,10 +225,11 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
             try {
                 xml = IOUtils.toString(modelStream, "UTF-8");
                 modelStream = IOUtils.toInputStream(xml, "UTF-8");
-            } catch (IOException e) {
-                e.printStackTrace();
+                mi = Bpmn.readModelFromStream(modelStream);
+            } catch (Exception e) {
+                showError(e.toString());
             }
-            mi = Bpmn.readModelFromStream(modelStream);
+
             o  = ScenariosParamsExtractor.extractParams(mi);
             populateForm(form, o);
             genBtn.setEnabled(true);
@@ -288,6 +287,13 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
             link.setVisible(false);
             proBar.setVisible(true);
             future = wifThread(ui);
+            try {
+                future.get();
+            } catch (ExecutionException e) {
+                showError(e.toString());
+            } catch (InterruptedException e) {
+                showError(e.toString());
+            }
         });
 
         //Download button
@@ -315,18 +321,25 @@ public class BPMNWhatIfAnalysisView extends ViewFrame {
 
 
     private Future<EventLog> wifThread(UI ui){
+
         return executor.submit(() -> {
-            log = PURPLE.whatif(mi, getChoicesParams(), getActivityCosts(), tauField.getValue(), maxTraces.getValue());
-            logStream = LogIO.getAsStream(log);
-            PURPLE.setInterrupt(false);
-            ui.access(() -> {
-                populateStatistics();
-                statistics.setVisible(true);
-                downloadBtn.setEnabled(true);
-                link.setVisible(true);
-                proBar.setVisible(false);
-                ui.push();
-            });
+            try{
+                log = PURPLE.whatif(mi, getChoicesParams(), getActivityCosts(), tauField.getValue(), maxTraces.getValue());
+                logStream = LogIO.getAsStream(log);
+                PURPLE.setInterrupt(false);
+                ui.access(() -> {
+                    populateStatistics();
+                    statistics.setVisible(true);
+                    downloadBtn.setEnabled(true);
+                    link.setVisible(true);
+                    proBar.setVisible(false);
+                    ui.push();
+                });
+            }catch (Exception e){
+                ui.access(() -> {
+                    showError(e.toString());
+                });
+            }
             return log;
         });
     }

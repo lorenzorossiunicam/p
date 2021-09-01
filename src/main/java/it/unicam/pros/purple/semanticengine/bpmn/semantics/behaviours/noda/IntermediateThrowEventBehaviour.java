@@ -28,7 +28,7 @@ public class IntermediateThrowEventBehaviour {
 		if (sF != null) {
 			ModelUtils.sendMsg(n, conf, cConf);
 			Auxiliaries.inc(conf, n.getOutgoing());
-			Auxiliaries.dec(conf, sF.getId()); 
+			Auxiliaries.inc(conf, sF.getId());
 			ret.put(cConf, EventImpl.emptyEvent());
 		}
 		return ret;

@@ -6,5 +6,5 @@ import it.unicam.pros.purple.util.eventlogs.EventLog;
 
 public interface Simulator {
 
-	public EventLog simulate(Delta delta);
+	public EventLog simulate(Delta delta) throws Exception;
 }

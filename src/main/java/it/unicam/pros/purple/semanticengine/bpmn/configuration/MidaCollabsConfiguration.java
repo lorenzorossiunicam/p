@@ -1,5 +1,6 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.script.Bindings;
@@ -13,7 +14,7 @@ import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.MidaStatus;
 
-public class MidaCollabsConfiguration implements Configuration {
+public class MidaCollabsConfiguration implements Configuration, Serializable {
 
 	private static final String SIGMA_I = "Sigma_i";
 	private static final String SIGMA_M = "Sigma_m";

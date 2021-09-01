@@ -26,6 +26,28 @@ public class TraceImpl implements Trace {
 	}
 
 	@Override
+	public void setCaseId(String id) {
+		this.caseID = id;
+	}
+
+	@Override
+	public void insert(List<Event> events, int en, double rep) {
+		List<Event> t = new ArrayList<>();
+		for(int i =0; i<en; i++){
+			t.add(trace.get(i));
+		}
+		for(int i = 0; i<rep; i++){
+			for(Event e : events){
+				t.add(e);
+			}
+		}
+		for(int i =en; i<trace.size(); i++){
+			t.add(trace.get(i));
+		}
+		this.trace = t;
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(caseID, data, trace);
 	}

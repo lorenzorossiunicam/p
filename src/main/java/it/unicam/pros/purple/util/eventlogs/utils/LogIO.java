@@ -97,4 +97,8 @@ public class LogIO {
 
 		return l;
 	}
+
+    public static void saveCollaborativeXES(EventLog log, String s) {
+
+    }
 }

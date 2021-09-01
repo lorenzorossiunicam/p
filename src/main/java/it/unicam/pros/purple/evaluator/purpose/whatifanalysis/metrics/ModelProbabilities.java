@@ -14,6 +14,7 @@ import org.camunda.bpm.model.bpmn.instance.*;
 import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
+import org.processmining.processtree.Block;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,54 +25,62 @@ public class ModelProbabilities {
 
     public static void main(String[] args) throws Exception {
 
-        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33.bpmn"));
+        BpmnModelInstance mi = Bpmn.readModelFromFile(new File("m.bpmn"));
 
         HashMap<String, Double> pr = new HashMap<String, Double>();
-        Set<Gateway> gs = new HashSet<>();
-        gs.addAll(mi.getModelElementsByType(InclusiveGateway.class));
-        gs.addAll(mi.getModelElementsByType(ExclusiveGateway.class));
-
-        for(Gateway g : gs){
+        for (ExclusiveGateway g : mi.getModelElementsByType(ExclusiveGateway.class)){
             if (ModelUtils.isSplit(g)){
-                Collection<SequenceFlow> out = g.getOutgoing();
-int i = 0;
-                for(SequenceFlow sg : out){
-                    System.out.println(sg.getId()+" : ....");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-                    Double prob = Double.valueOf(in.readLine());
-                    pr.put(sg.getId(), prob);
-
+                int out = g.getOutgoing().size();
+                for (SequenceFlow sf : g.getOutgoing()){
+                    pr.put(sf.getId(), 100.0/out);
                 }
             }
         }
+//        Set<Gateway> gs = new HashSet<>();
+//        gs.addAll(mi.getModelElementsByType(InclusiveGateway.class));
+//        gs.addAll(mi.getModelElementsByType(ExclusiveGateway.class));
+//
+//        for(Gateway g : gs){
+//            if (ModelUtils.isSplit(g)){
+//                Collection<SequenceFlow> out = g.getOutgoing();
+//int i = 0;
+//                for(SequenceFlow sg : out){
+//                    System.out.println(sg.getId()+" : ....");
+//                    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//                    Double prob = Double.valueOf(in.readLine());
+//                    pr.put(sg.getId(), prob);
+//
+//                }
+//            }
+//        }
 
 
         Map<String, Double> original = calculateProbabilities(mi, pr);
-        XLog logPPLG = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33pplg.xes");
-        Map<String, Double> ppgl = calculateProbabilities(logPPLG);
-        XLog logBIMP = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33bimp.xes");
-        Map<String, Double> bimp = calculateProbabilities(logBIMP);
-        for(String s : bimp.keySet()){
-            bimp.put(s, bimp.get(s)/2);
-        }
-        System.out.println(original);
-        System.out.println(ppgl);
-        System.out.println(bimp);
-
-        double  distPPLG = 0, distBIMP = 0, sum= 0.0;
-
-        for(String name : original.keySet()){
-            double or = original.get(name);
-            sum += or;
-            Double p = ppgl.get(name);
-            if(p == null) p = 0.0;
-            Double b = bimp.get(name);
-            if(b == null) b = 0.0;
-            distPPLG += Math.abs(p - or);
-            distBIMP += Math.abs(b - or);
-        }
-        System.out.println("BIMP "+(distBIMP)/original.keySet().size());
-        System.out.println("PPLG "+( (distPPLG)/original.keySet().size()));
+//        XLog logPPLG = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33pplg.xes");
+//        Map<String, Double> ppgl = calculateProbabilities(logPPLG);
+//        XLog logBIMP = LogIO.parseXES("C:\\Users\\lo_re\\Desktop\\NEWIF\\p33bimp.xes");
+//        Map<String, Double> bimp = calculateProbabilities(logBIMP);
+//        for(String s : bimp.keySet()){
+//            bimp.put(s, bimp.get(s)/2);
+//        }
+         System.out.println(original);
+//        System.out.println(ppgl);
+//        System.out.println(bimp);
+//
+//        double  distPPLG = 0, distBIMP = 0, sum= 0.0;
+//
+//        for(String name : original.keySet()){
+//            double or = original.get(name);
+//            sum += or;
+//            Double p = ppgl.get(name);
+//            if(p == null) p = 0.0;
+//            Double b = bimp.get(name);
+//            if(b == null) b = 0.0;
+//            distPPLG += Math.abs(p - or);
+//            distBIMP += Math.abs(b - or);
+//        }
+//        System.out.println("BIMP "+(distBIMP)/original.keySet().size());
+//        System.out.println("PPLG "+( (distPPLG)/original.keySet().size()));
 //        rediscoverability("testXor.bpmn", "ltestXor.xes",Rediscoverability.RediscoverabilityAlgo.ALPHA, 1.0);
 //        System.exit(0);
     }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
 
+import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import org.deckfour.xes.extension.XExtensionManager;
 import org.deckfour.xes.factory.XFactory;
 import org.deckfour.xes.factory.XFactoryNaiveImpl;
@@ -23,7 +24,13 @@ import org.deckfour.xes.out.XesXmlSerializer;
 
 
 public class Xlogger {
-	
+
+	public static void main(String[] args) throws IOException {
+		XLog log = generateNewXLog("c");
+		XTrace t = insertTrace(log, "a");
+		XEvent e = insertEvent(t,"pool", "act", new Date(), "f",null, "c","kk", null,1,null);
+		Xlogger.exportXML(log,"out.xes");
+	}
 	
 	private static XFactory xesFactory = new XFactoryNaiveImpl();
 	private static XExtensionManager xesExtensionManager = XExtensionManager.instance();

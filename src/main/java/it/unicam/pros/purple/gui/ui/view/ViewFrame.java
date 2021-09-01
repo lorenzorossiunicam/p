@@ -1,11 +1,12 @@
 package it.unicam.pros.purple.gui.ui.view;
 
-import com.vaadin.flow.component.AttachEvent;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.HasStyle;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
 
 /**
  * A view frame that establishes app design guidelines. It consists of three
@@ -19,6 +20,8 @@ import com.vaadin.flow.component.html.Div;
 @CssImport("./styles/components/view-frame.css")
 public class ViewFrame extends Composite<Div> implements HasStyle {
 
+	private final Dialog error;
+	private final Text errorText;
 	private String CLASS_NAME = "view-frame";
 
 	private Div header;
@@ -37,9 +40,18 @@ public class ViewFrame extends Composite<Div> implements HasStyle {
 		footer = new Div();
 		footer.setClassName(CLASS_NAME + "__footer");
 
+		errorText = new Text("");
+		error = new Dialog(new FlexBoxLayout(new VerticalLayout(new H4("Error"), errorText)));
+		error.setWidth("70%");
+		error.setHeight("35%");
+
 		getContent().add(header, content, footer);
 	}
 
+	public void showError(String e){
+		errorText.setText(e);
+		error.open();
+	}
 	/**
 	 * Sets the header slot's components.
 	 */

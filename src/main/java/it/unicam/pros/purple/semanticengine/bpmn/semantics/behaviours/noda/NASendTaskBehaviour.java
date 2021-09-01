@@ -2,8 +2,9 @@ package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda;
 
 import java.util.HashMap; 
 import java.util.Map;
-import java.util.Random; 
+import java.util.Random;
 
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
 import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
 import org.camunda.bpm.model.bpmn.instance.Process;
 
@@ -14,7 +15,7 @@ import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 public class NASendTaskBehaviour {
 
 	public static Map<Configuration, Event> isActive(SendTaskImpl n, NodaCollabsConfiguration conf, Process process,
-			int instance) {
+			int instance) throws MidaException {
 		Random r = new Random();
 		int choice = r.nextInt(5);
 		Map<Configuration, Event> ret = new HashMap<Configuration, Event>();

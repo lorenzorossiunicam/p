@@ -31,4 +31,7 @@ public interface Event extends Serializable {
 
 	boolean isEmptyEvent();
 
+	void setEventName(String s);
+
+    void setTimestamp(Date date);
 }

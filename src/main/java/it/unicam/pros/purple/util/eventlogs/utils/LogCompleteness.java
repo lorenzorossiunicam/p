@@ -2,6 +2,7 @@ package it.unicam.pros.purple.util.eventlogs.utils;
 
 
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.AlphaRelations;
+import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.FootprintRelations;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.Process;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class LogCompleteness {
 
-    public static double measureCompleteness(XLog log, Map<String, Map<String, AlphaRelations.Relations>> relations){
+    public static double measureCompleteness(XLog log, Map<String, Map<String, FootprintRelations>> relations){
         if (log == null || log.isEmpty()) return 0;
         int cardinality = 0;
         double score = 0;
@@ -26,7 +27,7 @@ public class LogCompleteness {
         return score/cardinality;
     }
 
-    private static double checkRel(String act1, String act2, AlphaRelations.Relations rel, XLog log) {
+    private static double checkRel(String act1, String act2, FootprintRelations rel, XLog log) {
 
         boolean seq = false, pred = false;
         for(XTrace t : log){
@@ -43,9 +44,9 @@ public class LogCompleteness {
                 }
             }
         }
-        if(rel.equals(AlphaRelations.Relations.SEQUENCE) && seq && !pred) return 1;
-        if(rel.equals(AlphaRelations.Relations.PARALLEL) && seq && pred) return 1;
-        if((rel.equals(AlphaRelations.Relations.CHOICE)||rel.equals(AlphaRelations.Relations.NONE)) && !seq && !pred) return 1;
+        if(rel.equals(FootprintRelations.SEQUENCE) && seq && !pred) return 1;
+        if(rel.equals(FootprintRelations.PARALLEL) && seq && pred) return 1;
+        if((rel.equals(FootprintRelations.CHOICE)||rel.equals(FootprintRelations.NONE)) && !seq && !pred) return 1;
         System.out.println(act1+" - "+act2+" - "+rel);
         return 0;
     }
@@ -61,7 +62,7 @@ public class LogCompleteness {
         System.out.println(log1.size()+" - "+log2.size());
         BpmnModelInstance mi = Bpmn.readModelFromFile(new File("p4.bpmn"));
         String process = mi.getModelElementsByType(Process.class).iterator().next().getId();
-        Map<String, Map<String, AlphaRelations.Relations>> relations = AlphaRelations.getAlphaRelations((Process) mi.getModelElementById(process));
+        Map<String, Map<String, FootprintRelations>> relations = AlphaRelations.getAlphaRelations((Process) mi.getModelElementById(process));
 
         System.out.println(measureCompleteness(log1,relations));
         System.out.println(measureCompleteness(log2,relations));

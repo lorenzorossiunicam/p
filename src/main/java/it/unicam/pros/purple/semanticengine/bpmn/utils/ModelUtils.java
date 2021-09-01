@@ -19,24 +19,9 @@ import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.BpmnModelElementInstance;
-import org.camunda.bpm.model.bpmn.instance.CompletionCondition;
-import org.camunda.bpm.model.bpmn.instance.ConditionExpression;
-import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
-import org.camunda.bpm.model.bpmn.instance.ExtensionElements;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.InteractionNode;
-import org.camunda.bpm.model.bpmn.instance.LoopCardinality;
-import org.camunda.bpm.model.bpmn.instance.MessageEventDefinition;
-import org.camunda.bpm.model.bpmn.instance.MessageFlow;
-import org.camunda.bpm.model.bpmn.instance.MultiInstanceLoopCharacteristics;
-import org.camunda.bpm.model.bpmn.instance.Participant;
+import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
+import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
-import org.camunda.bpm.model.bpmn.instance.StartEvent;
-import org.camunda.bpm.model.bpmn.instance.SubProcess;
-import org.camunda.bpm.model.bpmn.instance.Task;
-import org.camunda.bpm.model.bpmn.instance.TerminateEventDefinition;
 import org.camunda.bpm.model.xml.instance.DomElement;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 
@@ -89,6 +74,7 @@ public final class ModelUtils {
 			return null;
 		}
 	}
+
 
 	public static String getGuard(FlowNode n) {
 		ExtensionElements exts = n.getExtensionElements();
@@ -143,8 +129,11 @@ public final class ModelUtils {
 		return !s.getChildElementsByType(TerminateEventDefinition.class).isEmpty();
 	}
 
-	public static boolean isSplit(FlowNode flowNode) {
-		return flowNode.getOutgoing().size() > 1;
+	public static boolean isSplit(FlowNode n) {
+		return n.getOutgoing().size() > 1;
+	}
+	public static boolean isJoin(FlowNode n) {
+		return n.getIncoming().size() > 1;
 	}
 
 	public static SequenceFlow hasTrueOutgoing(NodaCollabsConfiguration cConf, NodaProcConfiguration conf,
@@ -252,36 +241,36 @@ public final class ModelUtils {
 		return ret;
 	}
 
-	public static void sendMsg(FlowNode n, NodaProcConfiguration conf, NodaCollabsConfiguration cConf) {
+	public static void sendMsg(FlowNode n, NodaProcConfiguration conf, NodaCollabsConfiguration cConf) throws MidaException {
 		for (MessageFlow mF : ModelUtils.getIOUTMsgS(n, cConf)) {
 			int i = cConf.getSigmaM().get(mF.getId());
 			cConf.getSigmaM().put(mF.getId(), i + 1);
 			InteractionNode target = mF.getTarget();
 			if (target instanceof StartEvent) {// Instantiate
-				try {
+				//try {
 					cConf.createInstance(((Process) target.getParentElement()), target.getId());
-				} catch (MidaException e) {
+				//} catch (MidaException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//	e.printStackTrace();
+				//}
 			}
 		}
 	}
 
 	public static void sendMsg(FlowNode n, MidaProcConfiguration conf, MidaCollabsConfiguration cConf)
-			throws ScriptException {
+			throws ScriptException, MidaException {
 		Collection<MessageFlow> msgS = ModelUtils.getIOUTMsgS(n, cConf);
 		String[] payload = ModelUtils.getPayload(n, conf, cConf);
 		for (MessageFlow mF : msgS) {
 			cConf.getSigmaM().get(mF.getId()).add(payload);
 			InteractionNode target = mF.getTarget();
 			if (target instanceof StartEvent) {// Instantiate
-				try {
+				//try {
 					cConf.createInstance(((Process) target.getParentElement()).getId(), target.getId());
-				} catch (MidaException e) {
+				//} catch (MidaException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//	e.printStackTrace();
+				//}
 			}
 		}
 	}
@@ -525,4 +514,7 @@ public final class ModelUtils {
 		}
 		return costs.get(flowNode.getId());
 	}
+
+
+
 }

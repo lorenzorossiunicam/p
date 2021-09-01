@@ -11,10 +11,11 @@ import org.camunda.bpm.model.xml.instance.DomElement;
 
 import com.google.gson.JsonObject;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class DataStoreState implements DataState{
+public class DataStoreState implements DataState, Serializable {
 
 private Bindings scope;
 	

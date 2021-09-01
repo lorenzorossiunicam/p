@@ -26,4 +26,9 @@ public class Couple<E, V> {
 	public void setV(V v) {
 		this.v = v;
 	}
+
+	@Override
+	public String toString(){
+		return "["+e.toString()+", "+v.toString()+"]";
+	}
 }

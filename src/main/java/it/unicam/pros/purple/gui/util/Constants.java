@@ -1,5 +1,6 @@
 package it.unicam.pros.purple.gui.util;
 
+
 public class Constants {
     public static final String toolName = "PURpose Parametric Log gEnerator";
     public static final String shortName = "PURPLE";

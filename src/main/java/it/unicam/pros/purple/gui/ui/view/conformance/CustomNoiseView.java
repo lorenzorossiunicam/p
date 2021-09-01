@@ -1,14 +1,14 @@
-package it.unicam.pros.purple.gui.ui.view.rediscoverability;
+package it.unicam.pros.purple.gui.ui.view.conformance;
 
 
-import com.awesomecontrols.quickpopup.QuickPopup;
 import com.vaadin.annotations.Push;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.board.Row;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -16,15 +16,13 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import com.vaadin.flow.component.select.Select;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.shared.communication.PushMode;
 import it.unicam.pros.purple.PURPLE;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.Rediscoverability;
 import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.purple.gui.ui.components.Uploader;
 import it.unicam.pros.purple.gui.ui.layout.size.Bottom;
@@ -42,52 +40,70 @@ import it.unicam.pros.purple.gui.ui.util.css.Shadow;
 import it.unicam.pros.purple.gui.ui.view.MainLayout;
 import it.unicam.pros.purple.gui.ui.view.ViewFrame;
 import it.unicam.pros.purple.gui.util.Constants;
-import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
+import it.unicam.pros.purple.util.eventlogs.EventLog;
+import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
+import org.apache.commons.io.IOUtils;
+import org.camunda.bpm.model.bpmn.Bpmn;
+import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+
 @Push(value = PushMode.MANUAL)
-@Route(value="rediscoverability/pnml", layout = MainLayout.class)
-@PageTitle("Petrinet Rediscoverability | "+ Constants.shortName)
-public class PnmlRediscoverabilityView extends ViewFrame {
+@Route(value="conformance/custom_noise", layout = MainLayout.class)
+@PageTitle("Conformance checking via custom noise | "+ Constants.shortName)
+public class CustomNoiseView extends ViewFrame {
 
     public static final String MAX_WIDTH = "1024px";
-    private final Uploader u;
-    private final ProgressBar bar;
-    private InputStream model;
-    private Select<String> algoSelect;
-    private NumberField tauField;
+    private final Button viewModelBtn;
+    private float[] noisePerc;
     private ByteArrayOutputStream logStream;
-    private Button genBtn, downloadBtn;
-    private Map<String, Object> algoMap;
-    private Future<ByteArrayOutputStream> future;
+    private Button genBtn;
+    private Uploader upl;
+    private NumberField tauField;
+    private IntegerField maxTraces;
+    private final Button downloadBtn;
+    private VerticalLayout form;
+    private EventLog log;
+    private Button cancelCalcs;
+    private ProgressBar bar;
+    private Future<EventLog> future;
     private static ExecutorService executor
             = Executors.newSingleThreadExecutor();
     private Component proBar;
     private Set<Binder> binders = new HashSet<Binder>();
     private UI ui;
-    private Button cancelCalcs;
-    private QuickPopup popup;
     private FileDownloadWrapper link;
+    private NumberField missH, missT, missE, swap, alien;
+    private InputStream modelStream;
+    private boolean isBPMN = false;
 
-    public PnmlRediscoverabilityView(){
-        setId("Rediscoverability - PNML");
-        u = new Uploader("application/octet-stream", ".pnml");
-        algoSelect = new Select<>();
-        algoSelect.setLabel("Mining algorithm");
-        tauField = new NumberField("% of Completeness");
-        genBtn = new Button("Generate log");
+    public CustomNoiseView(){
+
+        setId("Conformance checking via custom noise");
+        form = new VerticalLayout();
+        form.setMaxHeight("500px");
+        form.getStyle().set("overflow", "auto");
+        genBtn = new Button("Generate Log");
+        upl = new Uploader("application/octet-stream",".bpmn", ".pnml");
+        tauField = new NumberField("% of Precision");
+        maxTraces = new IntegerField("Traces number");
         downloadBtn = new Button("Download Log");
         cancelCalcs = new Button("", new Icon(VaadinIcon.CLOSE_CIRCLE));
         cancelCalcs.setIconAfterText(true);
         bar = new ProgressBar();
-
+        viewModelBtn = new Button("", new Icon(VaadinIcon.EYE));
+        noisePerc = new float[5];
         setViewContent(createContent());
     }
 
@@ -99,11 +115,9 @@ public class PnmlRediscoverabilityView extends ViewFrame {
     private Component createContent() {
         Component inputs = createInputs();
         Component actions = createActions();
-        createPopup();
         proBar = createProBar();
         proBar.setVisible(false);
-
-        FlexBoxLayout content = new FlexBoxLayout(inputs, actions, proBar);//,console);
+        FlexBoxLayout content = new FlexBoxLayout(inputs, actions, proBar, form);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
         content.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
         return content;
@@ -149,55 +163,80 @@ public class PnmlRediscoverabilityView extends ViewFrame {
                     e.printStackTrace();
                 }
             }
+            logStream = LogIO.getAsStream(log);
             downloadBtn.setEnabled(true);
             link.setVisible(true);
             PURPLE.setInterrupt(false);
             proBar.setVisible(false);
         });
         bar.setIndeterminate(true);
-        FlexBoxLayout proBar = new FlexBoxLayout(new HorizontalLayout(bar, cancelCalcs));
+        FlexBoxLayout proBar = new FlexBoxLayout(
+                new HorizontalLayout(bar, cancelCalcs));
         setBoxLayout(proBar);
         return proBar;
     }
 
+
     private Component createInputs() {
-        FlexBoxLayout inputs = new FlexBoxLayout(
-                createHeader(VaadinIcon.INPUT, "Inputs"),
-                createInputsComponents());
+        FlexBoxLayout inputs = new FlexBoxLayout(createHeader(VaadinIcon.INPUT, "Inputs"), createInputsComponents(), createPercentagesInput());
         setBoxLayout(inputs);
         return inputs;
     }
 
-    private Component createConsole() {
-        TextArea console = new TextArea();
-        SimLogAppender.setArea(console);
-        FlexBoxLayout consoleBox = new FlexBoxLayout(
-                createHeader(VaadinIcon.CODE, "Console"), console);
-        consoleBox.setBoxSizing(BoxSizing.BORDER_BOX);
-        consoleBox.setDisplay(Display.BLOCK);
-        consoleBox.setMargin(Top.L);
-        consoleBox.setMaxWidth(MAX_WIDTH);
-        consoleBox.setPadding(Horizontal.RESPONSIVE_L);
-        consoleBox.setWidthFull();
-        return  consoleBox;
+    private Component createPercentagesInput() {
+        Row inputs = createRow();
+        VerticalLayout v = new VerticalLayout();
+        v.add(new H3("Noise percentages:"));
+        Label l = new Label("Missing head %");
+        HorizontalLayout h = new HorizontalLayout();
+        missH = new NumberField();
+        missH.setValue(0d);
+        h.add(l, missH);
+        v.add(h);
+        l = new Label("Missing tail %");
+        h = new HorizontalLayout();
+        missT = new NumberField("%");
+        missT.setValue(0d);
+        h.add(l, missT);
+        v.add(h);
+        l = new Label("Missing episode %");
+        h = new HorizontalLayout();
+        missE = new NumberField("%");
+        missE.setValue(0d);
+        h.add(l, missE);
+        v.add(h);
+        l = new Label("Order perturbation %");
+        h = new HorizontalLayout();
+        swap = new NumberField("%");
+        swap.setValue(0d);
+        h.add(l, swap);
+        v.add(h);
+        l = new Label("Alien activities %");
+        h = new HorizontalLayout();
+        alien = new NumberField("%");
+        alien.setValue(0d);
+        h.add(l, alien);
+        v.add(h);
+        inputs.add(v);
+        return inputs;
     }
 
     private Component createInputsComponents() {
         Row inputs = createRow();
 
-        u.getUploadComponent().addSucceededListener(event -> {
-            model = u.getStream();
+        //Uploader
+        upl.getUploadComponent().addSucceededListener(event -> {
+            refactor();
+            modelStream = upl.getStream();
+            isBPMN = event.getFileName().contains(".bpmn");
             genBtn.setEnabled(true);
             proBar.setVisible(false);
             if(future!=null){
                 cancelCalcs.click();
             }
+            viewModelBtn.setVisible(true);
         });
-
-        String[] algos = getNames(Rediscoverability.RediscoverabilityAlgo.class);
-        algoSelect.setItems(algos);
-        algoSelect.setValue(algos[0]);
-
+        //Tau field
         tauField.setValue(100d);
         tauField.setHasControls(true);
         tauField.setMin(0);
@@ -207,25 +246,19 @@ public class PnmlRediscoverabilityView extends ViewFrame {
         bind.forField(tauField).withValidator(val -> val >= 0 && val <= 100,
                 "Select a value between 0 and 100.").bind(NumberField::getValue, NumberField::setValue);
 
+        maxTraces.setValue(10000);
+        maxTraces.setMin(1);
+        Binder<IntegerField> bind1 = new Binder<IntegerField>();
+        binders.add(bind1);
+        bind1.forField(maxTraces).withValidator(val -> val > 0,
+                "Select a value greater than 0.").bind(IntegerField::getValue, IntegerField::setValue);
 
-        inputs.add(u.getUploadComponent(),algoSelect, tauField);
+
+
+        inputs.add(upl.getUploadComponent(), tauField, maxTraces);
         return inputs;
     }
 
-    private void createPopup() {
-        VerticalLayout content = new VerticalLayout();
-        popup = new QuickPopup(genBtn.getElement(),content);
-        Button b = new Button("",new Icon(VaadinIcon.CLOSE));
-        b.addClickListener(event1 -> {
-            popup.hide();
-        });
-        b.setWidth("20%");
-        b.getStyle().set("margin-left", "80%");
-        Text t = new Text("Check simulation options.");
-        content.getStyle().set("color", "white");
-        content.getStyle().set("background" , "#8c1873");
-        content.add(b,t);
-    }
 
     private Component createActions() {
         FlexBoxLayout actions = new FlexBoxLayout(
@@ -238,44 +271,57 @@ public class PnmlRediscoverabilityView extends ViewFrame {
     private Component createActionsComponents() {
         Row actions = createRow();
 
+        //Log generation button
         genBtn.setEnabled(false);
+        genBtn.setWidth("100%");
         genBtn.addClickListener(event -> {
-            if(invalidInputs()){
-                popup.show();
-                return;
-            }
             downloadBtn.setEnabled(false);
             link.setVisible(false);
             proBar.setVisible(true);
-            future = redThread(ui);
+            preparePercentages();
+            future = wifThread(ui);
+            try {
+                future.get();
+            } catch (ExecutionException e) {
+                showError(e.toString());
+            } catch (InterruptedException e) {
+                showError(e.toString());
+            }
         });
 
+        //Download button
         downloadBtn.setEnabled(false);
         downloadBtn.setWidth("100%");
         link = new FileDownloadWrapper("log.xes", () -> {
             return logStream.toByteArray();
         });
-        link.wrapComponent(this.downloadBtn);
+        link.wrapComponent(downloadBtn);
         link.setWidth("100%");
-        actions.add(genBtn, link);
+        link.setVisible(false);
+        actions.add(genBtn ,link);
         return actions;
     }
 
-    private boolean invalidInputs() {
-        for(Binder b : binders){
-            if (!b.isValid()){
-                return true;
-            }
-        }
-        return false;
+    private void preparePercentages() {
+        noisePerc[0] = (float) missH.getValue().doubleValue();
+        noisePerc[1] = (float) missT.getValue().doubleValue();
+        noisePerc[2] = (float) missE.getValue().doubleValue();
+        noisePerc[3] = (float) swap.getValue().doubleValue();
+        noisePerc[4] = (float) alien.getValue().doubleValue();
     }
 
-    private Future<ByteArrayOutputStream> redThread(UI ui){
-        return executor.submit(() -> {
-            logStream = PURPLE.pnmlRediscoverability(model,
-                    (Rediscoverability.RediscoverabilityAlgo) algoMap.get(algoSelect.getValue()),
-                    tauField.getValue());
 
+
+
+
+    private Future<EventLog> wifThread(UI ui){
+        return executor.submit(() -> {
+            if (isBPMN){
+                log = PURPLE.bpmnCustomNoise(modelStream, maxTraces.getValue(), noisePerc, tauField.getValue());
+            }else{
+                log = PURPLE.pnmlCustomNoise(modelStream, maxTraces.getValue(), noisePerc, tauField.getValue());
+            }
+            logStream = LogIO.getAsStream(log);
             PURPLE.setInterrupt(false);
             ui.access(() -> {
                 downloadBtn.setEnabled(true);
@@ -283,17 +329,13 @@ public class PnmlRediscoverabilityView extends ViewFrame {
                 proBar.setVisible(false);
                 ui.push();
             });
-            return logStream;
+            return log;
         });
     }
 
-    public String[] getNames(Class<? extends Enum<?>> e) {
-        this.algoMap = new HashMap<String, Object>();
-        for (Object o : e.getEnumConstants()){
-            this.algoMap.put(o.toString(),o);
-        }
-        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
-    }
 
+    private void refactor() {
+        form.removeAll();
+    }
 
 }

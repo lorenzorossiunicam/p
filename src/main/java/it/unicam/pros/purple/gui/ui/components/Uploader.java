@@ -10,12 +10,12 @@ public class Uploader {
     private InputStream stream;
     private Upload upload;
 
-    public Uploader(String mimeType, String extension){
+    public Uploader(String mimeType, String... extensions){
         MemoryBuffer buffer = new MemoryBuffer();
         this.upload = new Upload(buffer);
+        this.upload.setAcceptedFileTypes(extensions);
         upload.addSucceededListener(event -> {
-            stream = createStream(event.getMIMEType(),
-                    event.getFileName(), buffer.getInputStream(), mimeType, extension);
+            stream = createStream(event.getMIMEType(),  buffer.getInputStream(), mimeType);
         });
     }
 
@@ -27,10 +27,11 @@ public class Uploader {
         return stream;
     }
 
-    private InputStream createStream(String mimeType, String fileName, InputStream stream,String mime, String extension) {
-        if (mimeType.startsWith(mime) && fileName.endsWith(extension)) {
+    private InputStream createStream(String mimeType, InputStream stream,String mime) {
+        if (mimeType.startsWith(mime)) {
             return stream;
+        }else{
+            throw new IllegalArgumentException("File corrupted.");
         }
-        return null;
     }
 }

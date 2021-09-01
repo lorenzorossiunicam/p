@@ -3,6 +3,7 @@ package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda;
 import java.util.HashMap; 
 import java.util.Map;
 
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
 import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
@@ -20,7 +21,7 @@ import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 public class MIIntSendTaskBehaviour {
  
 	public static Map<Configuration, Event> isActive(IntSendTask n, NodaCollabsConfiguration c, Process process,
-			int instance) {
+			int instance) throws MidaException {
 		Map<Configuration, Event> ret = new HashMap<Configuration, Event>();
 		NodaCollabsConfiguration cConf = (NodaCollabsConfiguration) DeepCopy.copy(c);
 		NodaProcConfiguration conf = ModelUtils.getProcessConf(process, instance, cConf);

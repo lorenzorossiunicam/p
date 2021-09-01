@@ -72,6 +72,11 @@ public class EventLogImpl implements EventLog{
 		return traces.size();
 	}
 
+	@Override
+	public void setTraces(Set<Trace> l) {
+		this.traces = l;
+	}
+
 	public void removeTrace(Trace t){
 		this.traces.remove(t);
 	}

@@ -23,9 +23,11 @@ import it.unicam.pros.purple.gui.ui.components.navigation.drawer.NaviItem;
 import it.unicam.pros.purple.gui.ui.components.navigation.drawer.NaviMenu;
 import it.unicam.pros.purple.gui.ui.util.UIUtils;
 import it.unicam.pros.purple.gui.ui.util.css.Overflow;
-import it.unicam.pros.purple.gui.ui.view.rediscoverability.BPMNRediscoverabilityView;
-import it.unicam.pros.purple.gui.ui.view.rediscoverability.PnmlRediscoverabilityView;
-import it.unicam.pros.purple.gui.ui.view.whatif.BPMNWhatIfAnalysisView;
+import it.unicam.pros.purple.gui.ui.view.conformance.CustomNoiseView;
+import it.unicam.pros.purple.gui.ui.view.conformance.FixedAlignCostView;
+import it.unicam.pros.purple.gui.ui.view.rediscoverability.TraceFrequenciesView;
+import it.unicam.pros.purple.gui.ui.view.rediscoverability.OrderRelationsView;
+import it.unicam.pros.purple.gui.ui.view.whatif.BPMNBranchingProbabilitiesView;
         import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,12 +124,18 @@ public class MainLayout extends FlexBoxLayout
 
         NaviItem rediscoverability = menu.addNaviItem(VaadinIcon.SEARCH, "Rediscoverability",
                 null);
-        menu.addNaviItem(rediscoverability, "BPMN", BPMNRediscoverabilityView.class);
-        menu.addNaviItem(rediscoverability, "Petri net", PnmlRediscoverabilityView.class);
+        menu.addNaviItem(rediscoverability, "BPMN/Petri Net Order relations", OrderRelationsView.class);
+        menu.addNaviItem(rediscoverability, "BPMN Traces frequencies", TraceFrequenciesView.class);
 
         NaviItem whatif = menu.addNaviItem(VaadinIcon.CHART, "What-If Analysis",
                 null);
-        menu.addNaviItem(whatif, "BPMN", BPMNWhatIfAnalysisView.class);
+        menu.addNaviItem(whatif, "BPMN Branching probability", BPMNBranchingProbabilitiesView.class);
+
+        NaviItem conformance = menu.addNaviItem(VaadinIcon.SCALE_UNBALANCE, "Conformance checking",
+                null);
+        menu.addNaviItem(conformance, "BPMN/Petri Net Fixed Alignment Cost", FixedAlignCostView.class);
+        menu.addNaviItem(conformance, "BPMN/Petri Net Custom Noise", CustomNoiseView.class);
+
 
 
     }

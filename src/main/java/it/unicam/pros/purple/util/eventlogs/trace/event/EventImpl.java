@@ -198,4 +198,12 @@ public class EventImpl implements Event {
 		return this.equals(EventImpl.emptyEvent());
 	}
 
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	@Override
+	public void setTimestamp(Date date) {
+		this.timestamp = date;
+	}
 }

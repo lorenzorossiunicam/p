@@ -1,10 +1,6 @@
 package it.unicam.pros.purple.util.eventlogs.utils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.script.ScriptException;
 
@@ -13,7 +9,7 @@ import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfig
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
-import it.unicam.pros.purple.semanticengine.ptnet.configuration.PnmlConfiguration;
+import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
 import it.unicam.pros.purple.util.eventlogs.trace.event.MsgType;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
@@ -276,5 +272,25 @@ public class LogUtil {
 				null, null, null, null, null,null);
 		//return new EventImpl("p", "i", (String) t.getLabel(), new Date(), ActivityState.COMPLETE,
 		//				null, null, null, null, null,null);
+	}
+
+    public static String toSimpleTrace(Trace t) {
+		String s = "";
+		for (Event e : t.getTrace()){
+			s += e.getEventName();
+		}
+		return s;
+    }
+
+	public static Map<String, List<String>> toSimpleTraceMap(Set<List<String>> set) {
+		Map<String, List<String>> ret = new HashMap<>();
+		for(List<String> l : set){
+			String r = "";
+			for(String s : l){
+				r+= s;
+			}
+			ret.put(r, l);
+		}
+		return ret;
 	}
 }

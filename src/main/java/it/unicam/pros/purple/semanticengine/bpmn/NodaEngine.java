@@ -94,6 +94,7 @@ public class NodaEngine implements SemanticEngine {
 					starts.add(s.getId());
 				}
 			}
+			if (starts.size() < 1) continue;
 			Collections.shuffle(starts);
 			for (int i = 0; i < qnt; i++) {
 				conf.createInstance(p, starts.iterator().next());
