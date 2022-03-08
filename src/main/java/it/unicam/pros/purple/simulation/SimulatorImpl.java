@@ -218,8 +218,21 @@ public class SimulatorImpl implements Simulator {
 		if (!e.isEmptyEvent()) {
 			Map<String, Trace> a = prefix.get(e.getProcess());
 			Trace b = a.get(e.getInstance());
-					b.appendEvent(e);
+			b.appendEvent(e);
 		}
+		for(Map<String,Trace> xx : prefix.values()){
+			 for(Trace t : xx.values()){
+			 	if(t.getTrace().size()>1000){
+			 		return prefix;
+				}
+			 }
+		}
+//		if(prefix.containsKey(e.getProcess()) &&
+//				prefix.get(e.getProcess()).containsKey(e.getInstance()) &&
+//				prefix.get(e.getProcess()).get(e.getInstance()).getTrace().size() >100) {
+//			System.out.println("fuori");
+//			return prefix;
+//		}
 		return finalizeSim(prefix, next);
 	}
 

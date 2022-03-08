@@ -283,12 +283,9 @@ public class PURPLE {
 
     public static void main(String[] args) throws Exception {
 //
-System.out.println(System.currentTimeMillis());
-        InputStream s = new FileInputStream(new File("m.bpmn"));
-        bpmnAlignCostConformance(s,5, 2000, 100);
-        System.out.println(System.currentTimeMillis());
-        Couple<Set<Trace>, Map<Trace, int[]>> out = bpmnSimpleLog(Bpmn.readModelFromStream(s));
-        out.getE();
+        InputStream s = new FileInputStream(new File("C:\\Users\\lo_re\\Desktop\\LOOPINFINITO.bpmn"));
+        System.out.println(bpmnRediscoverability(s,100));
+
 //        LogIO.saveXES(pnmlAlignCostConformance(s,3,2000,100), "p0.xes");
 
 //        Map<Trace,Double> freq = new HashMap<>();

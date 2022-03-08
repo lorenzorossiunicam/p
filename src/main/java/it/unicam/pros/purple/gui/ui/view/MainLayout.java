@@ -127,10 +127,11 @@ public class MainLayout extends FlexBoxLayout
         menu.addNaviItem(rediscoverability, "BPMN/Petri Net Order relations", OrderRelationsView.class);
         menu.addNaviItem(rediscoverability, "BPMN Traces frequencies", TraceFrequenciesView.class);
 
+        /*
         NaviItem whatif = menu.addNaviItem(VaadinIcon.CHART, "What-If Analysis",
                 null);
         menu.addNaviItem(whatif, "BPMN Branching probability", BPMNBranchingProbabilitiesView.class);
-
+        */
         NaviItem conformance = menu.addNaviItem(VaadinIcon.SCALE_UNBALANCE, "Conformance checking",
                 null);
         menu.addNaviItem(conformance, "BPMN/Petri Net Fixed Alignment Cost", FixedAlignCostView.class);

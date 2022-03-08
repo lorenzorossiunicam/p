@@ -28,19 +28,19 @@ public class HomeView extends ViewFrame {
     }
 
     private Component createContent() {
-        Html intro = new Html("<p>PURPLE (PURpos Parametric Log gEnerator) is a progressive web app written in" +
+        Html intro = new Html("<p>PURPLE (PURpos Guided Log gEnerator) is a progressive web app written in" +
                 " Java using the development framework <a href='https://www.vaadin.com' target='_blank'>Vaadin</a>.  " +
                 "This permits to use PURPLE from any operating system via web browser." +
                 "PURPLE generates event log tuned for a specific mining-purpose by simulating a business model." +
                 "For further information please check the links below.</p>");
 
         Div image = new Div();
-        Image img = new Image(UIUtils.IMG_PATH + "arch.png", "purple_arch");
-
-        img.setWidth("100%");
-        img.setHeight("auto");
-        image.add(img);
-        image.getStyle().set("padding", "30px 0px 50px 0px");
+//        Image img = new Image(UIUtils.IMG_PATH + "arch.png", "purple_arch");
+//
+//        img.setWidth("100%");
+//        img.setHeight("auto");
+//        image.add(img);
+//        image.getStyle().set("padding", "30px 0px 50px 0px");
 
         Row links = new Row();
         Button b1 =  UIUtils.createButton("Get the source code", VaadinIcon.EXTERNAL_LINK);
