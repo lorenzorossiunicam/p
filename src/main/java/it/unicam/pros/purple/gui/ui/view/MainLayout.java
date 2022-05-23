@@ -122,7 +122,7 @@ public class MainLayout extends FlexBoxLayout
         NaviMenu menu = naviDrawer.getMenu();
         menu.addNaviItem(VaadinIcon.HOME, "Home", HomeView.class);
 
-        NaviItem rediscoverability = menu.addNaviItem(VaadinIcon.SEARCH, "Rediscoverability",
+        NaviItem rediscoverability = menu.addNaviItem(VaadinIcon.SEARCH, "Process discovery",
                 null);
         menu.addNaviItem(rediscoverability, "BPMN/Petri Net Order relations", OrderRelationsView.class);
         menu.addNaviItem(rediscoverability, "BPMN Traces frequencies", TraceFrequenciesView.class);

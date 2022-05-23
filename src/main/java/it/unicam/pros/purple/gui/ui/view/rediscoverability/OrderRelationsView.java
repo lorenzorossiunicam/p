@@ -53,8 +53,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Push(value = PushMode.MANUAL)
-@Route(value="rediscoverability/order_relations", layout = MainLayout.class)
-@PageTitle("BPMN Rediscoverability via order relations | "+ Constants.shortName)
+@Route(value="discovery/order_relations", layout = MainLayout.class)
+@PageTitle("BPMN process discovery via order relations | "+ Constants.shortName)
 public class OrderRelationsView extends ViewFrame {
 
     public static final String MAX_WIDTH = "1024px";
@@ -77,7 +77,7 @@ public class OrderRelationsView extends ViewFrame {
     private boolean isBPMN = false;
 
     public OrderRelationsView(){
-        setId("Rediscoverability via order relations");
+        setId("Process discovery via order relations");
         u = new Uploader("application/octet-stream", ".bpmn", ".pnml");
         tauField = new NumberField("% of Completeness");
         genBtn = new Button("Generate log");

@@ -55,8 +55,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Push(value = PushMode.MANUAL)
-@Route(value="rediscoverability/trace_frequencies", layout = MainLayout.class)
-@PageTitle("BPMN Rediscoverability via traces frequencies | "+ Constants.shortName)
+@Route(value="discovery/trace_frequencies", layout = MainLayout.class)
+@PageTitle("BPMN process discovery via traces frequencies | "+ Constants.shortName)
 public class TraceFrequenciesView extends ViewFrame {
     public static final String MAX_WIDTH = "1024px";
     private ByteArrayOutputStream logStream;
@@ -86,7 +86,7 @@ public class TraceFrequenciesView extends ViewFrame {
 
     public TraceFrequenciesView(){
 
-        setId("Rediscoverability via trace frequencies");
+        setId("Process discovery via trace frequencies");
         form = new VerticalLayout();
         form.setMaxHeight("500px");
         form.getStyle().set("overflow", "auto");
