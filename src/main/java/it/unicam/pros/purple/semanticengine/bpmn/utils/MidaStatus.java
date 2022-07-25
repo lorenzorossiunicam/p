@@ -1,14 +1,13 @@
 package it.unicam.pros.purple.semanticengine.bpmn.utils;
 
-import java.util.Collection;
-import java.util.Stack;
-
-import com.google.gson.JsonPrimitive;
-import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
+
+import java.util.Collection;
+import java.util.Stack;
 
 public class MidaStatus {
 	public final static String INIT = "1";

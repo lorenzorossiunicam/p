@@ -1,8 +1,8 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate;
 
-import java.util.Map;
-
 import com.google.gson.JsonObject;
+
+import java.util.Map;
 
 public interface DataState {
 	

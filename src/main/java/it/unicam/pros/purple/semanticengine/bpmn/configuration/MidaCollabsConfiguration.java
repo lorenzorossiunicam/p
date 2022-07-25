@@ -1,10 +1,5 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration;
 
-import java.io.Serializable;
-import java.util.*;
-
-import javax.script.Bindings;
- 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -13,6 +8,10 @@ import it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate.DataSto
 import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.MidaStatus;
+
+import javax.script.Bindings;
+import java.io.Serializable;
+import java.util.*;
 
 public class MidaCollabsConfiguration implements Configuration, Serializable {
 

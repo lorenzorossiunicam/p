@@ -2,7 +2,6 @@ package it.unicam.pros.purple.gui.ui.view.whatif;
 
 
 import com.awesomecontrols.quickpopup.QuickPopup;
-import com.vaadin.annotations.Push;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
@@ -18,14 +17,14 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.shared.communication.PushMode;
+import com.vaadin.flow.shared.communication.PushMode;
 import it.unicam.pros.purple.PURPLE;
 import it.unicam.pros.purple.evaluator.purpose.whatifanalysis.util.Scenario;
 import it.unicam.pros.purple.evaluator.purpose.whatifanalysis.util.ScenariosParamsExtractor;
@@ -52,7 +51,6 @@ import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -61,7 +59,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 
-@Push(value = PushMode.MANUAL)
+//@Push(value = PushMode.MANUAL)
 @Route(value="whatif/branching_probabilities", layout = MainLayout.class)
 @PageTitle("What If Analysis via branching probabilities | "+ Constants.shortName)
 public class BPMNBranchingProbabilitiesView extends ViewFrame {

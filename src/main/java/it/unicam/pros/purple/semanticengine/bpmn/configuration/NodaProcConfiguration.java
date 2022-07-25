@@ -1,9 +1,6 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration;
 
-import java.io.Serializable;
-import java.util.*;
-
-
+import com.google.gson.JsonObject;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntActivity;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import org.camunda.bpm.model.bpmn.instance.Process;
@@ -11,7 +8,8 @@ import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 import org.camunda.bpm.model.bpmn.instance.StartEvent;
 import org.camunda.bpm.model.bpmn.instance.Task;
 
-import com.google.gson.JsonObject;
+import java.io.Serializable;
+import java.util.*;
 
 public class NodaProcConfiguration implements ProcConfiguration, Serializable{
 	/**

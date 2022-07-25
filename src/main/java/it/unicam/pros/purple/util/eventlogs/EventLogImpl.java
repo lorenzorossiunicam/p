@@ -1,8 +1,8 @@
 package it.unicam.pros.purple.util.eventlogs;
 
-import java.util.*;
-
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
+
+import java.util.*;
 
 public class EventLogImpl implements EventLog{
 

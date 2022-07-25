@@ -1,23 +1,23 @@
 package it.unicam.pros.purple.simulation;
 
-import java.util.*;
-
 import it.unicam.pros.purple.PURPLE;
-import it.unicam.pros.purple.semanticengine.SemanticEngine;
 import it.unicam.pros.purple.evaluator.Delta;
-import it.unicam.pros.purple.util.Couple;
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.SemanticEngine;
 import it.unicam.pros.purple.simulation.utils.LTSUtil;
-import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
+import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
-import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DirectedWeightedPseudograph;
+
+import java.util.*;
 
 /**
  * 

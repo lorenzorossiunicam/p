@@ -1,7 +1,6 @@
 package it.unicam.pros.purple.gui.ui.view;
 
 
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.UI;
@@ -10,12 +9,14 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.RouterLayout;
-import com.vaadin.flow.server.*;
+import com.vaadin.flow.server.ErrorHandler;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.Lumo;
-        import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
+import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.purple.gui.ui.components.navigation.bar.AppBar;
 import it.unicam.pros.purple.gui.ui.components.navigation.bar.TabBar;
 import it.unicam.pros.purple.gui.ui.components.navigation.drawer.NaviDrawer;
@@ -25,10 +26,9 @@ import it.unicam.pros.purple.gui.ui.util.UIUtils;
 import it.unicam.pros.purple.gui.ui.util.css.Overflow;
 import it.unicam.pros.purple.gui.ui.view.conformance.CustomNoiseView;
 import it.unicam.pros.purple.gui.ui.view.conformance.FixedAlignCostView;
-import it.unicam.pros.purple.gui.ui.view.rediscoverability.TraceFrequenciesView;
 import it.unicam.pros.purple.gui.ui.view.rediscoverability.OrderRelationsView;
-import it.unicam.pros.purple.gui.ui.view.whatif.BPMNBranchingProbabilitiesView;
-        import org.slf4j.Logger;
+import it.unicam.pros.purple.gui.ui.view.rediscoverability.TraceFrequenciesView;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
@@ -78,7 +78,7 @@ public class MainLayout extends FlexBoxLayout
                 });
 
         addClassName(CLASS_NAME);
-        setFlexDirection(FlexDirection.COLUMN);
+        setFlexDirection(FlexLayout.FlexDirection.COLUMN);
         setSizeFull();
 
         // Initialise the UI building blocks
@@ -103,7 +103,7 @@ public class MainLayout extends FlexBoxLayout
 
         column = new FlexBoxLayout(viewContainer);
         column.addClassName(CLASS_NAME + "__column");
-        column.setFlexDirection(FlexDirection.COLUMN);
+        column.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
         column.setFlexGrow(1, viewContainer);
         column.setOverflow(Overflow.HIDDEN);
 

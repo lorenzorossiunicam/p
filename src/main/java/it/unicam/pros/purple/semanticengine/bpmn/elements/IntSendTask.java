@@ -1,9 +1,9 @@
 package it.unicam.pros.purple.semanticengine.bpmn.elements;
 
+import org.camunda.bpm.model.bpmn.instance.Task;
+
 import java.util.Collection;
 import java.util.Objects;
-
-import org.camunda.bpm.model.bpmn.instance.Task;
 
 public class IntSendTask implements IntActivity {
 	private String id;

@@ -1,15 +1,14 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda;
 
-import java.util.HashMap; 
-import java.util.Map;
-import java.util.Random; 
-
-import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.bpmn.instance.Task;
-
 import it.unicam.pros.purple.semanticengine.Configuration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.Task;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public final class NATaskBehaviour {
 

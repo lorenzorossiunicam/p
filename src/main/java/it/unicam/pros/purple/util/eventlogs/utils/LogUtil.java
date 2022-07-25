@@ -1,26 +1,25 @@
 package it.unicam.pros.purple.util.eventlogs.utils;
 
-import java.util.*;
-
-import javax.script.ScriptException;
-
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
-import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
-import it.unicam.pros.purple.util.eventlogs.trace.Trace;
-import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
-import it.unicam.pros.purple.util.eventlogs.trace.event.MsgType;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntActivity;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
+import it.unicam.pros.purple.util.eventlogs.trace.Trace;
+import it.unicam.pros.purple.util.eventlogs.trace.event.ActivityState;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
+import it.unicam.pros.purple.util.eventlogs.trace.event.MsgType;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
 import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
+
+import javax.script.ScriptException;
+import java.util.*;
 
 public class LogUtil {
 

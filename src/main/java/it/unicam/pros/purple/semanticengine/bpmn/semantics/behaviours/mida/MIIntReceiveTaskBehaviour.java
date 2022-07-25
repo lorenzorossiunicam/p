@@ -1,28 +1,26 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.script.ScriptException;
-
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntActivity;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.util.Couple;
-import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.MidaStatus;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import org.camunda.bpm.model.bpmn.instance.MessageFlow;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.Task;
 
-import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import javax.script.ScriptException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MIIntReceiveTaskBehaviour { 
 	

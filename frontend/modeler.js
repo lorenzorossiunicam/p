@@ -15,7 +15,8 @@ window.createModeler = function() {
         "</bpmn:definitions>\n";
 
     var propertiesPanelModule = require('bpmn-js-properties-panel'),
-        propertiesProviderModule = require('bpmn-js-properties-panel/lib/provider/bpmn');
+        propertiesProviderModule = require('bpmn-js-properties-panel');
+
 
 
     var modeler = new Modeler({

@@ -6,7 +6,6 @@ import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.impl.instance.*;
@@ -14,12 +13,11 @@ import org.camunda.bpm.model.bpmn.instance.*;
 import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
-import org.processmining.processtree.Block;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class ModelProbabilities {
 

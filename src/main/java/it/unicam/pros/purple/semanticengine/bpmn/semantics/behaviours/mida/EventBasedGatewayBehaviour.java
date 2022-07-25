@@ -1,33 +1,27 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida;
 
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.MidaStatus;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import it.unicam.pros.purple.util.Couple;
+import it.unicam.pros.purple.util.deepcopy.DeepCopy;
+import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
+import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.*;
+
+import javax.script.ScriptException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.script.ScriptException;
-
-import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.util.Couple;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.MidaStatus;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
-import it.unicam.pros.purple.util.deepcopy.DeepCopy;
-import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
-import org.camunda.bpm.model.bpmn.instance.EventBasedGateway;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.MessageFlow;
-import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
-
-import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-
 public class EventBasedGatewayBehaviour { 
 	
-	public static Map<Configuration, Event> isActive(EventBasedGateway n, MidaCollabsConfiguration c,
-			Process process, int instance) throws MidaException {
-		Map<Configuration, Event> ret = new HashMap<Configuration, Event>();
+	public static Map<Configuration, it.unicam.pros.purple.util.eventlogs.trace.event.Event> isActive(EventBasedGateway n, MidaCollabsConfiguration c,
+                                                                                         Process process, int instance) throws MidaException {
+		Map<Configuration, it.unicam.pros.purple.util.eventlogs.trace.event.Event> ret = new HashMap<Configuration, it.unicam.pros.purple.util.eventlogs.trace.event.Event>();
 		MidaCollabsConfiguration cConf = (MidaCollabsConfiguration) DeepCopy.copy(c);
 		MidaProcConfiguration conf = ModelUtils.getProcessConf(process, instance, cConf);
 		SequenceFlow sF = ModelUtils.hasIncoming(conf, n);

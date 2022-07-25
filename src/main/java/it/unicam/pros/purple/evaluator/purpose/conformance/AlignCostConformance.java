@@ -9,7 +9,6 @@ import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 
 import java.util.HashMap;
 import java.util.HashSet;

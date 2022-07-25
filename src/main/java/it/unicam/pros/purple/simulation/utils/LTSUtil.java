@@ -1,22 +1,16 @@
 package it.unicam.pros.purple.simulation.utils;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
-
 import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
+import it.unicam.pros.purple.simulation.SimulatorImpl.LabelledEdge;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DirectedWeightedPseudograph;
 
-import it.unicam.pros.purple.simulation.SimulatorImpl.LabelledEdge;
+import java.util.*;
 
 public class LTSUtil {
 

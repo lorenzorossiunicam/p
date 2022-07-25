@@ -1,10 +1,10 @@
 package it.unicam.pros.purple.util.eventlogs.trace;
 
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 
 public interface Trace extends Serializable {
 	

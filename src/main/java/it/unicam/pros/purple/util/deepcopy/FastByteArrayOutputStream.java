@@ -1,7 +1,7 @@
 package it.unicam.pros.purple.util.deepcopy;
 
-import java.io.OutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * ByteArrayOutputStream implementation that doesn't synchronize methods

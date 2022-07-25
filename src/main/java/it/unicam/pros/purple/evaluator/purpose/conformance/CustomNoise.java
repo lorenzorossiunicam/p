@@ -1,13 +1,9 @@
 package it.unicam.pros.purple.evaluator.purpose.conformance;
 
 import com.google.common.collect.Sets;
-import com.helger.commons.traits.IGenericAdderTrait;
-import io.swagger.models.auth.In;
 import it.unicam.pros.purple.PURPLE;
 import it.unicam.pros.purple.evaluator.Delta;
 import it.unicam.pros.purple.evaluator.Evaluator;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.FootprintMatrix;
-import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
@@ -22,7 +18,6 @@ import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class CustomNoise implements Evaluator {

@@ -1,54 +1,47 @@
-# `PURPLE` Purpose-Guided Log Generator
-![arch](https://bitbucket.org/proslabteam/purple/raw/f51fb2a83bd8787bb162b3131def27c2ed044854/src/main/webapp/images/arch.png)
+# My Todo
 
-This tool provides a novel log generation methodology working with many input process model language and on the mining purpose, to produce artificial event logs. The methodology is meant to ensure the possibility of simulating any kind of process model through the implementation of several modeling language semantics (e.g., BPMN, Petri net, EPC, WF-net), and also the possibility to decide characteristics of the output event log according to the requirements of a mining procedure.
+This project can be used as a starting point to create your own Vaadin application with Spring Boot.
+It contains all the necessary configuration and some placeholder files to get you started.
 
+## Running the application
 
-## Builds
+The project is a standard Maven project. To run it from the command line,
+type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
+http://localhost:8080 in your browser.
 
-Project build are available [here](https://bitbucket.org/proslabteam/purple-builds).
+You can also import the project to your IDE of choice as you would with any
+Maven project. Read more on [how to import Vaadin projects to different 
+IDEs](https://vaadin.com/docs/latest/flow/guide/step-by-step/importing) (Eclipse, IntelliJ IDEA, NetBeans, and VS Code).
 
-## Building the project
+## Deploying to Production
 
-### System requirements
+To create a production build, call `mvnw clean package -Pproduction` (Windows),
+or `./mvnw clean package -Pproduction` (Mac & Linux).
+This will build a JAR file with all the dependencies and front-end resources,
+ready to be deployed. The file can be found in the `target` folder after the build completes.
 
-* Java SE 13.x or later
-* Nodejs 9.x or later
-* npm 6.x or later
-* Maven
+Once the JAR file is built, you can run it using
+`java -jar target/mytodo-1.0-SNAPSHOT.jar`
 
-### Local dependences
+## Project structure
 
-`mvn install:install-file -Dfile=lib/rapidprom-4.0.0.jar -DgroupId=org.rapidprom -DartifactId=rapidprom -Dversion=4.0.0 -Dpackaging=jar`
+- `MainLayout.java` in `src/main/java` contains the navigation setup (i.e., the
+  side/top bar and the main menu). This setup uses
+  [App Layout](https://vaadin.com/components/vaadin-app-layout).
+- `views` package in `src/main/java` contains the server-side Java views of your application.
+- `views` folder in `frontend/` contains the client-side JavaScript views of your application.
+- `themes` folder in `frontend/` contains the custom CSS styles.
 
-`mvn install:install-file -Dfile=lib/camunda-bpmn-model-7.11.0.jar -DgroupId=org.camunda.bpm.model -DartifactId=camunda-bpmn-model -Dversion=7.11.0MIDA -Dpackaging=jar`
+## Useful links
 
-`mvn install:install-file -Dfile=lib/camunda-xml-model-7.11.0.jar -DgroupId=org.camunda.bpm.model -DartifactId=camunda-xml-model -Dversion=7.11.0MIDA -Dpackaging=jar`
-
-`mvn install:install-file -Dfile=lib/ProM-Framework.jar -DgroupId=org.processmining.framework -DartifactId=processmining-framework -Dversion=0.0.1 -Dpackaging=jar`
-
-### Packaging
-
-`mvn clean package -Pproduction`
-
-### Run
-
-`java -jar target/purple-1.0.jar`
-
-open [http://localhost:4300](http://localhost:4300)
-
-### Logs location 
-
-`logs/gsim.log`
-
-### Custom configuration
-
-To customise the final build (e.g. the port number) change the settings in
-
-`/src/main/resources/application.properties`
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+- Read the documentation at [vaadin.com/docs](https://vaadin.com/docs).
+- Follow the tutorials at [vaadin.com/tutorials](https://vaadin.com/tutorials).
+- Watch training videos and get certified at [vaadin.com/learn/training](https://vaadin.com/learn/training).
+- Create new projects at [start.vaadin.com](https://start.vaadin.com/).
+- Search UI components and their usage examples at [vaadin.com/components](https://vaadin.com/components).
+- View use case applications that demonstrate Vaadin capabilities at [vaadin.com/examples-and-demos](https://vaadin.com/examples-and-demos).
+- Discover Vaadin's set of CSS utility classes that enable building any UI without custom CSS in the [docs](https://vaadin.com/docs/latest/ds/foundation/utility-classes). 
+- Find a collection of solutions to common use cases in [Vaadin Cookbook](https://cookbook.vaadin.com/).
+- Find Add-ons at [vaadin.com/directory](https://vaadin.com/directory).
+- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
+- Report issues, create pull requests in [GitHub](https://github.com/vaadin/platform).

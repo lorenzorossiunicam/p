@@ -1,18 +1,17 @@
 package it.unicam.pros.purple.util.eventlogs.utils;
 
+import it.unicam.pros.purple.util.eventlogs.EventLog;
+import it.unicam.pros.purple.util.eventlogs.trace.Trace;
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import org.deckfour.xes.in.XesXmlParser;
+import org.deckfour.xes.model.XLog;
+import org.deckfour.xes.model.XTrace;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import it.unicam.pros.purple.util.eventlogs.EventLog;
-import it.unicam.pros.purple.util.eventlogs.trace.Trace;
-import org.deckfour.xes.in.XesXmlParser;
-import org.deckfour.xes.model.XLog;
-import org.deckfour.xes.model.XTrace;
-
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 
 public class LogIO {
 

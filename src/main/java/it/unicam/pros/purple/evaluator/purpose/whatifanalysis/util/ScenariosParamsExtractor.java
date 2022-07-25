@@ -3,8 +3,8 @@ package it.unicam.pros.purple.evaluator.purpose.whatifanalysis.util;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.*;
 
 import java.io.File;
 import java.util.*;

@@ -1,11 +1,10 @@
 package it.unicam.pros.purple.semanticengine.bpmn.utils;
 
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate.DataStoreState;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import it.unicam.pros.purple.util.deepcopy.DeepCopy;
-
 import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate.DataObjState;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate.DataStoreState;
+import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 
 public class DataUtil {
 

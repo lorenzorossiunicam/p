@@ -1,6 +1,5 @@
 package it.unicam.pros.purple.gui.ui.view.rediscoverability;
 
-import com.vaadin.annotations.Push;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
@@ -14,13 +13,14 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.shared.communication.PushMode;
+import com.vaadin.flow.shared.communication.PushMode;
 import it.unicam.pros.purple.PURPLE;
 import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.purple.gui.ui.components.Uploader;
@@ -49,12 +49,15 @@ import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-@Push(value = PushMode.MANUAL)
+//@Push(value = PushMode.MANUAL)
 @Route(value="discovery/trace_frequencies", layout = MainLayout.class)
 @PageTitle("BPMN process discovery via traces frequencies | "+ Constants.shortName)
 public class TraceFrequenciesView extends ViewFrame {

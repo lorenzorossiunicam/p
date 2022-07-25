@@ -1,16 +1,15 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida;
 
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import org.camunda.bpm.model.bpmn.impl.instance.TaskImpl;
+import org.camunda.bpm.model.bpmn.instance.Process;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import org.camunda.bpm.model.bpmn.impl.instance.TaskImpl;
-import org.camunda.bpm.model.bpmn.instance.Process; 
-
-import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 
 public final class NATaskBehaviour {
 

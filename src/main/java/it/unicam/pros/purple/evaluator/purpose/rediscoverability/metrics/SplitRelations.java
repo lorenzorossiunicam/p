@@ -6,7 +6,6 @@ import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.*;
@@ -15,7 +14,6 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class SplitRelations {
 

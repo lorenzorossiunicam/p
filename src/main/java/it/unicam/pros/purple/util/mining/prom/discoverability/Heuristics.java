@@ -2,7 +2,6 @@ package it.unicam.pros.purple.util.mining.prom.discoverability;
 
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
 import it.unicam.pros.purple.util.mining.prom.framework.ContextsFactory;
-import it.unicam.pros.purple.util.models.conversions.PetrinetConverter;
 import org.deckfour.xes.classification.XEventAttributeClassifier;
 import org.deckfour.xes.model.XLog;
 import org.processmining.framework.plugin.PluginContext;
@@ -13,7 +12,6 @@ import org.processmining.models.semantics.petrinet.Marking;
 import org.processmining.plugins.heuristicsnet.miner.heuristics.converter.HeuristicsNetToPetriNetConverter;
 import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.FlexibleHeuristicsMiner;
 import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.settings.HeuristicsMinerSettings;
-import org.processmining.plugins.pnml.importing.PnmlImportNet;
 
 public class Heuristics {
 

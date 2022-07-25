@@ -6,7 +6,7 @@ title __LOGGER's Class Diagram__\n
     namespace gui {
       namespace util {
         namespace logger {
-          class it.unicam.pros.purple.gui.util.logger.SimLevel {
+          class it.unicam.pros.SimLevel {
               {static} + SIM_INFO : Level
               + SimLevel()
           }
@@ -20,7 +20,7 @@ title __LOGGER's Class Diagram__\n
     namespace gui {
       namespace util {
         namespace logger {
-          class it.unicam.pros.purple.gui.util.logger.SimLogAppender {
+          class it.unicam.pros.SimLogAppender {
               {static} - area : TextArea
               {static} + append()
               + close()
@@ -47,8 +47,8 @@ title __LOGGER's Class Diagram__\n
   }
   
 
-  it.unicam.pros.purple.gui.util.logger.SimLevel -up-|> java.util.logging.Level
-  it.unicam.pros.purple.gui.util.logger.SimLogAppender +-down- it.unicam.pros.purple.gui.util.logger.SimLogAppender.Level
+  it.unicam.pros.SimLevel -up-|> java.util.logging.Level
+  it.unicam.pros.SimLogAppender +-down- it.unicam.pros.SimLogAppender.Level
 
 
 right footer

@@ -1,65 +1,20 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
 import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.*;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
-import org.camunda.bpm.model.bpmn.impl.instance.EndEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.EventBasedGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ExclusiveGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.IntermediateCatchEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.IntermediateThrowEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ParallelGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ReceiveTaskImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.StartEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.TaskImpl;
-import org.camunda.bpm.model.bpmn.instance.EndEvent;
-import org.camunda.bpm.model.bpmn.instance.EventBasedGateway;
-import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.IntermediateCatchEvent;
-import org.camunda.bpm.model.bpmn.instance.IntermediateThrowEvent;
-import org.camunda.bpm.model.bpmn.instance.ParallelGateway;
-import org.camunda.bpm.model.bpmn.instance.StartEvent;
-import org.camunda.bpm.model.bpmn.instance.Task;
+import org.camunda.bpm.model.bpmn.impl.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.*;
 
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.EndEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.EventBasedGatewayBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.ExclusiveGatewayJoinBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.ExclusiveGatewaySplitBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.IntermediateCatchEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.IntermediateThrowEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MIIntReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MIIntSendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MIIntTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MIPTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MISTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MessageEndEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.MessageStartEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.NAReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.NASendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.NATaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.ParallelGatewayJoinBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.ParallelGatewaySplitBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.ReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.SendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.StartEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.TaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda.TerminateEndEventBehaviour;
+import java.util.*;
 
 public class BPMNNodaSemantics implements Semantics {
  

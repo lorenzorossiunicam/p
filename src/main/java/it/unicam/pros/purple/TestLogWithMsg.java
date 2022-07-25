@@ -1,10 +1,6 @@
 package it.unicam.pros.purple;
 
-import it.unicam.pros.purple.evaluator.Evaluator;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.BPMNRediscoverability;
-import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
 import it.unicam.pros.purple.semanticengine.SemanticEngine;
-import it.unicam.pros.purple.semanticengine.bpmn.MidaEngine;
 import it.unicam.pros.purple.semanticengine.bpmn.NodaEngine;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.simulation.SimulatorImpl;
@@ -14,8 +10,6 @@ import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.*;
-import org.camunda.bpm.model.bpmn.instance.Process;
 
 import java.io.File;
 import java.text.DateFormat;

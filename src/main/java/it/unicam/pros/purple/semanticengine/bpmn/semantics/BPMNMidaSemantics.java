@@ -1,66 +1,20 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics;
 
-import java.util.ArrayList; 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import it.unicam.pros.purple.semanticengine.Configuration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.*;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-import it.unicam.pros.purple.semanticengine.Configuration;
-import org.camunda.bpm.model.bpmn.impl.instance.EndEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.EventBasedGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ExclusiveGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.IntermediateCatchEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.IntermediateThrowEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ParallelGatewayImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.ReceiveTaskImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.StartEventImpl;
-import org.camunda.bpm.model.bpmn.impl.instance.TaskImpl;
-import org.camunda.bpm.model.bpmn.instance.EndEvent;
-import org.camunda.bpm.model.bpmn.instance.EventBasedGateway;
-import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
-import org.camunda.bpm.model.bpmn.instance.FlowNode;
-import org.camunda.bpm.model.bpmn.instance.IntermediateCatchEvent;
-import org.camunda.bpm.model.bpmn.instance.IntermediateThrowEvent;
-import org.camunda.bpm.model.bpmn.instance.ParallelGateway;
-import org.camunda.bpm.model.bpmn.instance.StartEvent;
-import org.camunda.bpm.model.bpmn.instance.Task;
+import org.camunda.bpm.model.bpmn.impl.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.*;
 
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.EndEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.EventBasedGatewayBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ExclusiveGatewayJoinBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ExclusiveGatewaySplitBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.IntermediateCatchEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.IntermediateThrowEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIIntReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIIntSendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIIntTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MIPTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MISTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MessageEndEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.MessageStartEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.NAReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.NASendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.NATaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ParallelGatewayJoinBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ParallelGatewaySplitBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.ReceiveTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.SendTaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.StartEventBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.TaskBehaviour;
-import it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida.TerminateEndEventBehaviour;
+import java.util.*;
 
 public class BPMNMidaSemantics implements Semantics {
  
@@ -69,9 +23,9 @@ public class BPMNMidaSemantics implements Semantics {
  
 
 	@Override
-	public Map<Configuration, Set<Event>> getNexts(Map<Process, List<FlowNode>> pools, Configuration c) throws Exception {
+	public Map<Configuration, Set<it.unicam.pros.purple.util.eventlogs.trace.event.Event>> getNexts(Map<Process, List<FlowNode>> pools, Configuration c) throws Exception {
 		MidaCollabsConfiguration conf = (MidaCollabsConfiguration) c;
-		Map<Configuration, Set<Event>> ret = new HashMap<Configuration, Set<Event>>();
+		Map<Configuration, Set<it.unicam.pros.purple.util.eventlogs.trace.event.Event>> ret = new HashMap<Configuration, Set<it.unicam.pros.purple.util.eventlogs.trace.event.Event>>();
 
 		List<Process> processes = new ArrayList<Process>(pools.keySet());
 		for (int i = 0; i < processes.size(); i++) {// iterate processes
@@ -82,13 +36,13 @@ public class BPMNMidaSemantics implements Semantics {
 						ModelUtils.getProcessConf(processes.get(i), activeInstances.get(j), conf).getIntActivities());
 				for (int k = 0; k < nodes.size(); k++) {// iterate elements
 					MidaCollabsConfiguration tmpConf = (MidaCollabsConfiguration) DeepCopy.copy(conf);
-					Map<Configuration, Event> e = execute(nodes.get(k), processes.get(i), activeInstances.get(j), tmpConf);
+					Map<Configuration, it.unicam.pros.purple.util.eventlogs.trace.event.Event> e = execute(nodes.get(k), processes.get(i), activeInstances.get(j), tmpConf);
 					if (! e.isEmpty()) {
 						// QUA FAI QUALCOSA
 						//System.out.println(nodes.get(k)+" "+processes.get(i).getName()+" "+activeInstances.get(j));
 						for(Configuration x : e.keySet()) {
 							if(! ret.containsKey(x)) {
-								ret.put(x, new HashSet<Event>());
+								ret.put(x, new HashSet<it.unicam.pros.purple.util.eventlogs.trace.event.Event>());
 							}
 							ret.get(x).add(e.get(x));
 						} 
@@ -99,7 +53,7 @@ public class BPMNMidaSemantics implements Semantics {
 		return ret;
 	}
 
-	private Map<Configuration, Event> execute(Object object, Process process, int instance, MidaCollabsConfiguration conf)
+	private Map<Configuration, it.unicam.pros.purple.util.eventlogs.trace.event.Event> execute(Object object, Process process, int instance, MidaCollabsConfiguration conf)
 			throws MidaException {
 		if (object instanceof FlowNode) {
 			FlowNode flowNode = (FlowNode) object;
@@ -182,7 +136,7 @@ public class BPMNMidaSemantics implements Semantics {
 		return null;
 	}
 
-	private Map<Configuration, Event> miTask(Task t, MidaCollabsConfiguration conf, Process process,  int instance)
+	private Map<Configuration, it.unicam.pros.purple.util.eventlogs.trace.event.Event> miTask(Task t, MidaCollabsConfiguration conf, Process process, int instance)
 			throws MidaException {
 		if (ModelUtils.isSequential(t)) {
 			return MISTaskBehaviour.isActive(t, conf, process,  instance);

@@ -1,19 +1,18 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.noda;
- 
-import java.util.HashMap; 
-import java.util.Map;
-
-import it.unicam.pros.purple.util.deepcopy.DeepCopy;
-import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
-import org.camunda.bpm.model.bpmn.instance.Process;
 
 import it.unicam.pros.purple.semanticengine.Configuration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
-import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
+import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
+import org.camunda.bpm.model.bpmn.instance.Process;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NASendTaskBehaviour2 {
  

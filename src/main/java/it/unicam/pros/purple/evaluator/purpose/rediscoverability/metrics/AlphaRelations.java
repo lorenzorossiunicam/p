@@ -1,11 +1,10 @@
 package it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics;
 
-import java.util.*;
-
 import it.unicam.pros.purple.semanticengine.ptnet.PTNetUtil;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
-import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
+import it.unicam.pros.purple.util.eventlogs.trace.Trace;
+import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
@@ -13,13 +12,12 @@ import org.camunda.bpm.model.bpmn.impl.instance.GatewayImpl;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.Task;
-
-import it.unicam.pros.purple.util.eventlogs.trace.TraceImpl;
-import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
+
+import java.util.*;
 
 public final class AlphaRelations {
     private static Map<String, Map<String, FootprintRelations>> matrix;
@@ -72,12 +70,12 @@ public final class AlphaRelations {
                                     || disc.get(refAct1).get(refAct2) == FootprintRelations.PARALLEL
                                     || disc.get(refAct1).get(refAct2) == FootprintRelations.SEQUENCE) {
                                 Trace t = new TraceImpl(null);
-                                t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
+                                //t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
                                 t.appendEvent(new EventImpl(null, null, refAct1, null, null, null, null, null, null, null, null));
                                 missing.addTrace(t);
                                 t = new TraceImpl(null);
-                                t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
-                                t.appendEvent(new EventImpl(null, null, refAct1, null, null, null, null, null, null, null, null));
+                                //t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
+                                t.appendEvent(new EventImpl(null, null, refAct2, null, null, null, null, null, null, null, null));
                                 missing.addTrace(t);
                             }
                             break;

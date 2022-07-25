@@ -1,5 +1,4 @@
 package it.unicam.pros.purple.util.mining;
-import java.io.File;
 
 import it.unicam.pros.purple.util.mining.prom.discoverability.Alphas;
 import org.deckfour.xes.in.XesXmlParser;
@@ -8,6 +7,8 @@ import org.processmining.alphaminer.parameters.AlphaVersion;
 import org.processmining.framework.util.Pair;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 import org.processmining.models.semantics.petrinet.Marking;
+
+import java.io.File;
 
 
 public class MiningTest {

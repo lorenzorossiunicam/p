@@ -1,15 +1,14 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration.data;
 
-import java.util.ArrayList;
-import java.util.List;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
 
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Data {
 

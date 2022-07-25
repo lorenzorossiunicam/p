@@ -1,34 +1,23 @@
 package it.unicam.pros.purple.semanticengine.bpmn.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import javax.script.ScriptException;
-
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Field;
-import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.ProcConfiguration;
-import it.unicam.pros.purple.util.Couple;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.*;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Field;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntReceiveTask;
 import it.unicam.pros.purple.semanticengine.bpmn.elements.IntSendTask;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntTask;
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.util.Couple;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.impl.instance.SendTaskImpl;
-import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;
+import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.xml.instance.DomElement;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
+import javax.script.ScriptException;
+import java.util.*;
 
 public final class ModelUtils {
 

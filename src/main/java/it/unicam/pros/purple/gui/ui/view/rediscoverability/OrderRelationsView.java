@@ -2,7 +2,6 @@ package it.unicam.pros.purple.gui.ui.view.rediscoverability;
 
 
 import com.awesomecontrols.quickpopup.QuickPopup;
-import com.vaadin.annotations.Push;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
@@ -15,16 +14,14 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.NumberField;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.shared.communication.PushMode;
+import com.vaadin.flow.shared.communication.PushMode;
 import it.unicam.pros.purple.PURPLE;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.Rediscoverability;
 import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.purple.gui.ui.components.Uploader;
 import it.unicam.pros.purple.gui.ui.layout.size.Bottom;
@@ -42,7 +39,6 @@ import it.unicam.pros.purple.gui.ui.util.css.Shadow;
 import it.unicam.pros.purple.gui.ui.view.MainLayout;
 import it.unicam.pros.purple.gui.ui.view.ViewFrame;
 import it.unicam.pros.purple.gui.util.Constants;
-import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
@@ -52,7 +48,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-@Push(value = PushMode.MANUAL)
+//@Push(value = PushMode.MANUAL)
 @Route(value="discovery/order_relations", layout = MainLayout.class)
 @PageTitle("BPMN process discovery via order relations | "+ Constants.shortName)
 public class OrderRelationsView extends ViewFrame {

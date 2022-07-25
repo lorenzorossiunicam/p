@@ -1,8 +1,6 @@
 package it.unicam.pros.purple.semanticengine.ptnet.configuration;
 
 import it.unicam.pros.purple.semanticengine.Configuration;
-import org.processmining.models.graphbased.directed.petrinet.elements.Place;
-import org.processmining.models.semantics.petrinet.Marking;
 
 import java.io.Serializable;
 import java.util.*;

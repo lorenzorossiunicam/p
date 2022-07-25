@@ -1,8 +1,6 @@
 package it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics;
 
-import it.unicam.pros.purple.evaluator.purpose.whatifanalysis.metrics.ModelProbabilities;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
-import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;

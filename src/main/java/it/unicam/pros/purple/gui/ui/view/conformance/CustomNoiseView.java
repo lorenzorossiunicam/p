@@ -1,7 +1,6 @@
 package it.unicam.pros.purple.gui.ui.view.conformance;
 
 
-import com.vaadin.annotations.Push;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
@@ -15,13 +14,14 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.shared.communication.PushMode;
+import com.vaadin.flow.shared.communication.PushMode;
 import it.unicam.pros.purple.PURPLE;
 import it.unicam.pros.purple.gui.ui.components.FlexBoxLayout;
 import it.unicam.pros.purple.gui.ui.components.Uploader;
@@ -42,16 +42,11 @@ import it.unicam.pros.purple.gui.ui.view.ViewFrame;
 import it.unicam.pros.purple.gui.util.Constants;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
-import org.apache.commons.io.IOUtils;
-import org.camunda.bpm.model.bpmn.Bpmn;
-import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.vaadin.olli.FileDownloadWrapper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -59,7 +54,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 
-@Push(value = PushMode.MANUAL)
+//@Push(value = PushMode.MANUAL)
 @Route(value="conformance/custom_noise", layout = MainLayout.class)
 @PageTitle("Conformance checking via custom noise | "+ Constants.shortName)
 public class CustomNoiseView extends ViewFrame {

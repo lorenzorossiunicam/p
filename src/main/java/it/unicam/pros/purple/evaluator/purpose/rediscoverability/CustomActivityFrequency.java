@@ -2,7 +2,6 @@ package it.unicam.pros.purple.evaluator.purpose.rediscoverability;
 
 import it.unicam.pros.purple.evaluator.Delta;
 import it.unicam.pros.purple.evaluator.Evaluator;
-import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
 import it.unicam.pros.purple.util.eventlogs.EventLogImpl;
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
@@ -10,7 +9,6 @@ import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class CustomActivityFrequency  implements Evaluator {
 

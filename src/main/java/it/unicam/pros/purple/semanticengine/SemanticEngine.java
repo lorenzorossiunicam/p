@@ -1,9 +1,9 @@
 package it.unicam.pros.purple.semanticengine;
 
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+
 import java.util.Map;
 import java.util.Set;
-
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 
 public interface SemanticEngine {
 	

@@ -1,14 +1,14 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration;
 
-import java.io.Serializable;
-import java.util.*;
-
 import com.google.gson.JsonObject;
 import it.unicam.pros.purple.semanticengine.Configuration;
 import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.MidaStatus;
 import org.camunda.bpm.model.bpmn.instance.Process;
+
+import java.io.Serializable;
+import java.util.*;
 
 public class NodaCollabsConfiguration implements Configuration, Serializable {
 

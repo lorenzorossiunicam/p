@@ -3,11 +3,7 @@ package it.unicam.pros.purple.evaluator.purpose.rediscoverability;
 import it.unicam.pros.purple.evaluator.Delta;
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.AlphaRelations;
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.FootprintRelations;
-import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
-import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.Process;
-import org.processmining.alphaminer.parameters.AlphaVersion;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 
 import java.util.Map;

@@ -1,20 +1,20 @@
 package it.unicam.pros.purple.semanticengine.ptnet.semantics;
 
 import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.ptnet.configuration.PnmlConfiguration;
 import it.unicam.pros.purple.util.deepcopy.DeepCopy;
 import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
 import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 import org.processmining.models.graphbased.directed.petrinet.PetrinetEdge;
 import org.processmining.models.graphbased.directed.petrinet.PetrinetNode;
-import org.processmining.models.graphbased.directed.petrinet.elements.Arc;
 import org.processmining.models.graphbased.directed.petrinet.elements.Place;
 import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class PnmlSemantics {
 

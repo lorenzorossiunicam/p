@@ -1,12 +1,12 @@
 package it.unicam.pros.purple.semanticengine.bpmn.utils;
 
-import java.util.Collection;
-
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
-import it.unicam.pros.purple.semanticengine.bpmn.configuration.ProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.NodaProcConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.configuration.ProcConfiguration;
 import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 import org.camunda.bpm.model.bpmn.instance.Task;
+
+import java.util.Collection;
 
 /**
  *

@@ -1,16 +1,15 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.semanticengine.Configuration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
+import it.unicam.pros.purple.semanticengine.bpmn.exceptions.MidaException;
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.Task;
 
-import it.unicam.pros.purple.semanticengine.Configuration;
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class NAReceiveTaskBehaviour {
 

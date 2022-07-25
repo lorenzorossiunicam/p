@@ -1,19 +1,18 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration;
 
-import java.util.*;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-
+import com.google.gson.JsonObject;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate.DataObjState;
+import it.unicam.pros.purple.semanticengine.bpmn.elements.IntActivity;
+import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 import org.camunda.bpm.model.bpmn.instance.StartEvent;
 import org.camunda.bpm.model.bpmn.instance.Task;
 
-import com.google.gson.JsonObject; 
-import it.unicam.pros.purple.semanticengine.bpmn.elements.IntActivity;
-import it.unicam.pros.purple.semanticengine.bpmn.utils.ModelUtils;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import java.util.*;
 
 public class MidaProcConfiguration implements ProcConfiguration {
 	private static final String SIGMA_E = "Sigma_e";

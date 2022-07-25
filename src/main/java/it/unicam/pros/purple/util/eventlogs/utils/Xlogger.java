@@ -1,26 +1,19 @@
 package it.unicam.pros.purple.util.eventlogs.utils;
 
 
+import org.deckfour.xes.extension.XExtensionManager;
+import org.deckfour.xes.factory.XFactory;
+import org.deckfour.xes.factory.XFactoryNaiveImpl;
+import org.deckfour.xes.model.*;
+import org.deckfour.xes.out.XesXmlSerializer;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.*;
-
-import it.unicam.pros.purple.util.eventlogs.trace.Trace;
-import org.deckfour.xes.extension.XExtensionManager;
-import org.deckfour.xes.factory.XFactory;
-import org.deckfour.xes.factory.XFactoryNaiveImpl;
-import org.deckfour.xes.model.XAttributable;
-import org.deckfour.xes.model.XAttributeDiscrete;
-import org.deckfour.xes.model.XAttributeList;
-import org.deckfour.xes.model.XAttributeLiteral;
-import org.deckfour.xes.model.XAttributeMap;
-import org.deckfour.xes.model.XAttributeTimestamp;
-import org.deckfour.xes.model.XEvent;
-import org.deckfour.xes.model.XLog;
-import org.deckfour.xes.model.XTrace;
-import org.deckfour.xes.out.XesXmlSerializer;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 
 public class Xlogger {

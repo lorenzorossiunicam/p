@@ -1,12 +1,12 @@
 package it.unicam.pros.purple.util.eventlogs.trace;
 
+import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
+import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import it.unicam.pros.purple.util.eventlogs.trace.event.Event;
-import it.unicam.pros.purple.util.eventlogs.trace.event.EventImpl;
 
 public class TraceImpl implements Trace {
 

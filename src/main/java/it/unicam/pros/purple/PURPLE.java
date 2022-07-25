@@ -5,11 +5,7 @@ import it.unicam.pros.purple.evaluator.Evaluator;
 import it.unicam.pros.purple.evaluator.purpose.conformance.AlignCostConformance;
 import it.unicam.pros.purple.evaluator.purpose.conformance.CustomNoise;
 import it.unicam.pros.purple.evaluator.purpose.rediscoverability.*;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.AlphaRelations;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.FootprintMatrix;
-import it.unicam.pros.purple.evaluator.purpose.rediscoverability.metrics.FootprintRelations;
 import it.unicam.pros.purple.evaluator.purpose.whatifanalysis.BPMNWhatIfAnalysis;
-import it.unicam.pros.purple.gui.util.Constants;
 import it.unicam.pros.purple.gui.util.logger.SimLogAppender;
 import it.unicam.pros.purple.semanticengine.SemanticEngine;
 import it.unicam.pros.purple.semanticengine.bpmn.NodaEngine;
@@ -19,7 +15,6 @@ import it.unicam.pros.purple.simulation.Simulator;
 import it.unicam.pros.purple.simulation.SimulatorImpl;
 import it.unicam.pros.purple.util.Couple;
 import it.unicam.pros.purple.util.eventlogs.EventLog;
-
 import it.unicam.pros.purple.util.eventlogs.trace.Trace;
 import it.unicam.pros.purple.util.eventlogs.utils.LogIO;
 import it.unicam.pros.purple.util.eventlogs.utils.LogUtil;
@@ -28,11 +23,16 @@ import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 
-import java.io.*;
-import java.lang.invoke.ConstantCallSite;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This class is the entry point of PURPLE. It provides the PURPLE functionalities for CLI applications.

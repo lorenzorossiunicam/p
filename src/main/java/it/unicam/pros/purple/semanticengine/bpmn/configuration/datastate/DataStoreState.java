@@ -1,16 +1,14 @@
 package it.unicam.pros.purple.semanticengine.bpmn.configuration.datastate;
 
-import javax.script.Bindings;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
-
+import com.google.gson.JsonObject;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.data.Data;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.DataStoreReference;
 import org.camunda.bpm.model.xml.instance.DomElement;
 
-import com.google.gson.JsonObject;
-
+import javax.script.Bindings;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import java.io.Serializable;
 import java.util.Objects;
 

@@ -1,8 +1,6 @@
 package it.unicam.pros.purple.semanticengine.bpmn.semantics.behaviours.mida;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import it.unicam.pros.purple.semanticengine.Configuration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaCollabsConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.configuration.MidaProcConfiguration;
 import it.unicam.pros.purple.semanticengine.bpmn.utils.Auxiliaries;
@@ -15,7 +13,8 @@ import org.camunda.bpm.model.bpmn.instance.ParallelGateway;
 import org.camunda.bpm.model.bpmn.instance.Process;
 import org.camunda.bpm.model.bpmn.instance.SequenceFlow;
 
-import it.unicam.pros.purple.semanticengine.Configuration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParallelGatewaySplitBehaviour { 
 

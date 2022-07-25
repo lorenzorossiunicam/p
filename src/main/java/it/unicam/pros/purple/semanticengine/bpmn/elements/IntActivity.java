@@ -1,8 +1,8 @@
 package it.unicam.pros.purple.semanticengine.bpmn.elements;
 
-import java.util.Collection;
-
 import org.camunda.bpm.model.bpmn.instance.Task;
+
+import java.util.Collection;
 
 public interface IntActivity {
 	public String getId();
