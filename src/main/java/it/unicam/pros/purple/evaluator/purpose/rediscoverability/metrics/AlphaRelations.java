@@ -72,12 +72,12 @@ public final class AlphaRelations {
                                     || disc.get(refAct1).get(refAct2) == FootprintRelations.PARALLEL
                                     || disc.get(refAct1).get(refAct2) == FootprintRelations.SEQUENCE) {
                                 Trace t = new TraceImpl(null);
-                                t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
+                                //t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
                                 t.appendEvent(new EventImpl(null, null, refAct1, null, null, null, null, null, null, null, null));
                                 missing.addTrace(t);
                                 t = new TraceImpl(null);
-                                t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
-                                t.appendEvent(new EventImpl(null, null, refAct1, null, null, null, null, null, null, null, null));
+                                //t.appendEvent(new EventImpl(null, null, null, null, null, null, null, null, null, null, null));
+                                t.appendEvent(new EventImpl(null, null, refAct2, null, null, null, null, null, null, null, null));
                                 missing.addTrace(t);
                             }
                             break;
