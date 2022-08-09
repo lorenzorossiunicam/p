@@ -43,7 +43,7 @@ open [http://localhost:4300](http://localhost:4300)
 
 ### Custom configuration
 
-To customise the final build (e.g. the port number) change the settings in
+To customise the final build (e.g. the port number) change the settings in:
 
 `/src/main/resources/application.properties`
 
@@ -51,4 +51,4 @@ To customise the final build (e.g. the port number) change the settings in
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-[APACHE 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+[APACHE 2.0](https://www.apache.org/licenses/LICENSE-2.0) 
