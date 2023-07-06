@@ -26,3 +26,236 @@ Vaadin is running in production mode.
 =======================================================================
 2022-07-22 11:53:42.086  INFO 29620 --- [http-nio-4300-exec-2] c.vaadin.flow.spring.SpringInstantiator  : The number of beans implementing 'I18NProvider' is 0. Cannot use Spring beans for I18N, falling back to the default behavior
 2022-07-22 11:53:52.683  INFO 29620 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:21:03.503  INFO 34337 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Starting Application on lorenzo-Air.amministrazione.unicam with PID 34337 (/Users/lorenzo/Git/PURPLE/purple/target/classes started by lorenzo in /Users/lorenzo/Git/PURPLE/purple)
+2023-07-05 09:21:03.504  INFO 34337 --- [restartedMain] it.unicam.pros.purple.gui.Application    : No active profile set, falling back to default profiles: default
+2023-07-05 09:21:03.523  INFO 34337 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in /Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
+2023-07-05 09:21:03.523  INFO 34337 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-07-05 09:21:03.523  INFO 34337 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-07-05 09:21:03.878  INFO 34337 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2023-07-05 09:21:03.882  INFO 34337 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-05 09:21:03.882  INFO 34337 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2023-07-05 09:21:03.914  INFO 34337 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-05 09:21:03.914  INFO 34337 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 391 ms
+2023-07-05 09:21:03.943  WARN 34337 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:21:03.961  INFO 34337 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 22 ms
+2023-07-05 09:21:03.963  INFO 34337 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2023-07-05 09:21:03.999  WARN 34337 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:21:06.019  INFO 34337 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 2019 ms
+2023-07-05 09:21:06.020  INFO 34337 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in /Users/lorenzo/Git/PURPLE/purple folder.
+2023-07-05 09:21:06.034  INFO 34337 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 119 classes. Took 9 ms.
+2023-07-05 09:21:06.038  INFO 34337 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.f.TaskGeneratePackageJson        : writing file /Users/lorenzo/Git/PURPLE/purple/target/flow-frontend/package.json.
+2023-07-05 09:21:06.039  INFO 34337 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.html'
+2023-07-05 09:21:06.039  INFO 34337 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.ts'
+2023-07-05 09:21:06.044  INFO 34337 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [/Users/lorenzo/Git/PURPLE/purple/src/main/java]
+2023-07-05 09:21:06.097  INFO 34337 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:21:06.139  WARN 34337 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2023-07-05 09:21:06.150  WARN 34337 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:21:06.185  INFO 34337 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-07-05 09:21:06.229  INFO 34337 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-05 09:21:06.232  INFO 34337 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-07-05 09:21:06.233 ERROR 34337 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 4300 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 4300 or configure this application to listen on another port.
+
+2023-07-05 09:21:06.234  INFO 34337 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:23:19.045  INFO 34507 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Starting Application on lorenzo-Air.amministrazione.unicam with PID 34507 (/Users/lorenzo/Git/PURPLE/purple/target/classes started by lorenzo in /Users/lorenzo/Git/PURPLE/purple)
+2023-07-05 09:23:19.046  INFO 34507 --- [restartedMain] it.unicam.pros.purple.gui.Application    : No active profile set, falling back to default profiles: default
+2023-07-05 09:23:19.064  INFO 34507 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in /Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
+2023-07-05 09:23:19.064  INFO 34507 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-07-05 09:23:19.064  INFO 34507 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-07-05 09:23:19.442  INFO 34507 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2023-07-05 09:23:19.446  INFO 34507 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-05 09:23:19.447  INFO 34507 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2023-07-05 09:23:19.479  INFO 34507 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-05 09:23:19.479  INFO 34507 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 415 ms
+2023-07-05 09:23:19.510  WARN 34507 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:23:19.530  INFO 34507 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 24 ms
+2023-07-05 09:23:19.532  INFO 34507 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2023-07-05 09:23:19.570  WARN 34507 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:23:21.605  INFO 34507 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 2034 ms
+2023-07-05 09:23:21.606  INFO 34507 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in /Users/lorenzo/Git/PURPLE/purple folder.
+2023-07-05 09:23:21.619  INFO 34507 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 119 classes. Took 8 ms.
+2023-07-05 09:23:21.624  INFO 34507 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.f.TaskGeneratePackageJson        : writing file /Users/lorenzo/Git/PURPLE/purple/target/flow-frontend/package.json.
+2023-07-05 09:23:21.625  INFO 34507 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.html'
+2023-07-05 09:23:21.625  INFO 34507 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.ts'
+2023-07-05 09:23:21.630  INFO 34507 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [/Users/lorenzo/Git/PURPLE/purple/src/main/java]
+2023-07-05 09:23:21.681  INFO 34507 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:23:21.724  WARN 34507 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2023-07-05 09:23:21.733  WARN 34507 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:23:21.766  INFO 34507 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-07-05 09:23:21.809  INFO 34507 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-05 09:23:21.812  INFO 34507 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-07-05 09:23:21.812 ERROR 34507 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 4300 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 4300 or configure this application to listen on another port.
+
+2023-07-05 09:23:21.814  INFO 34507 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:24:28.501  INFO 34605 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Starting Application on lorenzo-Air.amministrazione.unicam with PID 34605 (/Users/lorenzo/Git/PURPLE/purple/target/classes started by lorenzo in /Users/lorenzo/Git/PURPLE/purple)
+2023-07-05 09:24:28.502  INFO 34605 --- [restartedMain] it.unicam.pros.purple.gui.Application    : No active profile set, falling back to default profiles: default
+2023-07-05 09:24:28.520  INFO 34605 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in /Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
+2023-07-05 09:24:28.520  INFO 34605 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-07-05 09:24:28.520  INFO 34605 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-07-05 09:24:28.879  INFO 34605 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2023-07-05 09:24:28.882  INFO 34605 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-05 09:24:28.882  INFO 34605 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2023-07-05 09:24:28.915  INFO 34605 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-05 09:24:28.915  INFO 34605 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 395 ms
+2023-07-05 09:24:28.945  WARN 34605 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:24:28.964  INFO 34605 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 23 ms
+2023-07-05 09:24:28.965  INFO 34605 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2023-07-05 09:24:29.005  WARN 34605 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:24:31.015  INFO 34605 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 2009 ms
+2023-07-05 09:24:31.016  INFO 34605 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in /Users/lorenzo/Git/PURPLE/purple folder.
+2023-07-05 09:24:31.030  INFO 34605 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 119 classes. Took 9 ms.
+2023-07-05 09:24:31.034  INFO 34605 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.f.TaskGeneratePackageJson        : writing file /Users/lorenzo/Git/PURPLE/purple/target/flow-frontend/package.json.
+2023-07-05 09:24:31.035  INFO 34605 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.html'
+2023-07-05 09:24:31.035  INFO 34605 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.ts'
+2023-07-05 09:24:31.040  INFO 34605 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [/Users/lorenzo/Git/PURPLE/purple/src/main/java]
+2023-07-05 09:24:31.090  INFO 34605 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:24:31.130  WARN 34605 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2023-07-05 09:24:31.139  WARN 34605 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:24:31.172  INFO 34605 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-07-05 09:24:31.214  INFO 34605 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-07-05 09:24:31.216  INFO 34605 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-07-05 09:24:31.217 ERROR 34605 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 4300 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 4300 or configure this application to listen on another port.
+
+2023-07-05 09:24:31.218  INFO 34605 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:25:41.977  INFO 34699 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Starting Application on lorenzo-Air.amministrazione.unicam with PID 34699 (/Users/lorenzo/Git/PURPLE/purple/target/classes started by lorenzo in /Users/lorenzo/Git/PURPLE/purple)
+2023-07-05 09:25:41.978  INFO 34699 --- [restartedMain] it.unicam.pros.purple.gui.Application    : No active profile set, falling back to default profiles: default
+2023-07-05 09:25:41.996  INFO 34699 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in /Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/vaadin-sass-compiler-0.9.13.jar referenced one or more files that do not exist: file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/sac-1.3.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/flute-1.3.0.gg2.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/yuicompressor-2.4.8.jar,file:/Users/lorenzo/.m2/repository/com/vaadin/vaadin-sass-compiler/0.9.13/js-1.7R2.jar
+2023-07-05 09:25:41.996  INFO 34699 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-07-05 09:25:41.996  INFO 34699 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-07-05 09:25:42.340  INFO 34699 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4300 (http)
+2023-07-05 09:25:42.344  INFO 34699 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-05 09:25:42.344  INFO 34699 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2023-07-05 09:25:42.376  INFO 34699 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-05 09:25:42.376  INFO 34699 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 380 ms
+2023-07-05 09:25:42.403  WARN 34699 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:25:42.421  INFO 34699 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for VaadinAppShell took 23 ms
+2023-07-05 09:25:42.423  INFO 34699 --- [restartedMain] c.v.f.s.s.VaadinAppShellInitializer      : Using it.unicam.pros.purple.gui.ui.view.AppShell class for configuring `index.html` response
+2023-07-05 09:25:42.460  WARN 34699 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:25:44.479  INFO 34699 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 2019 ms
+2023-07-05 09:25:44.481  INFO 34699 --- [restartedMain] c.v.f.server.startup.DevModeInitializer  : Starting dev-mode updaters in /Users/lorenzo/Git/PURPLE/purple folder.
+2023-07-05 09:25:44.494  INFO 34699 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 119 classes. Took 8 ms.
+2023-07-05 09:25:44.498  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.f.TaskGeneratePackageJson        : writing file /Users/lorenzo/Git/PURPLE/purple/target/flow-frontend/package.json.
+2023-07-05 09:25:44.499  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexHtml   : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.html'
+2023-07-05 09:25:44.499  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskGenerateIndexTs     : writing file '/Users/lorenzo/Git/PURPLE/purple/target/index.ts'
+2023-07-05 09:25:44.504  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.c.g.OpenApiSpecGenerator         : Parsing java files from [/Users/lorenzo/Git/PURPLE/purple/src/main/java]
+2023-07-05 09:25:44.557  INFO 34699 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-07-05 09:25:44.597  WARN 34699 --- [restartedMain] o.s.b.a.m.MustacheAutoConfiguration      : Cannot find template location: classpath:/templates/ (please add some templates, check your Mustache configuration, or set spring.mustache.check-template-location=false)
+2023-07-05 09:25:44.607  WARN 34699 --- [restartedMain] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:25:44.640  INFO 34699 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-07-05 09:25:44.685  INFO 34699 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4300 (http) with context path ''
+2023-07-05 09:25:44.687  INFO 34699 --- [restartedMain] it.unicam.pros.purple.gui.Application    : Started Application in 2.853 seconds (JVM running for 3.151)
+2023-07-05 09:25:45.292  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.c.g.OpenApiSpecGenerator         : There are no connect endpoints to genertate.
+2023-07-05 09:25:45.298  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskUpdatePackages      : Running `pnpm install` to resolve and optionally download frontend dependencies. This may take a moment, please stand by...
+2023-07-05 09:25:45.301  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskUpdatePackages      : Generated pnpmfile hook file: '/Users/lorenzo/Git/PURPLE/purple/pnpmfile.js'
+2023-07-05 09:26:13.474  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskUpdatePackages      : Frontend dependencies resolved successfully.
+2023-07-05 09:26:13.475  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskCopyFrontendFiles   : Copying frontend resources from jar files ...
+2023-07-05 09:26:13.487  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.s.frontend.TaskCopyFrontendFiles   : Visited 15 resources. Took 11 ms.
+2023-07-05 09:26:13.507  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.server.frontend.TaskUpdateImports  : Updated /Users/lorenzo/Git/PURPLE/purple/target/frontend/generated-flow-imports.js
+2023-07-05 09:26:13.507  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] c.v.f.server.frontend.TaskUpdateImports  : Updated /Users/lorenzo/Git/PURPLE/purple/target/frontend/generated-flow-imports.d.ts
+2023-07-05 09:26:13.507  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] com.vaadin.flow.server.DevModeHandler    : Starting webpack-dev-server
+2023-07-05 09:26:13.895  INFO 34699 --- [ForkJoinPool.commonPool-worker-1] com.vaadin.flow.server.DevModeHandler    : Running webpack to compile frontend resources. This may take a moment, please stand by...
+2023-07-05 09:26:15.123  INFO 34699 --- [http-nio-4300-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-05 09:26:15.123  INFO 34699 --- [http-nio-4300-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-07-05 09:26:15.126  INFO 34699 --- [http-nio-4300-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-07-05 09:26:15.136  WARN 34699 --- [http-nio-4300-exec-1] c.v.f.s.DeploymentConfigurationFactory   : Found 'webpack.config.js' in the project/working directory. Will use it for webpack dev server.
+2023-07-05 09:26:15.137  INFO 34699 --- [http-nio-4300-exec-1] c.v.f.s.DefaultDeploymentConfiguration   : 
+=================== Vaadin DeploymentConfiguration ====================
+
+ Vaadin is running in DEBUG MODE.
+ When deploying application for production, remember to disable debug features. See more from https://vaadin.com/docs/
+
+ Using Vaadin 15+ bootstrap mode.
+  'index.html' is not found from './frontend/index.html'.
+ Generating a default one in 'target/index.html'.  Move it to the './frontend' folder if you want to customize it.
+  'index.ts' is not found from './frontend/index.ts'.
+ Generating a default one in 'target/index.ts'.  Move it to the './frontend' folder if you want to customize it.
+
+=======================================================================
+2023-07-05 09:26:15.489  INFO 34699 --- [http-nio-4300-exec-1] c.vaadin.flow.spring.SpringInstantiator  : The number of beans implementing 'I18NProvider' is 0. Cannot use Spring beans for I18N, falling back to the default behavior
+2023-07-05 09:26:15.491 ERROR 34699 --- [http-nio-4300-exec-1] c.v.flow.server.DefaultErrorHandler      : 
+
+java.lang.IllegalStateException: Webpack exited prematurely
+	at com.vaadin.flow.server.DevModeHandler.doStartDevModeServer(DevModeHandler.java:568) ~[flow-server-3.1.1.jar:3.1.1]
+	at com.vaadin.flow.server.DevModeHandler.runOnFutureComplete(DevModeHandler.java:460) ~[flow-server-3.1.1.jar:3.1.1]
+	at com.vaadin.flow.server.DevModeHandler.lambda$new$0(DevModeHandler.java:131) ~[flow-server-3.1.1.jar:3.1.1]
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2023-07-05 09:26:15.491 ERROR 34699 --- [http-nio-4300-exec-1] o.a.c.c.C.[.[.[/].[springServlet]        : Servlet.service() for servlet [springServlet] threw exception
+
+java.lang.IllegalStateException: Webpack exited prematurely
+	at com.vaadin.flow.server.DevModeHandler.doStartDevModeServer(DevModeHandler.java:568) ~[flow-server-3.1.1.jar:3.1.1]
+	at com.vaadin.flow.server.DevModeHandler.runOnFutureComplete(DevModeHandler.java:460) ~[flow-server-3.1.1.jar:3.1.1]
+	at com.vaadin.flow.server.DevModeHandler.lambda$new$0(DevModeHandler.java:131) ~[flow-server-3.1.1.jar:3.1.1]
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2023-07-05 09:26:15.492 ERROR 34699 --- [http-nio-4300-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [com.vaadin.flow.server.ServiceException: java.lang.IllegalStateException: Webpack exited prematurely] with root cause
+
+java.lang.IllegalStateException: Webpack exited prematurely
+	at com.vaadin.flow.server.DevModeHandler.doStartDevModeServer(DevModeHandler.java:568) ~[flow-server-3.1.1.jar:3.1.1]
+	at com.vaadin.flow.server.DevModeHandler.runOnFutureComplete(DevModeHandler.java:460) ~[flow-server-3.1.1.jar:3.1.1]
+	at com.vaadin.flow.server.DevModeHandler.lambda$new$0(DevModeHandler.java:131) ~[flow-server-3.1.1.jar:3.1.1]
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:483) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2023-07-05 09:26:34.325  INFO 34699 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
