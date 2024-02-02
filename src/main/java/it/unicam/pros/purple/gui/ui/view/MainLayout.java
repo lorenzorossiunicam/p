@@ -28,6 +28,7 @@ import it.unicam.pros.purple.gui.ui.view.conformance.CustomNoiseView;
 import it.unicam.pros.purple.gui.ui.view.conformance.FixedAlignCostView;
 import it.unicam.pros.purple.gui.ui.view.rediscoverability.OrderRelationsView;
 import it.unicam.pros.purple.gui.ui.view.rediscoverability.TraceFrequenciesView;
+import it.unicam.pros.purple.gui.ui.view.whatif.BPMNBranchingProbabilitiesView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -127,11 +128,11 @@ public class MainLayout extends FlexBoxLayout
         menu.addNaviItem(rediscoverability, "BPMN/Petri Net Order relations", OrderRelationsView.class);
         menu.addNaviItem(rediscoverability, "BPMN Traces frequencies", TraceFrequenciesView.class);
 
-        /*
+
         NaviItem whatif = menu.addNaviItem(VaadinIcon.CHART, "What-If Analysis",
                 null);
         menu.addNaviItem(whatif, "BPMN Branching probability", BPMNBranchingProbabilitiesView.class);
-        */
+
         NaviItem conformance = menu.addNaviItem(VaadinIcon.SCALE_UNBALANCE, "Conformance checking",
                 null);
         menu.addNaviItem(conformance, "BPMN/Petri Net Fixed Alignment Cost", FixedAlignCostView.class);
